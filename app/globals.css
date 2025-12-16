@@ -1,0 +1,421 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --mx: 50vw;
+  --my: 35vh;
+  --background: oklch(0.08 0 0);
+  --foreground: oklch(0.95 0.01 270);
+  --card: oklch(0.13 0.015 265);
+  --card-foreground: oklch(0.95 0.01 270);
+  --popover: oklch(0.13 0.015 265);
+  --popover-foreground: oklch(0.95 0.01 270);
+  --primary: oklch(0.6 0.22 260);
+  --primary-foreground: oklch(0.98 0.01 270);
+  --secondary: oklch(0.5 0.18 200);
+  --secondary-foreground: oklch(0.98 0.01 270);
+  --muted: oklch(0.25 0.01 270);
+  --muted-foreground: oklch(0.65 0.02 270);
+  --accent: oklch(0.65 0.25 280);
+  --accent-foreground: oklch(0.98 0.01 270);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.2 0.015 265);
+  --input: oklch(0.13 0.015 265);
+  --ring: oklch(0.6 0.22 260);
+  --chart-1: oklch(0.65 0.25 280);
+  --chart-2: oklch(0.6 0.22 260);
+  --chart-3: oklch(0.55 0.2 240);
+  --chart-4: oklch(0.5 0.18 200);
+  --chart-5: oklch(0.45 0.15 180);
+  --radius: 0.5rem;
+  --sidebar: oklch(0.1 0.01 265);
+  --sidebar-foreground: oklch(0.95 0.01 270);
+  --sidebar-primary: oklch(0.6 0.22 260);
+  --sidebar-primary-foreground: oklch(0.98 0.01 270);
+  --sidebar-accent: oklch(0.18 0.015 265);
+  --sidebar-accent-foreground: oklch(0.95 0.01 270);
+  --sidebar-border: oklch(0.18 0.015 265);
+  --sidebar-ring: oklch(0.6 0.22 260);
+}
+
+.light {
+  --background: oklch(0.98 0.01 270);
+  --foreground: oklch(0.18 0.02 270);
+  --card: oklch(0.99 0.01 270);
+  --card-foreground: oklch(0.18 0.02 270);
+  --popover: oklch(0.99 0.01 270);
+  --popover-foreground: oklch(0.18 0.02 270);
+  --primary: oklch(0.6 0.22 260);
+  --primary-foreground: oklch(0.98 0.01 270);
+  --secondary: oklch(0.5 0.18 200);
+  --secondary-foreground: oklch(0.98 0.01 270);
+  --muted: oklch(0.93 0.01 270);
+  --muted-foreground: oklch(0.45 0.02 270);
+  --accent: oklch(0.65 0.25 280);
+  --accent-foreground: oklch(0.98 0.01 270);
+  --border: oklch(0.9 0.01 270);
+  --input: oklch(0.92 0.01 270);
+  --ring: oklch(0.6 0.22 260);
+  --sidebar: oklch(0.97 0.01 270);
+  --sidebar-foreground: oklch(0.18 0.02 270);
+  --sidebar-accent: oklch(0.93 0.01 270);
+  --sidebar-accent-foreground: oklch(0.18 0.02 270);
+  --sidebar-border: oklch(0.88 0.01 270);
+}
+
+.dark {
+  --background: oklch(0.08 0 0);
+  --foreground: oklch(0.95 0.01 270);
+  --card: oklch(0.13 0.015 265);
+  --card-foreground: oklch(0.95 0.01 270);
+  --popover: oklch(0.13 0.015 265);
+  --popover-foreground: oklch(0.95 0.01 270);
+  --primary: oklch(0.6 0.22 260);
+  --primary-foreground: oklch(0.98 0.01 270);
+  --secondary: oklch(0.5 0.18 200);
+  --secondary-foreground: oklch(0.98 0.01 270);
+  --muted: oklch(0.25 0.01 270);
+  --muted-foreground: oklch(0.65 0.02 270);
+  --accent: oklch(0.65 0.25 280);
+  --accent-foreground: oklch(0.98 0.01 270);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.2 0.015 265);
+  --input: oklch(0.13 0.015 265);
+  --ring: oklch(0.6 0.22 260);
+  --chart-1: oklch(0.65 0.25 280);
+  --chart-2: oklch(0.6 0.22 260);
+  --chart-3: oklch(0.55 0.2 240);
+  --chart-4: oklch(0.5 0.18 200);
+  --chart-5: oklch(0.45 0.15 180);
+  --sidebar: oklch(0.1 0.01 265);
+  --sidebar-foreground: oklch(0.95 0.01 270);
+  --sidebar-primary: oklch(0.6 0.22 260);
+  --sidebar-primary-foreground: oklch(0.98 0.01 270);
+  --sidebar-accent: oklch(0.18 0.015 265);
+  --sidebar-accent-foreground: oklch(0.95 0.01 270);
+  --sidebar-border: oklch(0.18 0.015 265);
+  --sidebar-ring: oklch(0.6 0.22 260);
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.3 0.05 270);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.4 0.08 270);
+  }
+}
+
+@layer utilities {
+  /* Added comprehensive animation keyframes for interactive effects */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUpIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.3));
+    }
+    50% {
+      filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.6));
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  @keyframes borderFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes rotateInPlace {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUpIn 0.6s ease-out;
+  }
+
+  .animate-slide-left {
+    animation: slideInLeft 0.6s ease-out;
+  }
+
+  .animate-slide-right {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2.5s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.2), transparent);
+    background-size: 1000px 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  .animate-border-flow {
+    animation: borderFlow 6s ease infinite;
+  }
+
+  .transition-slow {
+    @apply transition-all duration-500;
+  }
+
+  .transition-fast {
+    @apply transition-all duration-200;
+  }
+
+  /* Added glass morphism and backdrop blur effects for modern look */
+  .glass {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-lg border border-white/10;
+  }
+
+  /* Added gradient text effect */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+
+  /* Added interactive card effects */
+  .card-interactive {
+    @apply relative overflow-hidden rounded-xl border border-border/50 bg-card/50 backdrop-blur transition-all duration-300;
+  }
+
+  .card-interactive:hover {
+    @apply border-primary/50 shadow-lg shadow-primary/10;
+  }
+
+  .card-interactive::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .card-interactive:hover::before {
+    left: 100%;
+  }
+
+  @keyframes orbitSpin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes neonFlicker {
+    0%,
+    18%,
+    22%,
+    25%,
+    54%,
+    56%,
+    100% {
+      opacity: 1;
+    }
+    20%,
+    24%,
+    55% {
+      opacity: 0.8;
+    }
+  }
+
+  .animate-orbit {
+    animation: orbitSpin 20s linear infinite;
+  }
+
+  .animate-neon {
+    animation: neonFlicker 3s infinite;
+  }
+
+  .card-premium {
+    @apply relative overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl transition-all duration-300;
+  }
+
+  .card-premium:hover {
+    @apply border-primary/50 shadow-xl shadow-primary/20 -translate-y-1;
+  }
+
+  .card-premium::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.15), transparent);
+    transition: left 0.5s;
+  }
+
+  .card-premium:hover::before {
+    left: 100%;
+  }
+}
