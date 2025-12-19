@@ -34,12 +34,12 @@ export function TechSection() {
   const { ref, isVisible } = useScrollAnimation()
 
   return (
-    <section ref={ref} id="tech" className="min-h-screen flex items-center justify-center px-6 lg:px-8 py-24">
+    <section ref={ref} id="tech" className="lg:min-h-screen flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24">
       <div className="max-w-6xl w-full space-y-12">
         <div
           className={`transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"}`}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-2 text-balance">Tecnologias</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-balance">Tecnologias</h2>
           <div className="h-1 w-12 bg-gradient-to-r from-primary to-accent rounded-full" />
         </div>
 
@@ -49,7 +49,7 @@ export function TechSection() {
             return (
               <div
                 key={tech.category}
-                className={`group relative bg-gradient-to-br ${tech.color} border border-border/50 rounded-2xl p-6 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-2 overflow-hidden cursor-pointer ${
+                className={`group relative bg-gradient-to-br ${tech.color} border border-border/50 rounded-2xl p-5 sm:p-6 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-2 overflow-hidden cursor-pointer ${
                   isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
                 }`}
                 style={{ transitionDelay: isVisible ? `${idx * 100}ms` : "0ms" }}
@@ -61,7 +61,7 @@ export function TechSection() {
                     <div className="p-2 rounded-lg bg-primary/20 group-hover:bg-primary/30 transition-colors">
                       <Icon className="text-primary w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-base sm:text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                       {tech.category}
                     </h3>
                   </div>

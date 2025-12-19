@@ -27,14 +27,14 @@ export function ExperienceSection() {
   const { ref, isVisible } = useScrollAnimation()
 
   return (
-    <section ref={ref} id="experience" className="min-h-screen flex items-center justify-center px-6 lg:px-8 py-24">
+    <section ref={ref} id="experience" className="lg:min-h-screen flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24">
       <div className="max-w-4xl w-full space-y-12">
         <div
           className={`transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"}`}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-2 text-balance">Experiência</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-balance">Experiência</h2>
           <div className="h-1 w-12 bg-gradient-to-r from-primary to-accent rounded-full" />
-          <p className="text-muted-foreground leading-relaxed pt-5 max-w-2xl">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed pt-5 max-w-2xl">
             Minha experiência profissional é como desenvolvedor freelancer desde 2023, atuando no desenvolvimento de soluções web completas.
           </p>
         </div>
@@ -43,7 +43,7 @@ export function ExperienceSection() {
           {experiences.map((exp, idx) => (
             <div
               key={idx}
-              className={`card-interactive p-8 lg:p-10 transition-all duration-700 ${
+              className={`card-interactive p-6 sm:p-8 lg:p-10 transition-all duration-700 ${
                 isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
               } group`}
               style={{ transitionDelay: isVisible ? `${idx * 150}ms` : "0ms" }}
@@ -59,7 +59,7 @@ export function ExperienceSection() {
                       <Briefcase size={14} className="text-primary/80" />
                       Freelancer
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground">{exp.role}</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold text-foreground">{exp.role}</h3>
                     <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
                       <span className="text-primary font-medium">{exp.company}</span>
                       <span className="inline-flex items-center gap-2">

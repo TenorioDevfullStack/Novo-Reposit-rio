@@ -188,7 +188,7 @@ export function ProjectsSection() {
             onClick={closeLightbox}
           >
             <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
-              <div className="flex items-center justify-between gap-4 pb-4">
+              <div className="flex flex-col gap-4 pb-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-w-0">
                   <p className="text-sm text-muted-foreground truncate">{selected.title}</p>
                   <p className="text-xs text-muted-foreground">
@@ -196,12 +196,12 @@ export function ProjectsSection() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   {canNavigateLightbox ? (
                     <>
                       <Button
                         variant="outline"
-                        className="gap-2 bg-background/30 hover:bg-background/40"
+                        className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
                         onClick={prevLightbox}
                       >
                         <ChevronLeft size={16} />
@@ -209,7 +209,7 @@ export function ProjectsSection() {
                       </Button>
                       <Button
                         variant="outline"
-                        className="gap-2 bg-background/30 hover:bg-background/40"
+                        className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
                         onClick={nextLightbox}
                       >
                         Próxima
@@ -219,7 +219,7 @@ export function ProjectsSection() {
                   ) : null}
                   <Button
                     variant="outline"
-                    className="gap-2 bg-background/30 hover:bg-background/40"
+                    className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
                     onClick={closeLightbox}
                   >
                     <X size={16} />
@@ -245,7 +245,7 @@ export function ProjectsSection() {
       : null
 
   return (
-    <section ref={ref} id="projects" className="min-h-screen flex items-center justify-center px-6 lg:px-8 py-24 relative overflow-hidden">
+    <section ref={ref} id="projects" className="lg:min-h-screen flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[520px] w-[520px] bg-primary/15 blur-3xl rounded-full" />
         <div className="absolute -bottom-32 -left-24 h-[460px] w-[460px] bg-accent/10 blur-3xl rounded-full" />
@@ -262,15 +262,15 @@ export function ProjectsSection() {
                 <Sparkles size={14} className="text-primary/80" />
                 Projetos selecionados
               </div>
-              <h2 className="text-4xl lg:text-6xl font-bold text-balance">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-balance">
                 Projetos em <span className="gradient-text">Destaque</span>
               </h2>
-              <p className="text-muted-foreground leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
                 Uma seleção de projetos que mostram minha evolução como desenvolvedor. Clique em um card para ver detalhes e imagens.
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <span className="px-3 py-1.5 text-xs font-medium rounded-lg bg-muted/30 text-muted-foreground backdrop-blur">
                 {projects.length} projetos
               </span>
@@ -311,7 +311,7 @@ export function ProjectsSection() {
                   <div className="absolute -right-16 -top-16 h-40 w-40 bg-primary/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
-                <div className="relative z-10 p-7 lg:p-8 flex flex-col h-full backdrop-blur-sm">
+                <div className="relative z-10 p-6 sm:p-7 lg:p-8 flex flex-col h-full backdrop-blur-sm">
                   <div className="flex items-start justify-between gap-4 mb-6">
                     <div className="flex items-center gap-3 min-w-0">
                       <div className="p-3.5 rounded-xl bg-primary/10 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-primary/5 group-hover:shadow-primary/20">
@@ -324,7 +324,7 @@ export function ProjectsSection() {
                             Destaque
                           </span>
                         ) : null}
-                        <h3 className="text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 truncate">
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 truncate">
                           {project.title}
                         </h3>
                       </div>
@@ -395,7 +395,7 @@ export function ProjectsSection() {
           }
         }}
       >
-        <DialogContent className="sm:max-w-3xl p-0 overflow-hidden">
+        <DialogContent className="sm:max-w-3xl p-0 max-h-[90svh] overflow-y-auto overflow-x-hidden">
           {selected ? (
             <div className="grid lg:grid-cols-2">
               <div className="p-6 lg:p-8 bg-gradient-to-br from-primary/10 via-transparent to-accent/10">

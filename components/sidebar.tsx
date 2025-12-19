@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Menu, Moon, Search, Sun, X } from "lucide-react"
 import { useTheme } from "next-themes"
@@ -24,6 +24,15 @@ export function Sidebar() {
     { label: "CONTATO", href: "#contact", id: "contact" },
   ]
 
+  useEffect(() => {
+    if (!isOpen) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isOpen])
+
   return (
     <>
       <button
@@ -35,7 +44,7 @@ export function Sidebar() {
       </button>
 
       <aside
-        className={`fixed left-0 top-0 h-screen w-64 bg-card/60 backdrop-blur-xl border-r border-border/50 shadow-2xl shadow-primary/10 transition-all duration-500 z-40 ${
+        className={`fixed left-0 top-0 h-[100svh] lg:h-screen w-64 bg-card/60 backdrop-blur-xl border-r border-border/50 shadow-2xl shadow-primary/10 transition-all duration-500 z-40 ${
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >

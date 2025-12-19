@@ -8,7 +8,8 @@ export function Spotlight() {
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)")
-    if (media.matches) return
+    const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    if (media.matches || !hasFinePointer) return
 
     const root = document.documentElement
 
@@ -39,4 +40,3 @@ export function Spotlight() {
     </div>
   )
 }
-

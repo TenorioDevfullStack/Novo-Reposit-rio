@@ -31,18 +31,18 @@ export function AboutSection() {
   const { ref, isVisible } = useScrollAnimation()
 
   return (
-    <section ref={ref} id="about" className="min-h-screen flex items-center justify-center px-6 lg:px-8 py-24">
+    <section ref={ref} id="about" className="lg:min-h-screen flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24">
       <div className="max-w-4xl w-full space-y-12">
         <div
           className={`transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"}`}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-2 text-balance">Sobre Mim</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-balance">Sobre Mim</h2>
           <div className="h-1 w-12 bg-gradient-to-r from-primary to-accent rounded-full" />
         </div>
 
         <div className="space-y-6">
           <p
-            className={`text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-100 ${
+            className={`text-base sm:text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-100 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
@@ -52,7 +52,7 @@ export function AboutSection() {
           </p>
 
           <p
-            className={`text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-200 ${
+            className={`text-base sm:text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-200 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
@@ -62,12 +62,12 @@ export function AboutSection() {
 
           <div className="grid md:grid-cols-2 gap-8 pt-8">
             <div
-              className={`space-y-4 p-6 rounded-lg border border-border/50 hover:border-primary/50 transition-all duration-300 ${
+              className={`space-y-4 p-5 sm:p-6 rounded-lg border border-border/50 hover:border-primary/50 transition-all duration-300 ${
                 isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
               }`}
               style={{ transitionDelay: isVisible ? "300ms" : "0ms" }}
             >
-              <h3 className="text-xl font-semibold text-primary">Desenvolvimento Full Stack</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-primary">Desenvolvimento Full Stack</h3>
               <p className="text-muted-foreground">
                 Transformo requisitos em aplicações estáveis e bem estruturadas, com interfaces modernas e backends
                 robustos.
@@ -84,12 +84,12 @@ export function AboutSection() {
               </ul>
             </div>
             <div
-              className={`space-y-4 p-6 rounded-lg border border-border/50 hover:border-accent/50 transition-all duration-300 ${
+              className={`space-y-4 p-5 sm:p-6 rounded-lg border border-border/50 hover:border-accent/50 transition-all duration-300 ${
                 isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
               }`}
               style={{ transitionDelay: isVisible ? "400ms" : "0ms" }}
             >
-              <h3 className="text-xl font-semibold text-accent">Qualidade & Entrega</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-accent">Qualidade & Entrega</h3>
               <p className="text-muted-foreground">
                 Busco entregas consistentes: código limpo, boa experiência de uso e um fluxo de trabalho transparente.
               </p>
@@ -118,7 +118,7 @@ export function AboutSection() {
                 return (
                   <div
                     key={`${edu.title}-${idx}`}
-                    className={`card-interactive p-6 transition-all duration-700 ${
+                    className={`card-interactive p-5 sm:p-6 transition-all duration-700 ${
                       isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
                     }`}
                     style={{ transitionDelay: isVisible ? `${500 + idx * 100}ms` : "0ms" }}
@@ -131,7 +131,7 @@ export function AboutSection() {
                       <div className="flex items-start justify-between gap-4">
                         <div className="space-y-1">
                           <p className="text-xs font-mono text-primary/80">{edu.label}</p>
-                          <h4 className="text-lg font-semibold text-foreground">{edu.title}</h4>
+                          <h4 className="text-base sm:text-lg font-semibold text-foreground">{edu.title}</h4>
                           <div className="flex flex-wrap items-center gap-2 pt-1">
                             {edu.institution ? <p className="text-sm text-muted-foreground">{edu.institution}</p> : null}
                             <span className="px-2 py-0.5 text-[11px] rounded-full bg-muted/40 text-muted-foreground">

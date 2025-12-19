@@ -16,7 +16,7 @@ import { CommandMenu, CommandMenuProvider } from "@/components/command-menu"
 export default function Home() {
   return (
     <CommandMenuProvider>
-      <div className="flex min-h-screen bg-background overflow-x-hidden relative isolate">
+      <div className="flex min-h-[100svh] lg:min-h-screen bg-background overflow-x-hidden relative isolate">
         <ScrollProgress />
         <CommandMenu />
         <BackgroundGrid />

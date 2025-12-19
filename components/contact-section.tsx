@@ -91,23 +91,23 @@ export function ContactSection() {
   }
 
   return (
-    <section ref={ref} id="contact" className="min-h-screen flex items-center justify-center px-6 lg:px-8 py-24">
+    <section ref={ref} id="contact" className="lg:min-h-screen flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24">
       <div className="max-w-5xl w-full space-y-12">
         <div
           className={`space-y-4 transition-all duration-700 ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
         >
           <div className="text-center space-y-4">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance">Vamos Conversar</h2>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto text-balance leading-relaxed">
-            Estou sempre aberto para novas oportunidades, colaborações ou simplesmente uma conversa sobre tecnologia e
-            IA. Sinta-se à vontade para entrar em contato.
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-balance">Vamos Conversar</h2>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto text-balance leading-relaxed">
+              Estou sempre aberto para novas oportunidades, colaborações ou simplesmente uma conversa sobre tecnologia e
+              IA. Sinta-se à vontade para entrar em contato.
             </p>
           </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-start">
           <div
-            className={`card-interactive p-8 space-y-6 transition-all duration-700 delay-100 ${
+            className={`card-interactive p-6 sm:p-8 space-y-6 transition-all duration-700 delay-100 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
@@ -116,29 +116,29 @@ export function ContactSection() {
               <p className="text-sm text-muted-foreground">Escolha um canal ou mande uma mensagem pelo formulário.</p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3">
               <a
                 href={`mailto:${email}`}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:shadow-lg hover:shadow-primary/40 transition-all duration-300 hover:scale-[1.02] text-sm group"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:shadow-lg hover:shadow-primary/40 transition-all duration-300 hover:scale-[1.02] text-sm group"
               >
                 <Mail size={18} />
                 Enviar Email
                 <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </a>
 
-              <Button type="button" variant="outline" className="gap-2" onClick={copyEmail}>
+              <Button type="button" variant="outline" className="gap-2 w-full sm:w-auto justify-center" onClick={copyEmail}>
                 <Copy size={16} />
                 Copiar email
               </Button>
 
-              <Button asChild variant="outline" className="gap-2">
+              <Button asChild variant="outline" className="gap-2 w-full sm:w-auto justify-center">
                 <a href={`tel:${phoneTel}`} aria-label={`Ligar para ${phoneDisplay}`}>
                   <PhoneCall size={16} />
                   {phoneDisplay}
                 </a>
               </Button>
 
-              <Button type="button" variant="outline" className="gap-2" onClick={copyPhone}>
+              <Button type="button" variant="outline" className="gap-2 w-full sm:w-auto justify-center" onClick={copyPhone}>
                 <Copy size={16} />
                 Copiar telefone
               </Button>
@@ -150,7 +150,7 @@ export function ContactSection() {
                 <span>Links sociais</span>
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex gap-3 sm:gap-4">
                 {[
                   { name: "GitHub", href: "https://github.com/TenorioDevfullStack", icon: Github },
                   { name: "LinkedIn", href: "https://www.linkedin.com/in/leandro-ten%C3%B3rio-088378310/", icon: Linkedin },
@@ -187,7 +187,7 @@ export function ContactSection() {
           </div>
 
           <div
-            className={`card-interactive p-8 transition-all duration-700 delay-150 ${
+            className={`card-interactive p-6 sm:p-8 transition-all duration-700 delay-150 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >

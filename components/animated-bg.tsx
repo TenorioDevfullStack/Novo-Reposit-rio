@@ -13,7 +13,11 @@ export function AnimatedBg() {
     if (!ctx) return
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    let dpr = Math.min(window.devicePixelRatio || 1, 2)
+    const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    const isSmallScreen = window.matchMedia("(max-width: 768px)").matches
+    const reduceEffects = prefersReducedMotion || !hasFinePointer || isSmallScreen
+    const maxDpr = reduceEffects ? 1.5 : 2
+    let dpr = Math.min(window.devicePixelRatio || 1, maxDpr)
 
     const particles: Array<{
       x: number
@@ -24,26 +28,29 @@ export function AnimatedBg() {
     }> = []
 
     const pointer = { x: 0, y: 0, active: false }
+    const canTrackPointer = hasFinePointer && !prefersReducedMotion
+    let width = window.innerWidth
+    let height = window.innerHeight
 
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2)
-      const w = window.innerWidth
-      const h = window.innerHeight
-      canvas.width = Math.floor(w * dpr)
-      canvas.height = Math.floor(h * dpr)
-      canvas.style.width = `${w}px`
-      canvas.style.height = `${h}px`
+      dpr = Math.min(window.devicePixelRatio || 1, maxDpr)
+      width = window.innerWidth
+      height = window.innerHeight
+      canvas.width = Math.floor(width * dpr)
+      canvas.height = Math.floor(height * dpr)
+      canvas.style.width = `${width}px`
+      canvas.style.height = `${height}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
 
     resize()
 
     // Create particles
-    const particleCount = prefersReducedMotion ? 20 : 55
+    const particleCount = reduceEffects ? 24 : 55
     for (let i = 0; i < particleCount; i++) {
       particles.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
+        x: Math.random() * width,
+        y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
         size: Math.random() * 1.5,
@@ -60,17 +67,19 @@ export function AnimatedBg() {
       pointer.active = false
     }
 
-    window.addEventListener("pointermove", onPointerMove, { passive: true })
-    window.addEventListener("blur", onPointerLeave)
+    if (canTrackPointer) {
+      window.addEventListener("pointermove", onPointerMove, { passive: true })
+      window.addEventListener("blur", onPointerLeave)
+    }
 
     let rafId: number | null = null
 
     const render = () => {
       ctx.fillStyle = "rgba(8, 12, 22, 0.12)"
-      ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
+      ctx.fillRect(0, 0, width, height)
 
       particles.forEach((p) => {
-        if (pointer.active && !prefersReducedMotion) {
+        if (pointer.active && canTrackPointer && !reduceEffects) {
           const dx = p.x - pointer.x
           const dy = p.y - pointer.y
           const dist = Math.hypot(dx, dy)
@@ -87,10 +96,10 @@ export function AnimatedBg() {
         p.x += p.vx
         p.y += p.vy
 
-        if (p.x < 0) p.x = window.innerWidth
-        if (p.x > window.innerWidth) p.x = 0
-        if (p.y < 0) p.y = window.innerHeight
-        if (p.y > window.innerHeight) p.y = 0
+        if (p.x < 0) p.x = width
+        if (p.x > width) p.x = 0
+        if (p.y < 0) p.y = height
+        if (p.y > height) p.y = 0
 
         ctx.fillStyle = "rgba(138, 43, 226, 0.3)"
         ctx.beginPath()
@@ -98,20 +107,21 @@ export function AnimatedBg() {
         ctx.fill()
       })
 
-      // Draw connecting lines
-      particles.forEach((p1, i) => {
-        particles.slice(i + 1).forEach((p2) => {
-          const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y)
-          if (dist < 150) {
-            ctx.strokeStyle = `rgba(138, 43, 226, ${0.1 * (1 - dist / 150)})`
-            ctx.lineWidth = 0.5
-            ctx.beginPath()
-            ctx.moveTo(p1.x, p1.y)
-            ctx.lineTo(p2.x, p2.y)
-            ctx.stroke()
-          }
+      if (!reduceEffects) {
+        particles.forEach((p1, i) => {
+          particles.slice(i + 1).forEach((p2) => {
+            const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y)
+            if (dist < 150) {
+              ctx.strokeStyle = `rgba(138, 43, 226, ${0.1 * (1 - dist / 150)})`
+              ctx.lineWidth = 0.5
+              ctx.beginPath()
+              ctx.moveTo(p1.x, p1.y)
+              ctx.lineTo(p2.x, p2.y)
+              ctx.stroke()
+            }
+          })
         })
-      })
+      }
     }
 
     const animate = () => {
@@ -127,8 +137,10 @@ export function AnimatedBg() {
 
     return () => {
       window.removeEventListener("resize", resize)
-      window.removeEventListener("pointermove", onPointerMove)
-      window.removeEventListener("blur", onPointerLeave)
+      if (canTrackPointer) {
+        window.removeEventListener("pointermove", onPointerMove)
+        window.removeEventListener("blur", onPointerLeave)
+      }
       if (rafId != null) window.cancelAnimationFrame(rafId)
     }
   }, [])
