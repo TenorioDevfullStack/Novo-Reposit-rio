@@ -48,6 +48,20 @@ const projects = [
     ],
   },
   {
+    title: "ImobAI",
+    description: "SaaS para corretores de imóveis que gera legendas de marketing automáticas usando IA Gemini 1.5 Flash.",
+    longDescription:
+      "O ImobAI permite que corretores subam fotos de imóveis e, com poucos dados básicos, a IA gera legendas persuasivas e otimizadas para redes sociais, economizando tempo e aumentando o engajamento.",
+    tags: ["Next.js", "Gemini AI", "TypeScript", "Tailwind CSS"],
+    icon: Sparkles,
+    gradient: "from-primary/20 to-transparent",
+    highlights: ["Geração de legendas por IA", "Análise de imagem (Visão computacional)", "Vários tons de voz selecionáveis"],
+    links: {
+      demo: "/imobai",
+    },
+    images: ["/imagens/imobai/Sem título.png"],
+  },
+  {
     title: "Landing Page — Professora de Espanhol",
     description: "Landing page para apresentação de serviços, dúvidas frequentes e chamada para contato.",
     longDescription:
