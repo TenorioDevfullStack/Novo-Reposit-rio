@@ -105,11 +105,10 @@ export function ContactSection() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
           <div
-            className={`card-interactive p-6 sm:p-8 space-y-6 transition-all duration-700 delay-100 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
+            className={`card-interactive p-6 sm:p-8 space-y-6 transition-all duration-700 delay-100 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+              }`}
           >
             <div className="space-y-2">
               <h3 className="text-lg font-semibold">Contato rápido</h3>
@@ -167,17 +166,15 @@ export function ContactSection() {
                     title={social.name}
                   >
                     <div
-                      className={`p-3 rounded-lg border border-border transition-all duration-300 ${
-                        hovered === social.name
+                      className={`p-3 rounded-lg border border-border transition-all duration-300 ${hovered === social.name
                           ? "bg-primary/15 border-primary/50 scale-110 shadow-lg shadow-primary/15"
                           : "hover:border-primary/50 hover:bg-primary/5"
-                      }`}
+                        }`}
                     >
                       <social.icon
                         size={22}
-                        className={`transition-all duration-300 ${
-                          hovered === social.name ? "text-primary" : "text-muted-foreground"
-                        }`}
+                        className={`transition-all duration-300 ${hovered === social.name ? "text-primary" : "text-muted-foreground"
+                          }`}
                       />
                     </div>
                   </a>
@@ -187,9 +184,8 @@ export function ContactSection() {
           </div>
 
           <div
-            className={`card-interactive p-6 sm:p-8 transition-all duration-700 delay-150 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
+            className={`card-interactive p-6 sm:p-8 transition-all duration-700 delay-150 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+              }`}
           >
             <div className="space-y-2 mb-6">
               <h3 className="text-lg font-semibold">Enviar mensagem</h3>
@@ -221,7 +217,7 @@ export function ContactSection() {
                   />
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <FormField
                     control={form.control}
                     name="name"
@@ -275,9 +271,8 @@ export function ContactSection() {
         </div>
 
         <p
-          className={`text-xs text-muted-foreground pt-12 text-center transition-all duration-700 delay-200 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
+          className={`text-xs text-muted-foreground pt-12 text-center transition-all duration-700 delay-200 ${isVisible ? "opacity-100" : "opacity-0"
+            }`}
         >
           © 2025 Leandro Tenório. Desenvolvido com React, Next.js e muito ☕
         </p>

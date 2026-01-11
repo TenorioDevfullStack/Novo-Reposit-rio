@@ -194,68 +194,68 @@ export function ProjectsSection() {
   const lightbox =
     mounted && lightboxOpen && selected
       ? createPortal(
-          <div
-            className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-            role="dialog"
-            aria-modal="true"
-            aria-label={`Visualização ampliada das imagens do projeto ${selected.title}`}
-            onClick={closeLightbox}
-          >
-            <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
-              <div className="flex flex-col gap-4 pb-4 sm:flex-row sm:items-center sm:justify-between">
-                <div className="min-w-0">
-                  <p className="text-sm text-muted-foreground truncate">{selected.title}</p>
-                  <p className="text-xs text-muted-foreground">
-                    Imagem {Math.min(lightboxIndex + 1, lightboxImages.length)} de {lightboxImages.length}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-2">
-                  {canNavigateLightbox ? (
-                    <>
-                      <Button
-                        variant="outline"
-                        className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
-                        onClick={prevLightbox}
-                      >
-                        <ChevronLeft size={16} />
-                        Anterior
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
-                        onClick={nextLightbox}
-                      >
-                        Próxima
-                        <ChevronRight size={16} />
-                      </Button>
-                    </>
-                  ) : null}
-                  <Button
-                    variant="outline"
-                    className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
-                    onClick={closeLightbox}
-                  >
-                    <X size={16} />
-                    Fechar
-                  </Button>
-                </div>
+        <div
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Visualização ampliada das imagens do projeto ${selected.title}`}
+          onClick={closeLightbox}
+        >
+          <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex flex-col gap-4 pb-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <p className="text-sm text-muted-foreground truncate">{selected.title}</p>
+                <p className="text-xs text-muted-foreground">
+                  Imagem {Math.min(lightboxIndex + 1, lightboxImages.length)} de {lightboxImages.length}
+                </p>
               </div>
 
-              <div className="relative w-full h-[78vh] rounded-xl overflow-hidden border border-white/10 bg-black/30">
-                <Image
-                  src={lightboxImages[lightboxIndex] ?? selected.images[0]}
-                  alt={`${selected.title} — imagem ${lightboxIndex + 1}`}
-                  fill
-                  sizes="100vw"
-                  className="object-contain"
-                  priority
-                />
+              <div className="flex flex-wrap items-center gap-2">
+                {canNavigateLightbox ? (
+                  <>
+                    <Button
+                      variant="outline"
+                      className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
+                      onClick={prevLightbox}
+                    >
+                      <ChevronLeft size={16} />
+                      Anterior
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
+                      onClick={nextLightbox}
+                    >
+                      Próxima
+                      <ChevronRight size={16} />
+                    </Button>
+                  </>
+                ) : null}
+                <Button
+                  variant="outline"
+                  className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
+                  onClick={closeLightbox}
+                >
+                  <X size={16} />
+                  Fechar
+                </Button>
               </div>
             </div>
-          </div>,
-          document.body,
-        )
+
+            <div className="relative w-full h-[78vh] rounded-xl overflow-hidden border border-white/10 bg-black/30">
+              <Image
+                src={lightboxImages[lightboxIndex] ?? selected.images[0]}
+                alt={`${selected.title} — imagem ${lightboxIndex + 1}`}
+                fill
+                sizes="100vw"
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
+        </div>,
+        document.body,
+      )
       : null
 
   return (
@@ -297,16 +297,15 @@ export function ProjectsSection() {
           <div className="h-1.5 w-24 bg-gradient-to-r from-primary to-accent rounded-full mt-6" />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((project, idx) => {
             const Icon = project.icon
             const isFeatured = idx === 0
             return (
               <Tilt
                 key={idx}
-                className={`group relative h-full cursor-pointer transition-all duration-700 ${
-                  isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
-                } ${isFeatured ? "md:col-span-2 lg:col-span-2" : ""}`}
+                className={`group relative h-full cursor-pointer transition-all duration-700 ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+                  } ${isFeatured ? "md:col-span-2 lg:col-span-2" : ""}`}
                 style={{ transitionDelay: isVisible ? `${idx * 100}ms` : "0ms" }}
                 role="button"
                 tabIndex={0}
@@ -409,7 +408,7 @@ export function ProjectsSection() {
           }
         }}
       >
-        <DialogContent className="sm:max-w-3xl p-0 max-h-[90svh] overflow-y-auto overflow-x-hidden">
+        <DialogContent className="w-[95vw] sm:max-w-3xl p-0 max-h-[90svh] overflow-y-auto overflow-x-hidden rounded-xl border-border/50">
           {selected ? (
             <div className="grid lg:grid-cols-2">
               <div className="p-6 lg:p-8 bg-gradient-to-br from-primary/10 via-transparent to-accent/10">

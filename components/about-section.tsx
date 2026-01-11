@@ -42,9 +42,8 @@ export function AboutSection() {
 
         <div className="space-y-6">
           <p
-            className={`text-base sm:text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-100 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
+            className={`text-base sm:text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-100 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+              }`}
           >
             Olá! Meu nome é Leandro Tenório e sou desenvolvedor Full Stack freelancer desde 2023. Trabalho criando
             soluções web completas, do front ao back, com foco em qualidade, performance e uma experiência de uso
@@ -52,19 +51,17 @@ export function AboutSection() {
           </p>
 
           <p
-            className={`text-base sm:text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-200 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
+            className={`text-base sm:text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-200 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+              }`}
           >
             Tenho formação como Dev Full Stack pela OneBitCode e formação técnica em eletrônica — uma combinação que
             reforça meu perfil prático e orientado a resolver problemas reais com clareza e método.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8 pt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 pt-8">
             <div
-              className={`space-y-4 p-5 sm:p-6 rounded-lg border border-border/50 hover:border-primary/50 transition-all duration-300 ${
-                isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
-              }`}
+              className={`space-y-4 p-5 sm:p-6 rounded-lg border border-border/50 hover:border-primary/50 transition-all duration-300 ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+                }`}
               style={{ transitionDelay: isVisible ? "300ms" : "0ms" }}
             >
               <h3 className="text-lg sm:text-xl font-semibold text-primary">Desenvolvimento Full Stack</h3>
@@ -84,9 +81,8 @@ export function AboutSection() {
               </ul>
             </div>
             <div
-              className={`space-y-4 p-5 sm:p-6 rounded-lg border border-border/50 hover:border-accent/50 transition-all duration-300 ${
-                isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
-              }`}
+              className={`space-y-4 p-5 sm:p-6 rounded-lg border border-border/50 hover:border-accent/50 transition-all duration-300 ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+                }`}
               style={{ transitionDelay: isVisible ? "400ms" : "0ms" }}
             >
               <h3 className="text-lg sm:text-xl font-semibold text-accent">Qualidade & Entrega</h3>
@@ -107,20 +103,18 @@ export function AboutSection() {
           </div>
 
           <div
-            className={`space-y-4 pt-12 transition-all duration-700 delay-300 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
+            className={`space-y-4 pt-12 transition-all duration-700 delay-300 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+              }`}
           >
             <h3 className="text-xl font-semibold text-foreground">Formação</h3>
-            <div className="grid md:grid-cols-2 gap-6 pt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
               {education.map((edu, idx) => {
                 const Icon = edu.icon
                 return (
                   <div
                     key={`${edu.title}-${idx}`}
-                    className={`card-interactive p-5 sm:p-6 transition-all duration-700 ${
-                      isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-                    }`}
+                    className={`card-interactive p-5 sm:p-6 transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+                      }`}
                     style={{ transitionDelay: isVisible ? `${500 + idx * 100}ms` : "0ms" }}
                   >
                     <div className="absolute inset-0 pointer-events-none">

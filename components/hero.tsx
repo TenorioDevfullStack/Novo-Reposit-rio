@@ -38,9 +38,8 @@ export function Hero() {
       <div className="max-w-4xl w-full relative z-10">
         <div className="space-y-6 sm:space-y-8">
           <div
-            className={`transition-all duration-700 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-            }`}
+            className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+              }`}
           >
             <div className="flex items-center gap-3 mb-6 group cursor-pointer">
               <div className="relative">
@@ -52,7 +51,7 @@ export function Hero() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight text-balance space-y-2">
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold leading-tight text-balance space-y-2">
               <div>Construindo</div>
               <div className="gradient-text animate-glow">soluções inteligentes</div>
               <div className="flex items-center gap-3">
@@ -65,18 +64,16 @@ export function Hero() {
           </div>
 
           <p
-            className={`text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl text-balance leading-relaxed transition-all duration-700 delay-100 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-            }`}
+            className={`text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl text-balance leading-relaxed transition-all duration-700 delay-100 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+              }`}
           >
             Desenvolvedor fullstack com especialidade em IA. Crio aplicações web e mobile que combinam design elegante
             com tecnologia de ponta. Transformo ideias em produtos reais que fazem diferença.
           </p>
 
           <div
-            className={`flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-6 sm:pt-8 transition-all duration-700 delay-200 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-            }`}
+            className={`flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-6 sm:pt-8 transition-all duration-700 delay-200 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+              }`}
           >
             <a
               href="#projects"

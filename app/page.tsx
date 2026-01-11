@@ -24,7 +24,7 @@ export default function Home() {
         <Spotlight />
         <Sidebar />
 
-        <main className="flex-1 lg:ml-64 relative z-10">
+        <main className="flex-1 lg:ml-64 relative z-10 w-full min-w-0">
           <Hero />
           <AboutSection />
           <ExperienceSection />
