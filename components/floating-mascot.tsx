@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
@@ -19,13 +20,20 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
   const [isWakeOpen, setIsWakeOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [videoAspect, setVideoAspect] = useState<string | null>(null);
+  const [videoSize, setVideoSize] = useState<{ width: number; height: number } | null>(null);
+  const [showRawVideo, setShowRawVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
   const bgColorRef = useRef<[number, number, number] | null>(null);
+  const lastFrameAtRef = useRef<number>(0);
+  const fallbackTimerRef = useRef<number | null>(null);
 
   const handleClick = () => {
     const video = videoRef.current;
+    setShowRawVideo(false);
+    lastFrameAtRef.current = 0;
     if (video) {
       bgColorRef.current = null;
       video.muted = true;
@@ -57,6 +65,17 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
   }, []);
 
   useEffect(() => {
+    if (!isWakeOpen) {
+      setShowRawVideo(false);
+      lastFrameAtRef.current = 0;
+      if (fallbackTimerRef.current) {
+        clearTimeout(fallbackTimerRef.current);
+        fallbackTimerRef.current = null;
+      }
+    }
+  }, [isWakeOpen]);
+
+  useEffect(() => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
     if (!isWakeOpen || !video || !canvas) return;
@@ -68,14 +87,25 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
     const syncCanvasSize = () => {
       const width = video.videoWidth || 0;
       const height = video.videoHeight || 0;
-      if (width > 0 && height > 0) {
-        canvas.width = width;
-        canvas.height = height;
+      const rect = containerRef.current?.getBoundingClientRect();
+      const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
+
+      if (!rect || rect.width === 0 || rect.height === 0 || width === 0 || height === 0) {
+        return;
+      }
+
+      const targetWidth = Math.min(width, Math.round(rect.width * dpr));
+      const targetHeight = Math.min(height, Math.round(rect.height * dpr));
+
+      if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
       }
     };
 
     const renderFrame = () => {
       if (stopped) return;
+      if (showRawVideo) return;
       if (video.readyState < 2) return;
       if (canvas.width === 0 || canvas.height === 0) {
         syncCanvasSize();
@@ -158,6 +188,7 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
       }
 
       ctx.putImageData(frame, 0, 0);
+      lastFrameAtRef.current = Date.now();
     };
 
     const scheduleNext = () => {
@@ -182,10 +213,20 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
       syncCanvasSize();
       if (video.videoWidth > 0 && video.videoHeight > 0) {
         setVideoAspect(`${video.videoWidth} / ${video.videoHeight}`);
+        setVideoSize({ width: video.videoWidth, height: video.videoHeight });
       }
       bgColorRef.current = null;
       renderFrame();
     };
+
+    let resizeObserver: ResizeObserver | null = null;
+    if (containerRef.current && typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(() => {
+        syncCanvasSize();
+        renderFrame();
+      });
+      resizeObserver.observe(containerRef.current);
+    }
 
     const handleTimeUpdate = () => {
       renderFrame();
@@ -203,6 +244,15 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
 
     scheduleNext();
 
+    if (fallbackTimerRef.current) {
+      clearTimeout(fallbackTimerRef.current);
+    }
+    fallbackTimerRef.current = window.setTimeout(() => {
+      if (!lastFrameAtRef.current) {
+        setShowRawVideo(true);
+      }
+    }, 700);
+
     return () => {
       stopped = true;
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -213,8 +263,13 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
       video.removeEventListener("timeupdate", handleTimeUpdate);
       video.removeEventListener("seeking", handleTimeUpdate);
       video.removeEventListener("seeked", handleTimeUpdate);
+      resizeObserver?.disconnect();
+      if (fallbackTimerRef.current) {
+        clearTimeout(fallbackTimerRef.current);
+        fallbackTimerRef.current = null;
+      }
     };
-  }, [isWakeOpen]);
+  }, [isWakeOpen, showRawVideo]);
 
   return (
     <>
@@ -228,10 +283,14 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
         )}
         style={{ width: size, height: size }}
       >
-        <img
+        <Image
           src={MASCOT_IMAGE_SRC}
           alt=""
-          className="pointer-events-none h-full w-full object-cover"
+          fill
+          sizes={`${size}px`}
+          quality={100}
+          priority
+          className="pointer-events-none object-cover"
           draggable={false}
         />
       </button>
@@ -241,10 +300,14 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
         createPortal(
           <div className="fixed inset-0 z-[999] grid place-items-center bg-transparent p-4">
             <div
+              ref={containerRef}
               className="relative w-[85vw] max-w-4xl overflow-hidden bg-transparent sm:w-[75vw]"
               style={{ aspectRatio: videoAspect ?? "16 / 9" }}
             >
-              <canvas ref={canvasRef} className="block h-full w-full bg-transparent" />
+              <canvas
+                ref={canvasRef}
+                className={`block h-full w-full bg-transparent ${showRawVideo ? "opacity-0" : "opacity-100"}`}
+              />
             </div>
           </div>,
           document.body
@@ -252,7 +315,16 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
       <video
         ref={videoRef}
         src={WAKE_VIDEO_SRC}
-        className="absolute left-0 top-0 h-px w-px opacity-0 pointer-events-none"
+        className={
+          isWakeOpen && showRawVideo
+            ? "fixed left-1/2 top-1/2 z-[1000] h-auto w-[85vw] max-w-4xl -translate-x-1/2 -translate-y-1/2 opacity-100 pointer-events-none sm:w-[75vw]"
+            : isWakeOpen
+              ? "absolute inset-0 h-full w-full opacity-0 pointer-events-none"
+              : "fixed -left-[9999px] top-0 h-px w-px opacity-0 pointer-events-none"
+        }
+        style={isWakeOpen && showRawVideo ? { aspectRatio: videoAspect ?? "16 / 9" } : undefined}
+        width={videoSize?.width}
+        height={videoSize?.height}
         playsInline
         muted
         onEnded={handleCloseWake}
