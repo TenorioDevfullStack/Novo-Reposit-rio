@@ -7,6 +7,7 @@ import { useTheme } from "next-themes"
 
 import { useActiveSection } from "@/hooks/use-active-section"
 import { useCommandMenu } from "@/components/command-menu"
+import { FloatingMascot } from "@/components/floating-mascot"
 
 export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -88,30 +89,43 @@ export function Sidebar() {
             </div>
           </div>
 
-          <nav className="flex-1 space-y-6">
-            {navItems.map((item, idx) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className={`block pl-4 text-sm font-medium transition-all relative group ${
-                  activeSection === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
-                aria-current={activeSection === item.id ? "page" : undefined}
-                style={{ animationDelay: `${idx * 50}ms` }}
-              >
-                {item.label}
-                <span
-                  className={`absolute left-0 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-300 ${
-                    activeSection === item.id
-                      ? "opacity-100 scale-100 shadow-[0_0_18px_rgba(138,43,226,0.65)]"
-                      : "opacity-0 scale-50 group-hover:opacity-60 group-hover:scale-100"
+          <div className="flex-1 flex flex-col">
+            <nav className="space-y-6">
+              {navItems.map((item, idx) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`block pl-4 text-sm font-medium transition-all relative group ${
+                    activeSection === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
-                />
-                <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
-              </Link>
-            ))}
-          </nav>
+                  aria-current={activeSection === item.id ? "page" : undefined}
+                  style={{ animationDelay: `${idx * 50}ms` }}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute left-0 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "opacity-100 scale-100 shadow-[0_0_18px_rgba(138,43,226,0.65)]"
+                        : "opacity-0 scale-50 group-hover:opacity-60 group-hover:scale-100"
+                    }`}
+                  />
+                  <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
+                </Link>
+              ))}
+            </nav>
+
+            <div className="mt-auto flex flex-col items-center gap-3 pt-6 mb-6">
+              <FloatingMascot className="shrink-0" />
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent("ai-assistant:open"))}
+                className="text-xs text-muted-foreground border border-border rounded-md px-3 py-2"
+              >
+                Testar chat com IA
+              </button>
+            </div>
+          </div>
 
           <div className="space-y-3 pt-6 border-t border-border">
             {[

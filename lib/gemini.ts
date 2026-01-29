@@ -1,9 +1,10 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "";
+const apiKey = process.env.GEMINI_API_KEY || "";
+const modelName = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const genAI = new GoogleGenerativeAI(apiKey);
 
-export const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+export const model = genAI.getGenerativeModel({ model: modelName });
 
 /**
  * Generates marketing captions for a property.
