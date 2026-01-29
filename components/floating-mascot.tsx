@@ -49,6 +49,10 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
     if (!ctx) return;
 
     let stopped = false;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
 
     const syncCanvasSize = () => {
       const width = video.videoWidth || 0;
@@ -61,15 +65,26 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
 
     const renderFrame = () => {
       if (stopped) return;
+      if (video.readyState < 2) return;
       if (canvas.width === 0 || canvas.height === 0) {
         syncCanvasSize();
       }
       if (canvas.width === 0 || canvas.height === 0) return;
 
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = "high";
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      try {
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      } catch {
+        return;
+      }
+
+      let frame: ImageData;
+      try {
+        frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      } catch {
+        return;
+      }
       const data = frame.data;
 
       if (!bgColorRef.current) {
@@ -161,7 +176,15 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
       renderFrame();
     };
 
+    const handleTimeUpdate = () => {
+      renderFrame();
+    };
+
     video.addEventListener("loadeddata", handleLoaded);
+    video.addEventListener("loadedmetadata", handleLoaded);
+    video.addEventListener("timeupdate", handleTimeUpdate);
+    video.addEventListener("seeking", handleTimeUpdate);
+    video.addEventListener("seeked", handleTimeUpdate);
 
     video.currentTime = 0;
     bgColorRef.current = null;
@@ -176,6 +199,10 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
       video.removeEventListener("loadeddata", handleLoaded);
+      video.removeEventListener("loadedmetadata", handleLoaded);
+      video.removeEventListener("timeupdate", handleTimeUpdate);
+      video.removeEventListener("seeking", handleTimeUpdate);
+      video.removeEventListener("seeked", handleTimeUpdate);
     };
   }, [isWakeOpen]);
 
