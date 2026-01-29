@@ -87,7 +87,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
               <Sparkles size={16} className="text-white" />
             </div>
             <div>
-              <p className="text-sm font-bold leading-none">Assistente IA</p>
+              <p className="text-sm font-bold leading-none">Nix</p>
               <p className="text-[10px] opacity-80 leading-none mt-1">
                 Powered by Gemini
               </p>
@@ -115,7 +115,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
               </div>
               <div>
                 <p className="font-medium text-foreground">
-                  Olá! Sou a IA do Leandro.
+                  Olá! Sou a Nix.
                 </p>
                 <p className="text-xs mt-1">
                   Pergunte sobre projetos, stack ou experiência.

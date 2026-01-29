@@ -25,6 +25,21 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
   const bgColorRef = useRef<[number, number, number] | null>(null);
 
   const handleClick = () => {
+    const video = videoRef.current;
+    if (video) {
+      bgColorRef.current = null;
+      video.muted = true;
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      if (video.readyState === 0) {
+        video.load();
+      }
+      video.currentTime = 0;
+      void video.play().catch(() => {
+        // Playback may be blocked on some devices; canvas will still render when frames are available.
+      });
+    }
     setIsWakeOpen(true);
   };
 
@@ -49,10 +64,6 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
     if (!ctx) return;
 
     let stopped = false;
-    video.muted = true;
-    video.playsInline = true;
-    video.setAttribute("playsinline", "");
-    video.setAttribute("webkit-playsinline", "");
 
     const syncCanvasSize = () => {
       const width = video.videoWidth || 0;
@@ -188,9 +199,7 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
 
     video.currentTime = 0;
     bgColorRef.current = null;
-    void video.play().catch(() => {
-      renderFrame();
-    });
+    renderFrame();
 
     scheduleNext();
 
@@ -198,6 +207,7 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
       stopped = true;
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
+      video.pause();
       video.removeEventListener("loadeddata", handleLoaded);
       video.removeEventListener("loadedmetadata", handleLoaded);
       video.removeEventListener("timeupdate", handleTimeUpdate);
@@ -235,20 +245,20 @@ export function FloatingMascot({ size = 180, className }: FloatingMascotProps) {
               style={{ aspectRatio: videoAspect ?? "16 / 9" }}
             >
               <canvas ref={canvasRef} className="block h-full w-full bg-transparent" />
-              <video
-                ref={videoRef}
-                src={WAKE_VIDEO_SRC}
-                className="absolute inset-0 h-full w-full opacity-0 pointer-events-none"
-                playsInline
-                muted
-                onEnded={handleCloseWake}
-                controls={false}
-                preload="auto"
-              />
             </div>
           </div>,
           document.body
         )}
+      <video
+        ref={videoRef}
+        src={WAKE_VIDEO_SRC}
+        className="absolute left-0 top-0 h-px w-px opacity-0 pointer-events-none"
+        playsInline
+        muted
+        onEnded={handleCloseWake}
+        controls={false}
+        preload="auto"
+      />
     </>
   );
 }
