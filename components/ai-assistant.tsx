@@ -115,7 +115,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
               </div>
               <div>
                 <p className="font-medium text-foreground">
-                  Olá! Sou a Nix.
+                  Olá! Sou o Nix.
                 </p>
                 <p className="text-xs mt-1">
                   Pergunte sobre projetos, stack ou experiência.
