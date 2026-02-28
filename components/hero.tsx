@@ -47,7 +47,7 @@ export function Hero() {
                 <div className="absolute inset-0 bg-primary/30 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               <span className="text-xs sm:text-sm font-mono text-primary/80 group-hover:text-primary transition-colors">
-                fullstack developer & ai specialist
+                fullstack developer & estudante de IA
               </span>
             </div>
 
@@ -67,7 +67,7 @@ export function Hero() {
             className={`text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl text-balance leading-relaxed transition-all duration-700 delay-100 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
               }`}
           >
-            Desenvolvedor fullstack com especialidade em IA. Crio aplicações web e mobile que combinam design elegante
+            Desenvolvedor fullstack e estudante de Inteligência Artificial na FIAP (2026 - 2028). Crio aplicações web e mobile que combinam design elegante
             com tecnologia de ponta. Transformo ideias em produtos reais que fazem diferença.
           </p>
 

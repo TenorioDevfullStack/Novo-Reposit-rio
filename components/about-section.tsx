@@ -5,10 +5,21 @@ import { CheckCircle2, Cpu, GraduationCap } from "lucide-react"
 
 const education = [
   {
+    title: "Graduação em IA",
+    institution: "FIAP",
+    label: "Superior",
+    status: "Em andamento (2026 - 2028)",
+    description:
+      "Desenvolvimento de sistemas inteligentes, machine learning e análise de dados, com foco em soluções práticas e inovadoras de IA.",
+    topics: ["Machine Learning & Deep Learning", "Processamento de Linguagem Natural", "Visão Computacional", "Ética e Governança em IA"],
+    icon: GraduationCap,
+    gradient: "from-primary/15 via-primary/5 to-accent/15",
+  },
+  {
     title: "Dev Full Stack",
     institution: "OneBitCode",
     label: "Formação",
-    status: "Em andamento",
+    status: "Concluído",
     description:
       "Formação prática em desenvolvimento web Full Stack, com foco em construir projetos completos e evoluir boas práticas no dia a dia.",
     topics: ["Front-end com React/Next.js", "Back-end com Node.js", "APIs, dados e integrações", "Git, deploy e manutenção"],

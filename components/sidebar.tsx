@@ -45,9 +45,8 @@ export function Sidebar() {
       </button>
 
       <aside
-        className={`fixed left-0 top-0 h-[100svh] lg:h-screen w-64 bg-card/60 backdrop-blur-xl border-r border-border/50 shadow-2xl shadow-primary/10 transition-all duration-500 z-40 ${
-          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-        }`}
+        className={`fixed left-0 top-0 h-[100svh] lg:h-screen w-64 bg-card/60 backdrop-blur-xl border-r border-border/50 shadow-2xl shadow-primary/10 transition-all duration-500 z-40 ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+          }`}
       >
         <div className="flex flex-col h-full p-8">
           <div className="mb-10 pt-4 animate-fade-in space-y-4">
@@ -58,7 +57,7 @@ export function Sidebar() {
                 </h1>
                 <p className="text-xs text-muted-foreground mt-1">Leandro Tenório</p>
                 <p className="text-sm text-muted-foreground mt-2">Fullstack Developer</p>
-                <p className="text-xs text-muted-foreground">AI Specialist</p>
+                <p className="text-xs text-muted-foreground">Estudante de IA</p>
               </div>
 
               <div className="flex items-center gap-2 pt-1">
@@ -96,19 +95,17 @@ export function Sidebar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block pl-4 text-sm font-medium transition-all relative group ${
-                    activeSection === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  className={`block pl-4 text-sm font-medium transition-all relative group ${activeSection === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    }`}
                   aria-current={activeSection === item.id ? "page" : undefined}
                   style={{ animationDelay: `${idx * 50}ms` }}
                 >
                   {item.label}
                   <span
-                    className={`absolute left-0 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-300 ${
-                      activeSection === item.id
+                    className={`absolute left-0 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-300 ${activeSection === item.id
                         ? "opacity-100 scale-100 shadow-[0_0_18px_rgba(138,43,226,0.65)]"
                         : "opacity-0 scale-50 group-hover:opacity-60 group-hover:scale-100"
-                    }`}
+                      }`}
                   />
                   <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
                 </Link>
