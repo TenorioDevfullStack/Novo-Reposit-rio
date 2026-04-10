@@ -112,7 +112,7 @@ export function Sidebar() {
               ))}
             </nav>
 
-            <div className="mt-auto flex flex-col items-center gap-3 pt-6 mb-6">
+            <div className="mt-auto flex flex-col items-center gap-3 pt-6 mb-6" onClick={() => setIsOpen(false)}>
               <FloatingMascot className="shrink-0" />
               <button
                 type="button"

@@ -43,7 +43,7 @@ export default function RootLayout({
           {children}
           <Analytics />
           <Toaster richColors closeButton />
-          <AiAssistant showLauncher={false} />
+          <AiAssistant showLauncher={true} />
         </ThemeProvider>
       </body>
     </html>

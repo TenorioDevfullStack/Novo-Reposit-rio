@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { Bot, Send, X, MessageSquare, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -188,15 +189,28 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
 
       {/* Botão Flutuante */}
       {showLauncher && (
-        <Button
+        <button
           onClick={() => setIsOpen(!isOpen)}
           className={`
-            rounded-full h-14 w-14 shadow-xl transition-all duration-300 hover:scale-105 z-50
-            ${isOpen ? "bg-muted text-muted-foreground hover:bg-muted/80 rotate-90" : "bg-primary text-primary-foreground hover:shadow-primary/25"}
+            relative rounded-full shadow-[0_14px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:scale-105 z-[60] overflow-hidden flex items-center justify-center p-0
+            ${isOpen ? "bg-muted text-muted-foreground hover:bg-muted/80 rotate-90 h-14 w-14" : "bg-transparent h-[72px] w-[72px] sm:h-[84px] sm:w-[84px] animate-float"}
           `}
         >
-          {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
-        </Button>
+          {isOpen ? (
+            <X size={24} />
+          ) : (
+            <div className="relative w-full h-full pointer-events-none">
+              <Image 
+                src="/mascote/mascote-ids-dorminho-transparent.png" 
+                alt="Abrir chat IA" 
+                fill 
+                sizes="(max-width: 640px) 72px, 84px"
+                className="object-cover"
+                draggable={false}
+              />
+            </div>
+          )}
+        </button>
       )}
     </div>
   );
