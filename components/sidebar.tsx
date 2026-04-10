@@ -12,8 +12,11 @@ import { scrollToSection } from "@/lib/scroll-to-section"
 
 export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const { openMenu } = useCommandMenu()
+
+  useEffect(() => { setMounted(true) }, [])
 
   const activeSection = useActiveSection(["home", "about", "experience", "projects", "tech", "contact"])
 
@@ -76,7 +79,7 @@ export function Sidebar() {
                   aria-label="Alternar tema"
                   type="button"
                 >
-                  {resolvedTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                  {mounted ? (resolvedTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />) : <Moon size={18} />}
                 </button>
               </div>
             </div>
