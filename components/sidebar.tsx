@@ -8,6 +8,7 @@ import { useTheme } from "next-themes"
 import { useActiveSection } from "@/hooks/use-active-section"
 import { useCommandMenu } from "@/components/command-menu"
 import { FloatingMascot } from "@/components/floating-mascot"
+import { scrollToSection } from "@/lib/scroll-to-section"
 
 export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -97,9 +98,7 @@ export function Sidebar() {
                   onClick={(e) => {
                     e.preventDefault();
                     setIsOpen(false);
-                    setTimeout(() => {
-                      window.location.hash = item.href;
-                    }, 50);
+                    scrollToSection(item.id, 150);
                   }}
                   className={`block pl-4 text-sm font-medium transition-all relative group ${activeSection === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     }`}
