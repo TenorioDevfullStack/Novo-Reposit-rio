@@ -192,7 +192,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`
-            relative rounded-full shadow-[0_14px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:scale-105 z-[60] overflow-hidden flex items-center justify-center p-0
+            relative rounded-full shadow-[0_14px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:scale-105 z-[60] overflow-hidden flex items-center justify-center p-0 lg:hidden
             ${isOpen ? "bg-muted text-muted-foreground hover:bg-muted/80 rotate-90 h-14 w-14" : "bg-transparent h-[72px] w-[72px] sm:h-[84px] sm:w-[84px] animate-float"}
           `}
         >

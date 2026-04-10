@@ -79,7 +79,13 @@ export function Hero() {
               href="#projects"
               onClick={(e) => {
                 e.preventDefault()
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
+                setTimeout(() => {
+                  const element = document.getElementById('projects')
+                  if (element) {
+                    const top = element.getBoundingClientRect().top + window.scrollY
+                    window.scrollTo({ top, behavior: 'smooth' })
+                  }
+                }, 50)
               }}
               className="group relative w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-lg font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50"
             >
@@ -95,7 +101,13 @@ export function Hero() {
               href="#contact"
               onClick={(e) => {
                 e.preventDefault()
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+                setTimeout(() => {
+                  const element = document.getElementById('contact')
+                  if (element) {
+                    const top = element.getBoundingClientRect().top + window.scrollY
+                    window.scrollTo({ top, behavior: 'smooth' })
+                  }
+                }, 50)
               }}
               className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 glass-dark rounded-lg font-semibold transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:scale-105 text-center"
             >
