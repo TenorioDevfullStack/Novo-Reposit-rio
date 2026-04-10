@@ -98,12 +98,8 @@ export function Sidebar() {
                     e.preventDefault();
                     setIsOpen(false);
                     setTimeout(() => {
-                      const element = document.getElementById(item.id);
-                      if (element) {
-                        const top = element.getBoundingClientRect().top + window.scrollY;
-                        window.scrollTo({ top, behavior: 'smooth' });
-                      }
-                    }, 150);
+                      window.location.hash = item.href;
+                    }, 50);
                   }}
                   className={`block pl-4 text-sm font-medium transition-all relative group ${activeSection === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     }`}

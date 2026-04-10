@@ -152,12 +152,10 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     @apply bg-background text-foreground;
-    overflow-x: hidden;
   }
 
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
   }
 
   ::-webkit-scrollbar {

@@ -77,16 +77,6 @@ export function Hero() {
           >
             <a
               href="#projects"
-              onClick={(e) => {
-                e.preventDefault()
-                setTimeout(() => {
-                  const element = document.getElementById('projects')
-                  if (element) {
-                    const top = element.getBoundingClientRect().top + window.scrollY
-                    window.scrollTo({ top, behavior: 'smooth' })
-                  }
-                }, 50)
-              }}
               className="group relative w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-lg font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
@@ -99,16 +89,6 @@ export function Hero() {
 
             <a
               href="#contact"
-              onClick={(e) => {
-                e.preventDefault()
-                setTimeout(() => {
-                  const element = document.getElementById('contact')
-                  if (element) {
-                    const top = element.getBoundingClientRect().top + window.scrollY
-                    window.scrollTo({ top, behavior: 'smooth' })
-                  }
-                }, 50)
-              }}
               className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 glass-dark rounded-lg font-semibold transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:scale-105 text-center"
             >
               Entrar em Contato
