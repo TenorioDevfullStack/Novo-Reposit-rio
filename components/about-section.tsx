@@ -42,7 +42,7 @@ export function AboutSection() {
   const { ref, isVisible } = useScrollAnimation()
 
   return (
-    <section ref={ref} id="about" className="lg:min-h-screen flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24">
+    <section ref={ref} id="about" className="lg:min-h-screen scroll-mt-6 lg:scroll-mt-8 flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24">
       <div className="max-w-4xl w-full space-y-12">
         <div
           className={`transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"}`}

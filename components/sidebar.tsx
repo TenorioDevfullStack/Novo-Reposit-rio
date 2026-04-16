@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
 import { Menu, Moon, Search, Sun, X } from "lucide-react"
 import { useTheme } from "next-themes"
 
@@ -21,12 +20,12 @@ export function Sidebar() {
   const activeSection = useActiveSection(["home", "about", "experience", "projects", "tech", "contact"])
 
   const navItems = [
-    { label: "INÍCIO", href: "#home", id: "home" },
-    { label: "SOBRE", href: "#about", id: "about" },
-    { label: "EXPERIÊNCIA", href: "#experience", id: "experience" },
-    { label: "PROJETOS", href: "#projects", id: "projects" },
-    { label: "TECNOLOGIAS", href: "#tech", id: "tech" },
-    { label: "CONTATO", href: "#contact", id: "contact" },
+    { label: "INÍCIO", id: "home" },
+    { label: "SOBRE", id: "about" },
+    { label: "EXPERIÊNCIA", id: "experience" },
+    { label: "PROJETOS", id: "projects" },
+    { label: "TECNOLOGIAS", id: "tech" },
+    { label: "CONTATO", id: "contact" },
   ]
 
   useEffect(() => {
@@ -95,15 +94,14 @@ export function Sidebar() {
           <div className="flex-1 flex flex-col">
             <nav className="space-y-6">
               {navItems.map((item, idx) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsOpen(false);
-                    scrollToSection(item.id, 150);
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => {
+                    setIsOpen(false)
+                    scrollToSection(item.id, { delay: 180 })
                   }}
-                  className={`block pl-4 text-sm font-medium transition-all relative group ${activeSection === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  className={`block w-full text-left pl-4 text-sm font-medium transition-all relative group ${activeSection === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     }`}
                   aria-current={activeSection === item.id ? "page" : undefined}
                   style={{ animationDelay: `${idx * 50}ms` }}
@@ -116,7 +114,7 @@ export function Sidebar() {
                       }`}
                   />
                   <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
-                </Link>
+                </button>
               ))}
             </nav>
 

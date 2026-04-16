@@ -259,7 +259,7 @@ export function ProjectsSection() {
       : null
 
   return (
-    <section ref={ref} id="projects" className="lg:min-h-screen flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24 relative overflow-hidden">
+    <section ref={ref} id="projects" className="lg:min-h-screen scroll-mt-6 lg:scroll-mt-8 flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[520px] w-[520px] bg-primary/15 blur-3xl rounded-full" />
         <div className="absolute -bottom-32 -left-24 h-[460px] w-[460px] bg-accent/10 blur-3xl rounded-full" />
