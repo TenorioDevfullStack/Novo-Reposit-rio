@@ -24,22 +24,24 @@ export function scrollToSection(id: string, options: ScrollToSectionOptions = {}
       document.body.style.overflow = ""
     }
 
-    requestAnimationFrame(() => {
+    const performScroll = () => {
       scrollingElement.scrollTo({ top, behavior })
       window.scrollTo({ top, behavior })
 
-      // Fallback that helps iOS Safari when programmatic scroll is ignored after overlays close.
-      setTimeout(() => {
-        const currentTop = Math.abs(el.getBoundingClientRect().top - offset)
-        if (currentTop > 4) {
-          el.scrollIntoView({ behavior, block: "start", inline: "nearest" })
-          if (offset) {
-            const adjustedTop = Math.max(0, el.getBoundingClientRect().top + window.scrollY - offset)
-            scrollingElement.scrollTo({ top: adjustedTop, behavior })
-          }
+      const currentTop = Math.abs(el.getBoundingClientRect().top - offset)
+      if (currentTop > 4) {
+        el.scrollIntoView({ behavior, block: "start", inline: "nearest" })
+        if (offset) {
+          const adjustedTop = Math.max(0, el.getBoundingClientRect().top + window.scrollY - offset)
+          scrollingElement.scrollTo({ top: adjustedTop, behavior })
+          window.scrollTo({ top: adjustedTop, behavior })
         }
-      }, 50)
-    })
+      }
+    }
+
+    requestAnimationFrame(performScroll)
+    window.setTimeout(performScroll, 120)
+    window.setTimeout(performScroll, 320)
 
     if (window.location.hash !== `#${id}`) {
       window.history.replaceState(null, "", `#${id}`)

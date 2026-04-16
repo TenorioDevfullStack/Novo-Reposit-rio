@@ -37,6 +37,11 @@ export function Sidebar() {
     }
   }, [isOpen])
 
+  const navigateToSection = (id: string) => {
+    setIsOpen(false)
+    scrollToSection(id, { delay: 220 })
+  }
+
   return (
     <>
       <button
@@ -65,8 +70,11 @@ export function Sidebar() {
 
               <div className="flex items-center gap-2 pt-1">
                 <button
-                  onClick={openMenu}
-                  className="p-2 rounded-lg border border-border/50 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+                  onClick={() => {
+                    setIsOpen(false)
+                    window.setTimeout(openMenu, 180)
+                  }}
+                  className="p-2 rounded-lg border border-border/50 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 touch-manipulation"
                   aria-label="Abrir atalhos (Ctrl+K)"
                   type="button"
                 >
@@ -74,7 +82,7 @@ export function Sidebar() {
                 </button>
                 <button
                   onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-                  className="p-2 rounded-lg border border-border/50 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+                  className="p-2 rounded-lg border border-border/50 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 touch-manipulation"
                   aria-label="Alternar tema"
                   type="button"
                 >
@@ -94,14 +102,16 @@ export function Sidebar() {
           <div className="flex-1 flex flex-col">
             <nav className="space-y-6">
               {navItems.map((item, idx) => (
-                <button
+                <a
                   key={item.id}
-                  type="button"
+                  href={`#${item.id}`}
                   onClick={() => {
-                    setIsOpen(false)
-                    scrollToSection(item.id, { delay: 180 })
+                    navigateToSection(item.id)
                   }}
-                  className={`block w-full text-left pl-4 text-sm font-medium transition-all relative group ${activeSection === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  onTouchEnd={() => {
+                    navigateToSection(item.id)
+                  }}
+                  className={`block w-full text-left pl-4 text-sm font-medium transition-all relative group touch-manipulation ${activeSection === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     }`}
                   aria-current={activeSection === item.id ? "page" : undefined}
                   style={{ animationDelay: `${idx * 50}ms` }}
@@ -114,7 +124,7 @@ export function Sidebar() {
                       }`}
                   />
                   <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
-                </button>
+                </a>
               ))}
             </nav>
 
@@ -123,7 +133,7 @@ export function Sidebar() {
               <button
                 type="button"
                 onClick={() => window.dispatchEvent(new CustomEvent("ai-assistant:open"))}
-                className="text-xs text-muted-foreground border border-border rounded-md px-3 py-2"
+                className="text-xs text-muted-foreground border border-border rounded-md px-3 py-2 touch-manipulation"
               >
                 Testar chat com IA
               </button>

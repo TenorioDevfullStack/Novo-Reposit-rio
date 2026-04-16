@@ -9,6 +9,10 @@ export function Hero() {
   const { ref, isVisible } = useScrollAnimation()
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
+  const navigateToSection = (id: string) => {
+    scrollToSection(id)
+  }
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY })
@@ -77,10 +81,11 @@ export function Hero() {
             className={`flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-6 sm:pt-8 transition-all duration-700 delay-200 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
               }`}
           >
-            <button
-              type="button"
-              onClick={() => scrollToSection("projects")}
-              className="group relative w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-lg font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50"
+            <a
+              href="#projects"
+              onClick={() => navigateToSection("projects")}
+              onTouchEnd={() => navigateToSection("projects")}
+              className="group relative w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-lg font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50 touch-manipulation"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
               <span className="relative flex items-center justify-center gap-2">
@@ -88,15 +93,16 @@ export function Hero() {
                 Explorar Projetos
                 <ArrowDown size={18} className="group-hover:translate-y-1 transition-transform" />
               </span>
-            </button>
+            </a>
 
-            <button
-              type="button"
-              onClick={() => scrollToSection("contact")}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 glass-dark rounded-lg font-semibold transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:scale-105 text-center"
+            <a
+              href="#contact"
+              onClick={() => navigateToSection("contact")}
+              onTouchEnd={() => navigateToSection("contact")}
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 glass-dark rounded-lg font-semibold transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:scale-105 text-center touch-manipulation"
             >
               Entrar em Contato
-            </button>
+            </a>
           </div>
         </div>
       </div>
