@@ -6,7 +6,6 @@ import { useTheme } from "next-themes"
 
 import { useActiveSection } from "@/hooks/use-active-section"
 import { useCommandMenu } from "@/components/command-menu"
-import { FloatingMascot } from "@/components/floating-mascot"
 import { scrollToSection } from "@/lib/scroll-to-section"
 
 export function Sidebar() {
@@ -128,16 +127,7 @@ export function Sidebar() {
               ))}
             </nav>
 
-            <div className="mt-auto flex flex-col items-center gap-3 pt-6 mb-6" onClick={() => setIsOpen(false)}>
-              <FloatingMascot className="shrink-0" />
-              <button
-                type="button"
-                onClick={() => window.dispatchEvent(new CustomEvent("ai-assistant:open"))}
-                className="text-xs text-muted-foreground border border-border rounded-md px-3 py-2 touch-manipulation"
-              >
-                Testar chat com IA
-              </button>
-            </div>
+            <div className="mt-auto mb-6" />
           </div>
 
           <div className="space-y-3 pt-6 border-t border-border">

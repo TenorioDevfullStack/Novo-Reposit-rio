@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { Bot, Send, X, MessageSquare, Loader2, Sparkles } from "lucide-react";
+import { Bot, Send, X, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { chatWithGemini } from "@/app/actions/chat";
@@ -72,11 +72,11 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 pointer-events-none">
       {/* Janela do Chat */}
       <div
         className={`
-          w-[300px] sm:w-[380px] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 origin-bottom-right flex flex-col
+          w-[300px] sm:w-[380px] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 origin-bottom-right flex flex-col pointer-events-auto
           ${isOpen ? "scale-100 opacity-100 translate-y-0 mb-2" : "scale-95 opacity-0 translate-y-10 pointer-events-none h-0 mb-0"}
         `}
         style={{ maxHeight: "500px", height: "60vh" }}
@@ -192,7 +192,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`
-            relative rounded-full shadow-[0_14px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:scale-105 z-[60] overflow-hidden flex items-center justify-center p-0 lg:hidden
+            relative rounded-full shadow-[0_14px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:scale-105 z-[60] overflow-hidden flex items-center justify-center p-0 lg:hidden pointer-events-auto touch-manipulation
             ${isOpen ? "bg-muted text-muted-foreground hover:bg-muted/80 rotate-90 h-14 w-14" : "bg-transparent h-[72px] w-[72px] sm:h-[84px] sm:w-[84px] animate-float"}
           `}
         >
