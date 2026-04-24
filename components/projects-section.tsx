@@ -5,16 +5,15 @@ import {
   ArrowUpRight,
   ChevronLeft,
   ChevronRight,
-  Code2,
   Github,
   Link as LinkIcon,
   Languages,
   Sparkles,
   X,
-  Zap,
-  Brain,
   Building2,
+  Bot,
 } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useMemo, useState } from "react"
 import { createPortal } from "react-dom"
@@ -25,7 +24,45 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
-const projects = [
+type Project = {
+  title: string
+  description: string
+  longDescription: string
+  tags: string[]
+  icon: LucideIcon
+  gradient: string
+  highlights: string[]
+  links: {
+    demo?: string
+    github?: string
+  }
+  images: string[]
+}
+
+const projects: Project[] = [
+  {
+    title: "SmartDev AI",
+    description: "Landing page para soluções digitais com IA, apresentando serviços, pacotes, portfólio e chamada para contato.",
+    longDescription:
+      "Site institucional da SmartDev AI, criado para comunicar soluções de desenvolvimento com inteligência artificial, organizar ofertas em pacotes e conduzir visitantes para conversão.",
+    tags: ["Landing Page", "IA", "Next.js", "Responsivo", "Vercel"],
+    icon: Bot,
+    gradient: "from-accent/20 to-transparent",
+    highlights: ["Apresentação de soluções com IA", "Pacotes de serviços", "Portfólio e FAQ com CTA"],
+    links: {
+      demo: "https://www.smartdevai.com.br/",
+    },
+    images: [
+      "/imagens/smartdevai/Sem título.png",
+      "/imagens/smartdevai/solucoes.png",
+      "/imagens/smartdevai/pacote_1.png",
+      "/imagens/smartdevai/pacote_2.png",
+      "/imagens/smartdevai/pacote_3.png",
+      "/imagens/smartdevai/portifolio.png",
+      "/imagens/smartdevai/duvidas.png",
+      "/imagens/smartdevai/final.png",
+    ],
+  },
   {
     title: "ObraGest",
     description: "Sistema para gestão de obras, projetos e organização de rotinas, com dashboards e módulos de controle.",
@@ -74,54 +111,6 @@ const projects = [
       demo: "https://landing-page-raquel-espanhol.vercel.app/#topo",
     },
     images: ["/imagens/raquel/hero.png", "/imagens/raquel/prova.png", "/imagens/raquel/feedback.png", "/imagens/raquel/faq.png"],
-  },
-  {
-    title: "Assistente IA para E-commerce",
-    description:
-      "Plataforma de e-commerce com assistente AI que recomenda produtos e responde dúvidas de clientes em tempo real.",
-    longDescription:
-      "Um assistente de compras com IA generativa integrado ao catálogo, histórico e comportamento do usuário — pensado para reduzir atrito no funil e aumentar conversão.",
-    tags: ["Next.js", "OpenAI", "PostgreSQL", "TypeScript"],
-    icon: Brain,
-    gradient: "from-primary/20 to-transparent",
-    highlights: ["Chat com contexto + memória", "Recomendações personalizadas", "Painel com métricas e FAQs"],
-    links: {
-      demo: "https://example.com",
-      github: "https://github.com",
-    },
-    images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
-  },
-  {
-    title: "App Mobile de Análise de Dados",
-    description:
-      "Aplicativo mobile que analisa dados em tempo real com visualizações interativas e insights powered by IA.",
-    longDescription:
-      "Um app com dashboards e alertas em tempo real, unindo análises estatísticas e insights automatizados para tomada de decisão rápida em dispositivos móveis.",
-    tags: ["React Native", "Node.js", "TensorFlow", "Firebase"],
-    icon: Zap,
-    gradient: "from-accent/20 to-transparent",
-    highlights: ["Streaming de eventos", "Visualizações interativas", "Insights e alertas por IA"],
-    links: {
-      demo: "https://example.com",
-      github: "https://github.com",
-    },
-    images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
-  },
-  {
-    title: "Dashboard de Automação",
-    description:
-      "Sistema de automação inteligente para processos empresariais com IA generativa e orquestração de workflows.",
-    longDescription:
-      "Automação de rotinas com orquestração, logs e observabilidade. Projetado para escalar e integrar múltiplos serviços com segurança e controle de permissões.",
-    tags: ["React", "Python", "IA Generativa", "Microserviços"],
-    icon: Code2,
-    gradient: "from-secondary/20 to-transparent",
-    highlights: ["Workflows com passos reutilizáveis", "Observabilidade e trilha de auditoria", "Integrações e webhooks"],
-    links: {
-      demo: "https://example.com",
-      github: "https://github.com",
-    },
-    images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
   },
 ]
 
