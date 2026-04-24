@@ -12,6 +12,7 @@ import {
   X,
   Building2,
   Bot,
+  FolderCog,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import Image from "next/image"
@@ -61,6 +62,24 @@ const projects: Project[] = [
       "/imagens/smartdevai/portifolio.png",
       "/imagens/smartdevai/duvidas.png",
       "/imagens/smartdevai/final.png",
+    ],
+  },
+  {
+    title: "Folder Icon Changer",
+    description: "Landing page para uma ferramenta que personaliza ícones de pastas no Windows de forma simples e visual.",
+    longDescription:
+      "Landing page criada para apresentar o Folder Icon Changer, destacando a proposta da ferramenta, seu funcionamento e o acesso para download em uma experiência direta e responsiva.",
+    tags: ["Landing Page", "Windows", "Ferramenta", "Responsivo", "Vercel"],
+    icon: FolderCog,
+    gradient: "from-secondary/20 to-transparent",
+    highlights: ["Apresentação clara da ferramenta", "Seção de funcionamento", "Chamada para download"],
+    links: {
+      demo: "https://folder.smartdevai.com.br/landing/",
+    },
+    images: [
+      "/imagens/folder_icon_changer/home.png",
+      "/imagens/folder_icon_changer/funcionamento.png",
+      "/imagens/folder_icon_changer/download.png",
     ],
   },
   {
