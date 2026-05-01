@@ -2,6 +2,7 @@
 
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { scrollToSection } from "@/lib/scroll-to-section"
+import ParallaxBackground from "@/components/ui/mouse-responsive-background"
 import { ArrowDown, Sparkles, Code2, Zap } from "lucide-react"
 import { useState, useEffect } from "react"
 
@@ -29,6 +30,10 @@ export function Hero() {
       suppressHydrationWarning
       className="min-h-[100svh] lg:min-h-screen scroll-mt-6 lg:scroll-mt-8 flex items-center justify-center px-5 sm:px-6 lg:px-8 relative overflow-hidden pt-16 lg:pt-0"
     >
+      <ParallaxBackground className="pointer-events-none absolute inset-0 h-full opacity-25" showLabel={false}>
+        <div className="absolute inset-0 bg-background/80" />
+      </ParallaxBackground>
+
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-20"
