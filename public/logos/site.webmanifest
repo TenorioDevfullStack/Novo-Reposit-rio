@@ -1,6 +1,6 @@
 {
-  "name": "Leandro Tenório - Portfólio",
-  "short_name": "Portfólio",
+  "name": "Leandro Tenório — Dados/IA",
+  "short_name": "LT · Dados",
   "icons": [
     {
       "src": "web-app-manifest-192x192.png",
@@ -15,8 +15,8 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#0e1311",
+  "background_color": "#0e1311",
   "start_url": "/",
   "scope": "/",
   "display": "standalone"

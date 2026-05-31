@@ -1,37 +1,34 @@
 "use client"
 
-import { Sidebar } from "@/components/sidebar"
 import { BackgroundGrid } from "@/components/background-grid"
 import { Hero } from "@/components/hero"
 import { AboutSection } from "@/components/about-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { ProjectsSection } from "@/components/projects-section"
 import { TechSection } from "@/components/tech-section"
+import { CvSection } from "@/components/cv-section"
 import { ContactSection } from "@/components/contact-section"
-import { AnimatedBg } from "@/components/animated-bg"
-import { Spotlight } from "@/components/spotlight"
-import { ScrollProgress } from "@/components/scroll-progress"
+import { DataField } from "@/components/data-field"
+import { ConsoleShell } from "@/components/console-shell"
 import { CommandMenu, CommandMenuProvider } from "@/components/command-menu"
 
 export default function Home() {
   return (
     <CommandMenuProvider>
-      <div className="flex min-h-[100svh] lg:min-h-screen bg-background overflow-x-clip relative isolate">
-        <ScrollProgress />
-        <CommandMenu />
+      <div className="relative isolate min-h-[100svh] overflow-x-clip bg-background scanlines">
         <BackgroundGrid />
-        <AnimatedBg />
-        <Spotlight />
-        <Sidebar />
+        <DataField />
+        <CommandMenu />
 
-        <main className="flex-1 lg:ml-64 relative z-10 w-full min-w-0">
+        <ConsoleShell>
           <Hero />
           <AboutSection />
           <ExperienceSection />
           <ProjectsSection />
           <TechSection />
+          <CvSection />
           <ContactSection />
-        </main>
+        </ConsoleShell>
       </div>
     </CommandMenuProvider>
   )

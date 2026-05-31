@@ -1,32 +1,31 @@
 "use client"
 
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
-import { Code2, Server, Brain, Zap } from "lucide-react"
+import { BarChart3, Database, Terminal, Wrench } from "lucide-react"
+
+import { Panel } from "@/components/panel"
+import { SectionHead } from "@/components/section-head"
 
 const technologies = [
   {
-    category: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "React Native"],
-    icon: Code2,
-    color: "from-blue-500/20 to-blue-500/5",
+    category: "Linguagens & Dados",
+    icon: Database,
+    items: ["Python (Pandas, NumPy)", "R", "SQL", "JavaScript/TypeScript"],
   },
   {
-    category: "Backend",
-    items: ["Node.js", "Python", "PostgreSQL", "MongoDB", "REST APIs"],
-    icon: Server,
-    color: "from-green-500/20 to-green-500/5",
+    category: "Ciência de Dados & ML",
+    icon: BarChart3,
+    items: ["Estatística e probabilidade", "Análise exploratória e preditiva", "Scikit-learn", "Regressão e árvores"],
   },
   {
-    category: "IA & ML",
-    items: ["OpenAI", "Claude", "LangChain", "TensorFlow", "Prompting"],
-    icon: Brain,
-    color: "from-purple-500/20 to-purple-500/5",
+    category: "Bancos de Dados",
+    icon: Terminal,
+    items: ["PostgreSQL", "MongoDB", "Prisma (ORM)", "Modelagem e coleta"],
   },
   {
-    category: "DevOps",
-    items: ["Docker", "AWS", "GitHub Actions", "Vercel", "CI/CD"],
-    icon: Zap,
-    color: "from-yellow-500/20 to-yellow-500/5",
+    category: "Ferramentas & DevOps",
+    icon: Wrench,
+    items: ["Git/GitHub", "Docker", "Vercel", "Node.js, React/Next.js", "Scrum"],
   },
 ]
 
@@ -34,49 +33,49 @@ export function TechSection() {
   const { ref, isVisible } = useScrollAnimation()
 
   return (
-    <section ref={ref} id="tech" className="lg:min-h-screen scroll-mt-6 lg:scroll-mt-8 flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24">
-      <div className="max-w-6xl w-full space-y-12">
-        <div
-          className={`transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"}`}
-        >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-balance">Tecnologias</h2>
-          <div className="h-1 w-12 bg-gradient-to-r from-primary to-accent rounded-full" />
-        </div>
+    <section ref={ref} id="tech" className="relative scroll-mt-16 px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
+      <div
+        className={`mx-auto max-w-5xl space-y-10 transition-all duration-700 ${
+          isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+        }`}
+      >
+        <SectionHead
+          index="04"
+          label="STACK"
+          title={
+            <>
+              Módulos e <span className="gradient-text">capacidades técnicas</span>
+            </>
+          }
+          subtitle="Ferramentas e conhecimentos que uso e continuo estudando, com foco em Dados e Machine Learning."
+        />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {technologies.map((tech, idx) => {
             const Icon = tech.icon
             return (
-              <div
-                key={tech.category}
-                className={`group relative bg-gradient-to-br ${tech.color} border border-border/50 rounded-2xl p-5 sm:p-6 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-2 overflow-hidden cursor-pointer ${
-                  isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
-                }`}
-                style={{ transitionDelay: isVisible ? `${idx * 100}ms` : "0ms" }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 rounded-lg bg-primary/20 group-hover:bg-primary/30 transition-colors">
-                      <Icon className="text-primary w-5 h-5" />
-                    </div>
-                    <h3 className="text-base sm:text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {tech.category}
-                    </h3>
+              <Panel key={tech.category} label={`mod.${idx}`} hover ticks className="h-full">
+                <div className="flex h-full flex-col gap-4">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-9 w-9 items-center justify-center border border-[rgb(var(--rgb-green)/0.3)] bg-[rgb(var(--rgb-green)/0.08)] text-primary">
+                      <Icon size={17} />
+                    </span>
+                    <span className="led ml-auto" />
                   </div>
-                  <ul className="space-y-2">
+                  <h3 className="font-sans text-base font-semibold leading-snug text-foreground">{tech.category}</h3>
+                  <ul className="space-y-2 font-mono text-xs text-muted-foreground">
                     {tech.items.map((item) => (
                       <li
                         key={item}
-                        className="text-muted-foreground text-sm hover:text-foreground hover:translate-x-1 transition-all duration-300 cursor-pointer"
+                        className="flex gap-2 transition-colors hover:text-foreground"
                       >
-                        ▸ {item}
+                        <span className="text-primary">›</span>
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-              </div>
+              </Panel>
             )
           })}
         </div>

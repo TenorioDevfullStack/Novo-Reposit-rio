@@ -1,121 +1,144 @@
 "use client"
 
+import { useEffect, useState } from "react"
+import { ArrowRight, Download, Mail } from "lucide-react"
+
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { scrollToSection } from "@/lib/scroll-to-section"
-import ParallaxBackground from "@/components/ui/mouse-responsive-background"
-import { ArrowDown, Sparkles, Code2, Zap } from "lucide-react"
-import { useState, useEffect } from "react"
+import { Panel } from "@/components/panel"
+
+const signals = [
+  { label: "DADOS", detail: "Python · SQL · Pandas", value: 88 },
+  { label: "ML", detail: "Scikit-learn · modelagem", value: 72 },
+  { label: "PYTHON", detail: "análise · automação", value: 94 },
+  { label: "DEV WEB", detail: "React · Next · Node", value: 80 },
+]
+
+const bootLines = [
+  { prompt: "whoami", out: "leandro_tenorio" },
+  { prompt: "cat role.txt", out: "estudante de IA · transição p/ Dados" },
+  { prompt: "loc --short", out: "são paulo · br" },
+]
 
 export function Hero() {
   const { ref, isVisible } = useScrollAnimation()
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-
-  const navigateToSection = (id: string) => {
-    scrollToSection(id)
-  }
+  const [scan, setScan] = useState(0)
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    const id = window.setInterval(() => setScan((c) => (c + 1) % signals.length), 1600)
+    return () => window.clearInterval(id)
   }, [])
+
+  const go = (id: string) => scrollToSection(id, { offset: 64 })
 
   return (
     <section
       ref={ref}
       id="home"
-      suppressHydrationWarning
-      className="min-h-[100svh] lg:min-h-screen scroll-mt-6 lg:scroll-mt-8 flex items-center justify-center px-5 sm:px-6 lg:px-8 relative overflow-hidden pt-16 lg:pt-0"
+      className="relative flex min-h-[calc(100svh-4.5rem)] scroll-mt-16 items-center px-4 py-12 sm:px-6 lg:px-10"
     >
-      <ParallaxBackground className="pointer-events-none absolute inset-0 h-full opacity-25" showLabel={false}>
-        <div className="absolute inset-0 bg-background/80" />
-      </ParallaxBackground>
-
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        {/* left — boot / identity */}
         <div
-          className="absolute w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-20"
-          style={{
-            left: `${mousePos.x / 20}px`,
-            top: `${mousePos.y / 20}px`,
-            transition: "all 0.3s ease-out",
-          }}
-        />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-10" />
-      </div>
-
-      <div className="max-w-4xl w-full relative z-10">
-        <div className="space-y-6 sm:space-y-8">
-          <div
-            className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-              }`}
-          >
-            <div className="flex items-center gap-3 mb-6 group cursor-pointer">
-              <div className="relative">
-                <Sparkles className="text-primary group-hover:rotate-45 transition-transform duration-300" size={18} />
-                <div className="absolute inset-0 bg-primary/30 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-              <span className="text-xs sm:text-sm font-mono text-primary/80 group-hover:text-primary transition-colors">
-                fullstack developer & estudante de IA
-              </span>
-            </div>
-
-            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold leading-tight text-balance space-y-2">
-              <div>Construindo</div>
-              <div className="gradient-text animate-glow">soluções inteligentes</div>
-              <div className="flex items-center gap-3">
-                com{" "}
-                <span className="inline-flex items-center gap-2 text-primary">
-                  IA <Zap className="w-7 h-7 sm:w-9 sm:h-9 lg:w-10 lg:h-10 animate-pulse" />
-                </span>
-              </div>
-            </h1>
+          className={`space-y-7 transition-all duration-700 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+          }`}
+        >
+          <div className="hud-chip">
+            <span className="led" />
+            system online — perfil carregado
           </div>
 
-          <p
-            className={`text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl text-balance leading-relaxed transition-all duration-700 delay-100 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-              }`}
-          >
-            Desenvolvedor fullstack e estudante de Inteligência Artificial na FIAP (2026 - 2028). Crio aplicações web e mobile que combinam design elegante
-            com tecnologia de ponta. Transformo ideias em produtos reais que fazem diferença.
-          </p>
+          <div className="space-y-3">
+            <h1 className="font-sans text-5xl font-bold leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">
+              LEANDRO
+              <br />
+              <span className="text-glow text-primary">TENÓRIO</span>
+            </h1>
+            <p className="gradient-text font-mono text-sm uppercase tracking-[0.28em] sm:text-base">
+              {">"} estudante_de_IA // transição_para_dados
+            </p>
+          </div>
 
-          <div
-            className={`flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-6 sm:pt-8 transition-all duration-700 delay-200 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-              }`}
-          >
-            <a
-              href="#projects"
-              onClick={() => navigateToSection("projects")}
-              onTouchEnd={() => navigateToSection("projects")}
-              className="group relative w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-lg font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50 touch-manipulation"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-              <span className="relative flex items-center justify-center gap-2">
-                <Code2 size={18} />
-                Explorar Projetos
-                <ArrowDown size={18} className="group-hover:translate-y-1 transition-transform" />
-              </span>
-            </a>
+          {/* terminal readout */}
+          <div className="border border-[rgb(var(--rgb-green)/0.2)] bg-black/30 p-4 font-mono text-sm">
+            {bootLines.map((line) => (
+              <div key={line.prompt} className="flex flex-wrap gap-x-2 leading-relaxed">
+                <span className="text-primary">leandro@dados</span>
+                <span className="text-muted-foreground">:~$</span>
+                <span className="text-foreground">{line.prompt}</span>
+                <span className="w-full pl-0 text-secondary sm:w-auto sm:pl-2">→ {line.out}</span>
+              </div>
+            ))}
+            <p className="cursor-blink mt-2 max-w-xl leading-relaxed text-muted-foreground">
+              Base em Ciência de Dados, estatística, Python e ML somada à vivência em aplicações web. Transformo dados em
+              decisões e soluções inteligentes.
+            </p>
+          </div>
 
-            <a
-              href="#contact"
-              onClick={() => navigateToSection("contact")}
-              onTouchEnd={() => navigateToSection("contact")}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 glass-dark rounded-lg font-semibold transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:scale-105 text-center touch-manipulation"
-            >
-              Entrar em Contato
-            </a>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <button type="button" onClick={() => go("projects")} className="term-btn group">
+              ./ver_projetos
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </button>
+            <button type="button" onClick={() => go("cv")} className="term-btn term-btn-amber">
+              <Download size={16} />
+              ./baixar_cv
+            </button>
+            <button type="button" onClick={() => go("contact")} className="term-btn">
+              <Mail size={16} />
+              ./contato
+            </button>
           </div>
         </div>
-      </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:flex">
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-xs text-muted-foreground uppercase tracking-widest">Scroll para explorar</span>
-          <ArrowDown size={20} className="text-primary/50" />
+        {/* right — telemetry */}
+        <div
+          className={`transition-all delay-150 duration-700 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+          }`}
+        >
+          <Panel label="TELEMETRY // skills" status="live" statusColor="cyan" hover ticks>
+            <div className="space-y-4">
+              {signals.map((signal, i) => {
+                const activeRow = scan === i
+                return (
+                  <div
+                    key={signal.label}
+                    className={`border p-3 transition-colors duration-500 ${
+                      activeRow
+                        ? "border-[rgb(var(--rgb-green)/0.5)] bg-[rgb(var(--rgb-green)/0.06)]"
+                        : "border-[rgb(var(--rgb-green)/0.12)] bg-black/20"
+                    }`}
+                  >
+                    <div className="mb-2 flex items-center justify-between font-mono text-xs">
+                      <span className="tracking-[0.18em] text-foreground">{signal.label}</span>
+                      <span className="tabular-nums text-primary">{signal.value}%</span>
+                    </div>
+                    <div className="hud-bar">
+                      <span style={{ width: isVisible ? `${signal.value}%` : "0%" }} className="transition-[width] duration-1000" />
+                    </div>
+                    <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                      {signal.detail}
+                    </p>
+                  </div>
+                )
+              })}
+
+              <div className="grid grid-cols-3 gap-2 pt-1">
+                {[
+                  { k: "foco", v: "DADOS" },
+                  { k: "form.", v: "FIAP" },
+                  { k: "base", v: "PY/SQL" },
+                ].map((m) => (
+                  <div key={m.k} className="border border-[rgb(var(--rgb-green)/0.12)] bg-black/20 p-2.5 text-center">
+                    <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground">{m.k}</p>
+                    <p className="pt-1 font-mono text-sm font-bold text-foreground">{m.v}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Panel>
         </div>
       </div>
     </section>

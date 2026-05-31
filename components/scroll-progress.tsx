@@ -40,9 +40,8 @@ export function ScrollProgress({ className }: { className?: string }) {
     <div aria-hidden="true" className={cn("fixed left-0 top-0 z-50 h-1 w-full", className)}>
       <div
         ref={barRef}
-        className="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-primary via-accent to-secondary shadow-[0_0_24px_rgba(138,43,226,0.45)]"
+        className="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-primary via-secondary to-accent shadow-[0_0_24px_rgba(120,245,255,0.45)]"
       />
     </div>
   )
 }
-

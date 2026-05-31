@@ -2,31 +2,31 @@
 
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import {
-  ArrowUpRight,
   ChevronLeft,
   ChevronRight,
   Github,
   Link as LinkIcon,
-  Languages,
   Sparkles,
   X,
   Building2,
-  Bot,
-  FolderCog,
+  Boxes,
+  Globe,
+  ShieldCheck,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useMemo, useState } from "react"
 import { createPortal } from "react-dom"
 
-import { Tilt } from "@/components/tilt"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { SectionHead } from "@/components/section-head"
 
 type Project = {
   title: string
+  category: string
   description: string
   longDescription: string
   tags: string[]
@@ -42,55 +42,87 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "SmartDev AI",
-    description: "Landing page para soluções digitais com IA, apresentando serviços, pacotes, portfólio e chamada para contato.",
+    title: "AstroMonitor",
+    category: "Global Solution 2026.1 — FIAP",
+    description: "Plataforma de monitoramento ambiental satelital com dados, Machine Learning e visão computacional para previsão de risco de incêndios.",
     longDescription:
-      "Site institucional da SmartDev AI, criado para comunicar soluções de desenvolvimento com inteligência artificial, organizar ofertas em pacotes e conduzir visitantes para conversão.",
-    tags: ["Landing Page", "IA", "Next.js", "Responsivo", "Vercel"],
-    icon: Bot,
-    gradient: "from-accent/20 to-transparent",
-    highlights: ["Apresentação de soluções com IA", "Pacotes de serviços", "Portfólio e FAQ com CTA"],
+      "Prova de conceito desenvolvida na Global Solution da FIAP: monitoramento ambiental que cruza leituras de satélite e de sensores (BMP280) para prever risco de queimadas por região. Inclui mapa de risco interativo, predições com modelo GradientBoosting, estimativa de impacto na saúde respiratória (PM2,5 / padrão CONAMA), briefing automático para a Defesa Civil com IA, análise de imagens por visão computacional (NDVI e mapa de calor) e validação com dados reais do INPE (backtest do Pantanal 2024). Banco de dados em PostgreSQL (Supabase).",
+    tags: ["Python", "Machine Learning", "Scikit-learn", "Visão Computacional", "PostgreSQL", "Supabase", "IA"],
+    icon: Globe,
+    gradient: "from-secondary/20 to-transparent",
+    highlights: [
+      "Predição de risco de incêndio com GradientBoosting",
+      "Visão computacional: NDVI e mapa de calor por satélite",
+      "Impacto na saúde respiratória (PM2,5 / CONAMA)",
+      "Briefing automático para Defesa Civil com IA",
+      "Validação com dados reais do INPE (backtest Pantanal 2024)",
+    ],
     links: {
-      demo: "https://www.smartdevai.com.br/",
+      demo: "https://astromonitor-dfjfv9n7qxdqca9v4ecrdo.streamlit.app/",
     },
     images: [
-      "/imagens/smartdevai/Sem título.png",
-      "/imagens/smartdevai/solucoes.png",
-      "/imagens/smartdevai/pacote_1.png",
-      "/imagens/smartdevai/pacote_2.png",
-      "/imagens/smartdevai/pacote_3.png",
-      "/imagens/smartdevai/portifolio.png",
-      "/imagens/smartdevai/duvidas.png",
-      "/imagens/smartdevai/final.png",
+      "/imagens/astro-monitor/print-astro-monitor01.webp",
+      "/imagens/astro-monitor/print-astro-monitor02.webp",
+      "/imagens/astro-monitor/print-astro-monitor03.webp",
+      "/imagens/astro-monitor/print-astro-monitor04.webp",
+      "/imagens/astro-monitor/print-astro-monitor05.webp",
+      "/imagens/astro-monitor/print-astro-monitor06.webp",
+      "/imagens/astro-monitor/print-astro-monitor07.webp",
+      "/imagens/astro-monitor/print-astro-monitor08.webp",
+      "/imagens/astro-monitor/print-astro-monitor09.webp",
+      "/imagens/astro-monitor/print-astro-monitor10.webp",
     ],
   },
   {
-    title: "Folder Icon Changer",
-    description: "Landing page para uma ferramenta que personaliza ícones de pastas no Windows de forma simples e visual.",
+    title: "SafeHarvest AI",
+    category: "Challenge Sompo Seguros — FIAP",
+    description: "Sistema preditivo de risco operacional e ambiental para equipamentos agrícolas, desenvolvido para o Challenge Sompo Seguros.",
     longDescription:
-      "Landing page criada para apresentar o Folder Icon Changer, destacando a proposta da ferramenta, seu funcionamento e o acesso para download em uma experiência direta e responsiva.",
-    tags: ["Landing Page", "Windows", "Ferramenta", "Responsivo", "Vercel"],
-    icon: FolderCog,
-    gradient: "from-secondary/20 to-transparent",
-    highlights: ["Apresentação clara da ferramenta", "Seção de funcionamento", "Chamada para download"],
-    links: {
-      demo: "https://folder.smartdevai.com.br/landing/",
-    },
-    images: [
-      "/imagens/folder_icon_changer/home.png",
-      "/imagens/folder_icon_changer/funcionamento.png",
-      "/imagens/folder_icon_changer/download.png",
+      "Solução de dados e IA para o Challenge Sompo Seguros (FIAP 2026) que prevê riscos como atolamento, tombamento e colisão em operações agrícolas. A partir de um dataset simulado com 5.000+ registros, treina um modelo Gradient Boosting (acurácia 97,9%, F1 0,98) que gera um score de risco (0–100) e classe (Baixo a Crítico) por equipamento. Inclui API REST em Flask com autenticação JWT por perfil e dashboards distintos para Operador, Gestor de frota e Analista da Sompo.",
+    tags: ["Python", "Machine Learning", "Gradient Boosting", "Scikit-learn", "Flask", "JWT", "SQL"],
+    icon: ShieldCheck,
+    gradient: "from-primary/20 to-transparent",
+    highlights: [
+      "Modelo Gradient Boosting com acurácia de 97,9%",
+      "Score de risco (0–100) e classificação por equipamento",
+      "API REST em Flask com autenticação JWT por perfil",
+      "Dashboards por persona: Operador, Gestor e Analista Sompo",
     ],
+    links: {},
+    images: [
+      "/imagens/safe-harvest/print-safe-harvest01.webp",
+      "/imagens/safe-harvest/tela-operador.webp",
+      "/imagens/safe-harvest/tela-gestor01.webp",
+      "/imagens/safe-harvest/tela-gestor02.webp",
+      "/imagens/safe-harvest/tela-analista-sompo01.webp",
+      "/imagens/safe-harvest/tela-analista-sompo02.webp",
+    ],
+  },
+  {
+    title: "ImobAI",
+    category: "Projeto de IA",
+    description: "Aplicação que gera legendas de marketing automáticas a partir de fotos de imóveis usando IA Gemini.",
+    longDescription:
+      "O ImobAI permite subir fotos de imóveis e, com poucos dados básicos, a IA gera legendas persuasivas e otimizadas para redes sociais — explorando análise de imagem (visão computacional) e geração de texto com IA.",
+    tags: ["Next.js", "Gemini AI", "TypeScript", "Tailwind CSS"],
+    icon: Sparkles,
+    gradient: "from-primary/20 to-transparent",
+    highlights: ["Geração de legendas por IA", "Análise de imagem (visão computacional)", "Vários tons de voz selecionáveis"],
+    links: {
+      demo: "/imobai",
+    },
+    images: ["/imagens/imobai/Sem título.png"],
   },
   {
     title: "ObraGest",
-    description: "Sistema para gestão de obras, projetos e organização de rotinas, com dashboards e módulos de controle.",
+    category: "Aplicação Full Stack",
+    description: "Sistema para gestão de obras e projetos, com dashboards e módulos de controle de rotinas.",
     longDescription:
-      "Aplicação voltada para organização e acompanhamento de obras, centralizando informações e fluxos em uma experiência simples e objetiva.",
+      "Aplicação Full Stack para organização e acompanhamento de obras, centralizando informações e fluxos. Envolve modelagem e integração de banco de dados, dashboards e áreas administrativas.",
     tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Docker", "Vercel"],
     icon: Building2,
     gradient: "from-primary/20 to-transparent",
-    highlights: ["Dashboard e visão geral", "Módulos de projetos e organização", "Configurações e áreas administrativas"],
+    highlights: ["Dashboard e visão geral", "Modelagem e integração de dados (PostgreSQL/Prisma)", "Configurações e áreas administrativas"],
     links: {
       demo: "https://obragest.online",
     },
@@ -104,32 +136,31 @@ const projects: Project[] = [
     ],
   },
   {
-    title: "ImobAI",
-    description: "SaaS para corretores de imóveis que gera legendas de marketing automáticas usando IA Gemini 1.5 Flash.",
+    title: "StockManager",
+    category: "Aplicação de dados",
+    description: "Sistema de controle e gerenciamento de estoque para equipes de manutenção, com foco em organização e rastreabilidade dos dados.",
     longDescription:
-      "O ImobAI permite que corretores subam fotos de imóveis e, com poucos dados básicos, a IA gera legendas persuasivas e otimizadas para redes sociais, economizando tempo e aumentando o engajamento.",
-    tags: ["Next.js", "Gemini AI", "TypeScript", "Tailwind CSS"],
-    icon: Sparkles,
-    gradient: "from-primary/20 to-transparent",
-    highlights: ["Geração de legendas por IA", "Análise de imagem (Visão computacional)", "Vários tons de voz selecionáveis"],
-    links: {
-      demo: "/imobai",
-    },
-    images: ["/imagens/imobai/Sem título.png"],
-  },
-  {
-    title: "Landing Page — Professora de Espanhol",
-    description: "Landing page para apresentação de serviços, dúvidas frequentes e chamada para contato.",
-    longDescription:
-      "Uma landing page moderna e responsiva para uma professora de espanhol, com seções objetivas para apresentar proposta, prova/aula, feedbacks e FAQ.",
-    tags: ["Landing Page", "Responsivo", "Vercel"],
-    icon: Languages,
+      "Sistema de controle e gerenciamento de estoque voltado a equipes de manutenção. Centraliza materiais (SKU, categoria, quantidade mínima e localização), movimentações de entrada e retirada, equipe e documentos, com dashboard de métricas, alertas de estoque, relatórios e exportação em CSV.",
+    tags: ["JavaScript", "Estoque", "Dashboard", "Relatórios CSV", "Rastreabilidade"],
+    icon: Boxes,
     gradient: "from-accent/20 to-transparent",
-    highlights: ["Seção hero com CTA", "FAQ e feedbacks", "Seção de prova/aula"],
+    highlights: [
+      "Dashboard com métricas e alertas de estoque",
+      "Cadastro de materiais com SKU, categoria e localização",
+      "Movimentações de entrada/retirada e gestão de equipe",
+      "Relatórios e exportação de dados em CSV",
+    ],
     links: {
-      demo: "https://landing-page-raquel-espanhol.vercel.app/#topo",
+      demo: "https://stock-manager-two-iota.vercel.app/",
     },
-    images: ["/imagens/raquel/hero.png", "/imagens/raquel/prova.png", "/imagens/raquel/feedback.png", "/imagens/raquel/faq.png"],
+    images: [
+      "/imagens/stock-manager/print-dashboard.webp",
+      "/imagens/stock-manager/print-materiais.webp",
+      "/imagens/stock-manager/print-movimentacoes.webp",
+      "/imagens/stock-manager/print-equipe.webp",
+      "/imagens/stock-manager/print-docs.webp",
+      "/imagens/stock-manager/print-relatorios.webp",
+    ],
   },
 ]
 
@@ -202,205 +233,169 @@ export function ProjectsSection() {
   const lightbox =
     mounted && lightboxOpen && selected
       ? createPortal(
-        <div
-          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Visualização ampliada das imagens do projeto ${selected.title}`}
-          onClick={closeLightbox}
-        >
-          <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
-            <div className="flex flex-col gap-4 pb-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="min-w-0">
-                <p className="text-sm text-muted-foreground truncate">{selected.title}</p>
-                <p className="text-xs text-muted-foreground">
-                  Imagem {Math.min(lightboxIndex + 1, lightboxImages.length)} de {lightboxImages.length}
-                </p>
+          <div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Visualização ampliada das imagens do projeto ${selected.title}`}
+            onClick={closeLightbox}
+          >
+            <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
+              <div className="flex flex-col gap-4 pb-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="min-w-0 font-mono">
+                  <p className="truncate text-sm text-primary">{selected.title}</p>
+                  <p className="text-xs text-muted-foreground">
+                    img {Math.min(lightboxIndex + 1, lightboxImages.length)} / {lightboxImages.length}
+                  </p>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  {canNavigateLightbox ? (
+                    <>
+                      <Button variant="outline" className="h-8 gap-2 px-3 font-mono text-xs" onClick={prevLightbox}>
+                        <ChevronLeft size={16} />
+                        prev
+                      </Button>
+                      <Button variant="outline" className="h-8 gap-2 px-3 font-mono text-xs" onClick={nextLightbox}>
+                        next
+                        <ChevronRight size={16} />
+                      </Button>
+                    </>
+                  ) : null}
+                  <Button variant="outline" className="h-8 gap-2 px-3 font-mono text-xs" onClick={closeLightbox}>
+                    <X size={16} />
+                    esc
+                  </Button>
+                </div>
               </div>
-
-              <div className="flex flex-wrap items-center gap-2">
-                {canNavigateLightbox ? (
-                  <>
-                    <Button
-                      variant="outline"
-                      className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
-                      onClick={prevLightbox}
-                    >
-                      <ChevronLeft size={16} />
-                      Anterior
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
-                      onClick={nextLightbox}
-                    >
-                      Próxima
-                      <ChevronRight size={16} />
-                    </Button>
-                  </>
-                ) : null}
-                <Button
-                  variant="outline"
-                  className="gap-2 bg-background/30 hover:bg-background/40 h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm"
-                  onClick={closeLightbox}
-                >
-                  <X size={16} />
-                  Fechar
-                </Button>
+              <div className="relative h-[78vh] w-full overflow-hidden border border-[rgb(var(--rgb-green)/0.3)] bg-black/40">
+                <Image
+                  src={lightboxImages[lightboxIndex] ?? selected.images[0]}
+                  alt={`${selected.title} — imagem ${lightboxIndex + 1}`}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                  priority
+                />
               </div>
             </div>
-
-            <div className="relative w-full h-[78vh] rounded-xl overflow-hidden border border-white/10 bg-black/30">
-              <Image
-                src={lightboxImages[lightboxIndex] ?? selected.images[0]}
-                alt={`${selected.title} — imagem ${lightboxIndex + 1}`}
-                fill
-                sizes="100vw"
-                className="object-contain"
-                priority
-              />
-            </div>
-          </div>
-        </div>,
-        document.body,
-      )
+          </div>,
+          document.body,
+        )
       : null
 
   return (
-    <section ref={ref} id="projects" className="lg:min-h-screen scroll-mt-6 lg:scroll-mt-8 flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[520px] w-[520px] bg-primary/15 blur-3xl rounded-full" />
-        <div className="absolute -bottom-32 -left-24 h-[460px] w-[460px] bg-accent/10 blur-3xl rounded-full" />
-        <div className="absolute top-32 -right-24 h-[420px] w-[420px] bg-secondary/10 blur-3xl rounded-full" />
-      </div>
+    <section ref={ref} id="projects" className="relative scroll-mt-16 px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
+      <div
+        className={`mx-auto max-w-6xl space-y-10 transition-all duration-700 ${
+          isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+        }`}
+      >
+        <SectionHead
+          index="03"
+          label="PROC"
+          title={
+            <>
+              Processos em <span className="gradient-text">execução</span>
+            </>
+          }
+          subtitle={`${projects.length} projetos ativos — acadêmicos em Dados/IA e aplicações construídas na prática. Selecione um processo para inspecionar.`}
+        />
 
-      <div className="max-w-6xl w-full space-y-14 relative z-10">
-        <div
-          className={`transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"}`}
-        >
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-mono border border-primary/20">
-                <Sparkles size={14} className="text-primary/80" />
-                Projetos selecionados
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-balance">
-                Projetos em <span className="gradient-text">Destaque</span>
-              </h2>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                Uma seleção de projetos que mostram minha evolução como desenvolvedor. Clique em um card para ver detalhes e imagens.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="px-3 py-1.5 text-xs font-medium rounded-lg bg-muted/30 text-muted-foreground backdrop-blur">
-                {projects.length} projetos
-              </span>
-              <span className="px-3 py-1.5 text-xs font-medium rounded-lg bg-primary/15 text-primary backdrop-blur">
-                Full Stack
-              </span>
-            </div>
-          </div>
-
-          <div className="h-1.5 w-24 bg-gradient-to-r from-primary to-accent rounded-full mt-6" />
+        {/* process list header */}
+        <div className="hidden grid-cols-[3rem_1fr_8rem] gap-4 border-b border-[rgb(var(--rgb-green)/0.18)] px-1 pb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground md:grid">
+          <span>pid</span>
+          <span>módulo</span>
+          <span className="text-right">status</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {projects.map((project, idx) => {
             const Icon = project.icon
-            const isFeatured = idx === 0
+            const featured = idx === 0
             return (
-              <Tilt
-                key={idx}
-                className={`group relative h-full cursor-pointer transition-all duration-700 ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
-                  } ${isFeatured ? "md:col-span-2 lg:col-span-2" : ""}`}
-                style={{ transitionDelay: isVisible ? `${idx * 100}ms` : "0ms" }}
-                role="button"
-                tabIndex={0}
+              <button
+                key={project.title}
+                type="button"
                 onClick={() => openProject(idx)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault()
-                    openProject(idx)
-                  }
-                }}
+                className={`panel panel-hover corner-ticks group flex flex-col rounded-sm text-left transition-all duration-500 ${
+                  featured ? "md:col-span-2" : ""
+                } ${isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+                style={{ transitionDelay: isVisible ? `${idx * 80}ms` : "0ms" }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br rounded-2xl border border-border/50 bg-card/40 backdrop-blur-xl group-hover:border-primary/50 transition-all duration-300 overflow-hidden">
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                  />
-                  <div className="absolute -right-16 -top-16 h-40 w-40 bg-primary/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* title bar */}
+                <div className="flex items-center justify-between gap-3 border-b border-[rgb(var(--rgb-green)/0.15)] bg-[rgb(var(--rgb-green)/0.04)] px-3 py-2 font-mono text-[11px]">
+                  <span className="flex items-center gap-2 truncate text-muted-foreground">
+                    <span className="text-primary">pid:{idx.toString().padStart(2, "0")}</span>
+                    <span className="truncate uppercase tracking-[0.14em]">{project.category}</span>
+                  </span>
+                  <span className="flex shrink-0 items-center gap-1.5 uppercase tracking-[0.16em] text-primary">
+                    <span className="led" />
+                    run
+                  </span>
                 </div>
 
-                <div className="relative z-10 p-6 sm:p-7 lg:p-8 flex flex-col h-full backdrop-blur-sm">
-                  <div className="flex items-start justify-between gap-4 mb-6">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="p-3.5 rounded-xl bg-primary/10 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-primary/5 group-hover:shadow-primary/20">
-                        <Icon className="text-primary w-6 h-6" />
-                      </div>
-                      <div className="min-w-0">
-                        {isFeatured ? (
-                          <span className="inline-flex items-center gap-2 text-[11px] font-mono text-primary/80">
-                            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-                            Destaque
-                          </span>
-                        ) : null}
-                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 truncate">
-                          {project.title}
-                        </h3>
-                      </div>
-                    </div>
-                    <ArrowUpRight
-                      size={20}
-                      className="text-primary opacity-0 group-hover:opacity-100 transform group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-300"
-                    />
-                  </div>
-
-                  <div className={`relative rounded-xl overflow-hidden border border-border/50 bg-black/20 ${isFeatured ? "" : "mb-5"}`}>
-                    <AspectRatio ratio={16 / 9} className="overflow-hidden">
-                      <Image
-                        src={project.images[0]}
-                        alt={`Preview do projeto ${project.title}`}
-                        fill
-                        sizes={isFeatured ? "(min-width: 1024px) 60vw, 100vw" : "(min-width: 1024px) 30vw, 100vw"}
-                        className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                        priority={idx === 0}
-                      />
+                <div className={`flex flex-1 gap-5 p-5 ${featured ? "flex-col lg:flex-row lg:p-6" : "flex-col"}`}>
+                  <div
+                    className={`relative shrink-0 overflow-hidden border border-[rgb(var(--rgb-green)/0.15)] bg-black/30 ${
+                      featured ? "lg:w-1/2" : ""
+                    }`}
+                  >
+                    <AspectRatio ratio={16 / 9}>
+                      {project.images.length > 0 ? (
+                        <Image
+                          src={project.images[0]}
+                          alt={`Preview do projeto ${project.title}`}
+                          fill
+                          sizes={featured ? "(min-width:1024px) 40vw, 100vw" : "(min-width:768px) 45vw, 100vw"}
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          priority={idx === 0}
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center">
+                          <Icon className="h-12 w-12 text-primary/60" />
+                        </div>
+                      )}
+                      <span className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgb(0_0_0/0.5))]" />
                     </AspectRatio>
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-70" />
                   </div>
 
-                  <div className="flex-1">
-                    <p className={`text-muted-foreground leading-relaxed ${isFeatured ? "pt-5" : ""}`}>{project.description}</p>
-                    {isFeatured ? (
-                      <ul className="pt-5 space-y-2 text-sm text-muted-foreground">
+                  <div className="flex flex-1 flex-col">
+                    <div className="flex items-center gap-2">
+                      <Icon size={18} className="text-primary" />
+                      <h3 className="font-sans text-lg font-bold text-foreground transition-colors group-hover:text-primary sm:text-xl">
+                        {project.title}
+                      </h3>
+                    </div>
+                    <p className="mt-2 font-mono text-xs leading-relaxed text-muted-foreground">{project.description}</p>
+
+                    {featured && (
+                      <ul className="mt-3 space-y-1.5 font-mono text-[11px] text-muted-foreground">
                         {project.highlights.slice(0, 3).map((item) => (
                           <li key={item} className="flex gap-2">
-                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary/80 shrink-0" />
+                            <span className="text-primary">›</span>
                             <span>{item}</span>
                           </li>
                         ))}
                       </ul>
-                    ) : null}
-                  </div>
+                    )}
 
-                  <div className="flex flex-wrap gap-2 pt-6 mt-auto">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1.5 text-xs font-medium rounded-lg bg-muted/30 text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary transition-all duration-300 backdrop-blur"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                    <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
+                      {project.tags.slice(0, featured ? 7 : 4).map((tag) => (
+                        <span
+                          key={tag}
+                          className="border border-[rgb(var(--rgb-green)/0.18)] bg-black/20 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground transition-colors group-hover:border-[rgb(var(--rgb-green)/0.4)] group-hover:text-primary"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
 
-                  <div className="pt-6 flex items-center gap-2 text-xs text-muted-foreground">
-                    <Sparkles size={14} className="text-primary/70" />
-                    <span className="group-hover:text-foreground transition-colors">Clique para ver detalhes</span>
+                    <p className="pt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground transition-colors group-hover:text-primary">
+                      › inspecionar_processo
+                    </p>
                   </div>
                 </div>
-              </Tilt>
+              </button>
             )
           })}
         </div>
@@ -416,89 +411,101 @@ export function ProjectsSection() {
           }
         }}
       >
-        <DialogContent className="w-[95vw] sm:max-w-3xl p-0 max-h-[90svh] overflow-y-auto overflow-x-hidden rounded-xl border-border/50">
+        <DialogContent className="w-[95vw] max-h-[90svh] overflow-y-auto overflow-x-hidden rounded-sm border-[rgb(var(--rgb-green)/0.3)] bg-card p-0 sm:max-w-3xl">
           {selected ? (
             <div className="grid lg:grid-cols-2">
-              <div className="p-6 lg:p-8 bg-gradient-to-br from-primary/10 via-transparent to-accent/10">
-                <Carousel opts={{ loop: true }} className="w-full">
-                  <CarouselContent>
-                    {selected.images.map((src, i) => (
-                      <CarouselItem key={`${src}-${i}`}>
-                        <button
-                          type="button"
-                          className="w-full text-left group/image"
-                          onClick={() => openLightbox(i)}
-                          aria-label={`Ampliar imagem ${i + 1} do projeto ${selected.title}`}
-                        >
-                          <AspectRatio
-                            ratio={16 / 9}
-                            className="overflow-hidden rounded-xl border border-border/50 cursor-zoom-in"
-                          >
-                            <Image
-                              src={src}
-                              alt={selected.title}
-                              fill
-                              sizes="(min-width: 1024px) 50vw, 100vw"
-                              className="object-cover group-hover/image:scale-[1.02] transition-transform duration-300"
-                              priority={i === 0}
-                            />
-                          </AspectRatio>
-                        </button>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-2 -translate-y-1/2" />
-                  <CarouselNext className="right-2 -translate-y-1/2" />
-                </Carousel>
-                <p className="pt-3 text-xs text-muted-foreground flex items-center gap-2">
-                  <Sparkles size={14} className="text-primary/70" />
-                  Clique na imagem para ampliar
-                </p>
+              <div className="bg-black/30 p-5 lg:p-6">
+                {selected.images.length > 0 ? (
+                  <>
+                    <Carousel opts={{ loop: true }} className="w-full">
+                      <CarouselContent>
+                        {selected.images.map((src, i) => (
+                          <CarouselItem key={`${src}-${i}`}>
+                            <button
+                              type="button"
+                              className="group/image w-full text-left"
+                              onClick={() => openLightbox(i)}
+                              aria-label={`Ampliar imagem ${i + 1} do projeto ${selected.title}`}
+                            >
+                              <AspectRatio
+                                ratio={16 / 9}
+                                className="cursor-zoom-in overflow-hidden border border-[rgb(var(--rgb-green)/0.2)]"
+                              >
+                                <Image
+                                  src={src}
+                                  alt={selected.title}
+                                  fill
+                                  sizes="(min-width: 1024px) 50vw, 100vw"
+                                  className="object-cover transition-transform duration-300 group-hover/image:scale-[1.02]"
+                                  priority={i === 0}
+                                />
+                              </AspectRatio>
+                            </button>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <CarouselPrevious className="left-2 -translate-y-1/2" />
+                      <CarouselNext className="right-2 -translate-y-1/2" />
+                    </Carousel>
+                    <p className="flex items-center gap-2 pt-3 font-mono text-[11px] text-muted-foreground">
+                      <span className="text-primary">›</span> clique na imagem para ampliar
+                    </p>
+                  </>
+                ) : (
+                  <AspectRatio ratio={16 / 9} className="overflow-hidden border border-[rgb(var(--rgb-green)/0.2)]">
+                    <div className="flex h-full w-full items-center justify-center bg-black/30">
+                      <selected.icon className="h-16 w-16 text-primary/60" />
+                    </div>
+                  </AspectRatio>
+                )}
               </div>
 
-              <div className="p-6 lg:p-8 space-y-6">
+              <div className="space-y-6 p-5 lg:p-6">
                 <DialogHeader>
-                  <DialogTitle className="text-2xl">{selected.title}</DialogTitle>
-                  <DialogDescription className="text-base leading-relaxed">{selected.longDescription}</DialogDescription>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-primary">{selected.category}</p>
+                  <DialogTitle className="font-sans text-2xl">{selected.title}</DialogTitle>
+                  <DialogDescription className="font-mono text-sm leading-relaxed text-muted-foreground">
+                    {selected.longDescription}
+                  </DialogDescription>
                 </DialogHeader>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {selected.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1.5 text-xs font-medium rounded-lg bg-muted/40 text-muted-foreground hover:bg-primary/15 hover:text-primary transition-colors"
+                      className="border border-[rgb(var(--rgb-green)/0.2)] bg-black/20 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="space-y-3">
-                  <h4 className="text-sm font-semibold text-foreground">Destaques</h4>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                <div className="space-y-2">
+                  <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-secondary">// destaques</h4>
+                  <ul className="space-y-1.5 font-mono text-xs text-muted-foreground">
                     {selected.highlights.map((item) => (
                       <li key={item} className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary/80" />
+                        <span className="text-primary">›</span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="flex flex-wrap gap-3 pt-2">
+                <div className="flex flex-wrap gap-3 pt-1">
                   {selected.links.demo ? (
-                    <Button asChild className="gap-2">
+                    <Button asChild className="gap-2 font-mono text-xs">
                       <a href={selected.links.demo} target="_blank" rel="noopener noreferrer">
-                        <LinkIcon size={16} />
-                        Abrir demo
+                        <LinkIcon size={15} />
+                        abrir_demo
                       </a>
                     </Button>
                   ) : null}
                   {selected.links.github ? (
-                    <Button variant="outline" asChild className="gap-2">
+                    <Button variant="outline" asChild className="gap-2 font-mono text-xs">
                       <a href={selected.links.github} target="_blank" rel="noopener noreferrer">
-                        <Github size={16} />
-                        Ver código
+                        <Github size={15} />
+                        ver_código
                       </a>
                     </Button>
                   ) : null}

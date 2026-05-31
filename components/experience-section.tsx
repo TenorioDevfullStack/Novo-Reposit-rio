@@ -1,25 +1,42 @@
 "use client"
 
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
-import { Briefcase, Calendar, CheckCircle2, Sparkles } from "lucide-react"
+import { CheckCircle2, ChevronRight } from "lucide-react"
+
+import { Panel } from "@/components/panel"
+import { SectionHead } from "@/components/section-head"
 
 const experiences = [
   {
-    role: "Desenvolvedor Full Stack Freelancer",
-    company: "Autônomo",
-    period: "2023 - Presente",
+    role: "Transição para Dados & IA",
+    company: "FIAP — Tecnólogo em Inteligência Artificial",
+    period: "2026 — atual",
+    statusColor: "green" as const,
+    statusText: "em formação",
     summary:
-      "Atuo como desenvolvedor freelancer, construindo aplicações web do front ao back — com foco em clareza, performance, boas práticas e evolução contínua do produto.",
-    deliveries: [
-      "Aplicações Full Stack (UI + API + dados)",
-      "Integrações com serviços e APIs externas",
-      "Autenticação, autorização e boas práticas de segurança",
-      "Banco de dados PostgreSQL com Prisma",
-      "Containers com Docker e deploy na Vercel",
-      "Manutenção e melhorias contínuas",
+      "Aplico o perfil analítico da área técnica a projetos de dados e IA, com base em Ciência de Dados, estatística, Python e Machine Learning.",
+    skills: [
+      "Análise exploratória e preditiva de dados",
+      "Coleta, integração e tratamento de dados em bases",
+      "Fundamentos de ML (regressão e árvores de decisão)",
+      "Projetos hands-on com empresas parceiras",
     ],
-    approach: ["Alinhamento de escopo e prioridades", "Entregas incrementais com Git", "Comunicação clara e prazos", "Documentação e handoff"],
-    stack: ["Next.js", "React", "TypeScript", "Node.js", "PostgreSQL", "Prisma", "Docker", "Vercel", "Tailwind CSS"],
+    approachLabel: "como atuo",
+    approach: ["Metodologias ágeis (Scrum)", "Entregas versionadas no GitHub", "Discovery do problema de negócio", "Prototipação e PoC"],
+    tags: ["Ciência de Dados", "Machine Learning", "Estatística", "Python"],
+  },
+  {
+    role: "Profissional de Elétrica e Eletrônica",
+    company: "Setor técnico",
+    period: "2021 — atual",
+    statusColor: "cyan" as const,
+    statusText: "experiência",
+    summary:
+      "Atuação em diagnóstico, manutenção e resolução de problemas — fortalecendo raciocínio lógico, método e atenção a detalhes que levo para projetos de dados.",
+    skills: ["Diagnóstico e resolução de problemas técnicos", "Manutenção com método e precisão", "Raciocínio lógico aplicado"],
+    approachLabel: "o que levo p/ dados",
+    approach: ["Perfil analítico e orientado a problemas", "Método e disciplina", "Atenção a detalhes e qualidade"],
+    tags: ["Resolução de problemas", "Raciocínio lógico", "Método"],
   },
 ]
 
@@ -27,53 +44,46 @@ export function ExperienceSection() {
   const { ref, isVisible } = useScrollAnimation()
 
   return (
-    <section ref={ref} id="experience" className="lg:min-h-screen scroll-mt-6 lg:scroll-mt-8 flex items-center justify-center px-5 sm:px-6 lg:px-8 py-20 lg:py-24">
-      <div className="max-w-4xl w-full space-y-12">
-        <div
-          className={`transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"}`}
-        >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-balance">Experiência</h2>
-          <div className="h-1 w-12 bg-gradient-to-r from-primary to-accent rounded-full" />
-          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed pt-5 max-w-2xl">
-            Minha experiência profissional é como desenvolvedor freelancer desde 2023, atuando no desenvolvimento de soluções web completas.
-          </p>
-        </div>
+    <section ref={ref} id="experience" className="relative scroll-mt-16 px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
+      <div
+        className={`mx-auto max-w-5xl space-y-10 transition-all duration-700 ${
+          isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+        }`}
+      >
+        <SectionHead
+          index="02"
+          label="LOG"
+          title={
+            <>
+              Experiência e <span className="gradient-text">transição de carreira</span>
+            </>
+          }
+          subtitle="Da elétrica/eletrônica para Dados e IA: perfil analítico de uma carreira técnica somado à formação em Ciência de Dados e ML na FIAP."
+        />
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {experiences.map((exp, idx) => (
-            <div
-              key={idx}
-              className={`card-interactive p-6 sm:p-8 lg:p-10 transition-all duration-700 ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-              } group`}
-              style={{ transitionDelay: isVisible ? `${idx * 150}ms` : "0ms" }}
+            <Panel
+              key={exp.role}
+              label={`process[${idx}]`}
+              status={exp.statusText}
+              statusColor={exp.statusColor}
+              hover
             >
-              <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10" />
-              </div>
-
-              <div className="relative space-y-7">
-                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
-                  <div className="space-y-2">
-                    <div className="inline-flex items-center gap-2 text-xs font-mono text-primary/80">
-                      <Briefcase size={14} className="text-primary/80" />
-                      Freelancer
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-foreground">{exp.role}</h3>
-                    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
-                      <span className="text-primary font-medium">{exp.company}</span>
-                      <span className="inline-flex items-center gap-2">
-                        <Calendar size={14} className="text-primary/70" />
-                        {exp.period}
-                      </span>
+              <div className="space-y-6">
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                  <div className="space-y-1.5">
+                    <h3 className="font-sans text-xl font-bold text-foreground sm:text-2xl">{exp.role}</h3>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs">
+                      <span className="text-secondary">{exp.company}</span>
+                      <span className="text-muted-foreground">· {exp.period}</span>
                     </div>
                   </div>
-
                   <div className="flex flex-wrap gap-2">
-                    {exp.stack.map((tag) => (
+                    {exp.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1.5 text-xs font-medium rounded-lg bg-muted/30 text-muted-foreground hover:bg-primary/15 hover:text-primary transition-colors backdrop-blur"
+                        className="border border-[rgb(var(--rgb-green)/0.2)] bg-black/20 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground"
                       >
                         {tag}
                       </span>
@@ -81,27 +91,26 @@ export function ExperienceSection() {
                   </div>
                 </div>
 
-                <p className="text-muted-foreground leading-relaxed">{exp.summary}</p>
+                <p className="font-mono text-sm leading-relaxed text-muted-foreground">{exp.summary}</p>
 
-                <div className="grid md:grid-cols-2 gap-8 pt-2">
+                <div className="grid gap-6 border-t border-[rgb(var(--rgb-green)/0.12)] pt-5 md:grid-cols-2">
                   <div className="space-y-3">
-                    <h4 className="text-sm font-semibold text-foreground">O que eu entrego</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      {exp.deliveries.map((item) => (
+                    <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-primary">// competências</h4>
+                    <ul className="space-y-2 font-mono text-xs text-muted-foreground">
+                      {exp.skills.map((item) => (
                         <li key={item} className="flex gap-2">
-                          <CheckCircle2 size={16} className="mt-0.5 text-primary/80 shrink-0" />
+                          <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-primary/80" />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-
                   <div className="space-y-3">
-                    <h4 className="text-sm font-semibold text-foreground">Como eu trabalho</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-secondary">// {exp.approachLabel}</h4>
+                    <ul className="space-y-2 font-mono text-xs text-muted-foreground">
                       {exp.approach.map((item) => (
                         <li key={item} className="flex gap-2">
-                          <Sparkles size={16} className="mt-0.5 text-accent/80 shrink-0" />
+                          <ChevronRight size={14} className="mt-0.5 shrink-0 text-secondary/80" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -109,7 +118,7 @@ export function ExperienceSection() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Panel>
           ))}
         </div>
       </div>

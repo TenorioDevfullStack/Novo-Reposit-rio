@@ -2,20 +2,20 @@
 
 import type React from "react"
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react"
-import { useTheme } from "next-themes"
 import { toast } from "sonner"
 import {
   ArrowUpRight,
+  Bot,
   Briefcase,
   Cpu,
+  Download,
+  FileText,
   Github,
   Home,
   Linkedin,
   Mail,
-  Moon,
   Phone,
   Search,
-  Sun,
 } from "lucide-react"
 
 import {
@@ -27,6 +27,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command"
+import { contactInfo, cvPaths, navItems } from "@/lib/nav"
 
 type CommandMenuContextValue = {
   open: boolean
@@ -70,21 +71,25 @@ function scrollToHash(hash: string) {
     window.scrollTo({ top: 0, behavior: "smooth" })
     return
   }
-
   const el = document.querySelector(hash)
   if (!(el instanceof HTMLElement)) return
   el.scrollIntoView({ behavior: "smooth", block: "start" })
 }
 
+const navIcons: Record<string, typeof Home> = {
+  home: Home,
+  about: Search,
+  experience: Briefcase,
+  projects: ArrowUpRight,
+  tech: Cpu,
+  cv: FileText,
+  contact: Mail,
+}
+
 export function CommandMenu() {
   const { open, setOpen } = useCommandMenu()
-  const { resolvedTheme, setTheme } = useTheme()
 
-  const email = "intelligentdevsolutions@gmail.com"
-  const phoneDisplay = "11 98943-7498"
-  const phoneTel = "+5511989437498"
-  const githubUrl = "https://github.com/TenorioDevfullStack"
-  const linkedinUrl = "https://www.linkedin.com/in/leandro-ten%C3%B3rio-088378310/"
+  const { email, phoneDisplay, phoneTel, github, linkedin } = contactInfo
 
   const navigate = (hash: string) => {
     setOpen(false)
@@ -94,6 +99,16 @@ export function CommandMenu() {
   const openExternal = (href: string) => {
     setOpen(false)
     window.open(href, "_blank", "noopener,noreferrer")
+  }
+
+  const downloadCv = (path: string) => {
+    setOpen(false)
+    const link = document.createElement("a")
+    link.href = path
+    link.download = ""
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   const copyEmail = async () => {
@@ -123,52 +138,44 @@ export function CommandMenu() {
     window.location.href = `tel:${phoneTel}`
   }
 
-  const toggleTheme = () => {
-    const next = resolvedTheme === "dark" ? "light" : "dark"
-    setTheme(next)
-    toast.message(next === "dark" ? "Tema escuro" : "Tema claro")
+  const openNix = () => {
     setOpen(false)
+    window.dispatchEvent(new Event("ai-assistant:open"))
   }
 
   return (
-    <CommandDialog open={open} onOpenChange={setOpen} title="Atalhos" description="Navegue e execute ações rápidas.">
-      <CommandInput placeholder="Buscar… (ex: projetos, email, tema)" />
+    <CommandDialog open={open} onOpenChange={setOpen} title="Console" description="Navegue e execute comandos rápidos.">
+      <CommandInput placeholder="> buscar… (ex: projetos, cv, email)" />
       <CommandList>
         <CommandEmpty>Nenhum resultado.</CommandEmpty>
 
-        <CommandGroup heading="Navegação">
-          <CommandItem onSelect={() => navigate("#home")}>
-            <Home />
-            Início
-          </CommandItem>
-          <CommandItem onSelect={() => navigate("#about")}>
-            <Search />
-            Sobre
-          </CommandItem>
-          <CommandItem onSelect={() => navigate("#experience")}>
-            <Briefcase />
-            Experiência
-          </CommandItem>
-          <CommandItem onSelect={() => navigate("#projects")}>
-            <ArrowUpRight />
-            Projetos
-          </CommandItem>
-          <CommandItem onSelect={() => navigate("#tech")}>
-            <Cpu />
-            Tecnologias
-          </CommandItem>
-          <CommandItem onSelect={() => navigate("#contact")}>
-            <Mail />
-            Contato
-          </CommandItem>
+        <CommandGroup heading="navegação">
+          {navItems.map((item) => {
+            const Icon = navIcons[item.id] ?? Home
+            return (
+              <CommandItem key={item.id} onSelect={() => navigate(`#${item.id}`)}>
+                <Icon />
+                <span className="tabular-nums opacity-60">{item.index}</span>
+                {item.title}
+              </CommandItem>
+            )
+          })}
         </CommandGroup>
 
         <CommandSeparator />
 
-        <CommandGroup heading="Ações">
-          <CommandItem onSelect={toggleTheme}>
-            {resolvedTheme === "dark" ? <Sun /> : <Moon />}
-            Alternar tema
+        <CommandGroup heading="ações">
+          <CommandItem onSelect={openNix}>
+            <Bot />
+            Abrir assistente (Nix)
+          </CommandItem>
+          <CommandItem onSelect={() => downloadCv(cvPaths.pdf)}>
+            <Download />
+            Baixar CV (PDF)
+          </CommandItem>
+          <CommandItem onSelect={() => downloadCv(cvPaths.docx)}>
+            <FileText />
+            Baixar CV (Word)
           </CommandItem>
           <CommandItem onSelect={copyEmail}>
             <Mail />
@@ -186,12 +193,12 @@ export function CommandMenu() {
 
         <CommandSeparator />
 
-        <CommandGroup heading="Social">
-          <CommandItem onSelect={() => openExternal(githubUrl)}>
+        <CommandGroup heading="social">
+          <CommandItem onSelect={() => openExternal(github)}>
             <Github />
             GitHub
           </CommandItem>
-          <CommandItem onSelect={() => openExternal(linkedinUrl)}>
+          <CommandItem onSelect={() => openExternal(linkedin)}>
             <Linkedin />
             LinkedIn
           </CommandItem>
