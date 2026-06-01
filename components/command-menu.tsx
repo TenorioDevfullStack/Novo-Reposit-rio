@@ -144,12 +144,12 @@ export function CommandMenu() {
   }
 
   return (
-    <CommandDialog open={open} onOpenChange={setOpen} title="Console" description="Navegue e execute comandos rápidos.">
-      <CommandInput placeholder="> buscar… (ex: projetos, cv, email)" />
+    <CommandDialog open={open} onOpenChange={setOpen} title="Buscar" description="Navegue e execute ações rápidas.">
+      <CommandInput placeholder="Buscar… (ex: projetos, currículo, email)" />
       <CommandList>
         <CommandEmpty>Nenhum resultado.</CommandEmpty>
 
-        <CommandGroup heading="navegação">
+        <CommandGroup heading="Navegação">
           {navItems.map((item) => {
             const Icon = navIcons[item.id] ?? Home
             return (
@@ -164,7 +164,7 @@ export function CommandMenu() {
 
         <CommandSeparator />
 
-        <CommandGroup heading="ações">
+        <CommandGroup heading="Ações">
           <CommandItem onSelect={openKortex}>
             <Bot />
             Abrir assistente (Kórtex)
@@ -193,7 +193,7 @@ export function CommandMenu() {
 
         <CommandSeparator />
 
-        <CommandGroup heading="social">
+        <CommandGroup heading="Redes">
           <CommandItem onSelect={() => openExternal(github)}>
             <Github />
             GitHub

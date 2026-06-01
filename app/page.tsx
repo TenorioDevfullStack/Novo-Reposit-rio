@@ -1,6 +1,8 @@
 "use client"
 
-import { BackgroundGrid } from "@/components/background-grid"
+import { AmbientBackground } from "@/components/ambient-background"
+import { SiteNav } from "@/components/site-nav"
+import { SiteFooter } from "@/components/site-footer"
 import { Hero } from "@/components/hero"
 import { AboutSection } from "@/components/about-section"
 import { ExperienceSection } from "@/components/experience-section"
@@ -8,19 +10,17 @@ import { ProjectsSection } from "@/components/projects-section"
 import { TechSection } from "@/components/tech-section"
 import { CvSection } from "@/components/cv-section"
 import { ContactSection } from "@/components/contact-section"
-import { DataField } from "@/components/data-field"
-import { ConsoleShell } from "@/components/console-shell"
 import { CommandMenu, CommandMenuProvider } from "@/components/command-menu"
 
 export default function Home() {
   return (
     <CommandMenuProvider>
-      <div className="relative isolate min-h-[100svh] overflow-x-clip bg-background scanlines">
-        <BackgroundGrid />
-        <DataField />
+      <div className="relative isolate min-h-[100svh] overflow-x-clip bg-background">
+        <AmbientBackground />
         <CommandMenu />
+        <SiteNav />
 
-        <ConsoleShell>
+        <main className="relative z-10">
           <Hero />
           <AboutSection />
           <ExperienceSection />
@@ -28,7 +28,9 @@ export default function Home() {
           <TechSection />
           <CvSection />
           <ContactSection />
-        </ConsoleShell>
+        </main>
+
+        <SiteFooter />
       </div>
     </CommandMenuProvider>
   )

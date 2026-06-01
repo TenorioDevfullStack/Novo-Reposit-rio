@@ -12,7 +12,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Spinner } from "@/components/ui/spinner"
 import { Textarea } from "@/components/ui/textarea"
-import { Panel } from "@/components/panel"
 import { SectionHead } from "@/components/section-head"
 import { contactInfo } from "@/lib/nav"
 
@@ -92,75 +91,75 @@ export function ContactSection() {
   }
 
   return (
-    <section ref={ref} id="contact" className="relative scroll-mt-16 px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
+    <section ref={ref} id="contact" className="relative scroll-mt-20 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <div
-        className={`mx-auto max-w-5xl space-y-10 transition-all duration-700 ${
+        className={`mx-auto max-w-6xl space-y-10 transition-all duration-700 ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
         }`}
       >
         <SectionHead
           index="06"
-          label="UPLINK"
+          label="Contato"
           title={
             <>
-              Abrir <span className="gradient-text">canal de comunicação</span>
+              Vamos <span className="gradient-text">conversar</span>
             </>
           }
           subtitle="Vaga, colaboração, projeto ou troca de ideias sobre dados e IA — meus canais estão abertos."
         />
 
-        <div className="grid gap-5 lg:grid-cols-2">
-          <Panel label="channels" status="online" hover>
-            <div className="space-y-5">
-              <div className="flex flex-col gap-3">
-                <a href={`mailto:${email}`} className="term-btn group justify-start">
-                  <Mail size={16} />
-                  enviar_email
-                  <Send size={14} className="ml-auto transition-transform group-hover:translate-x-1" />
-                </a>
-                <div className="grid grid-cols-2 gap-3">
-                  <Button type="button" variant="outline" className="justify-center gap-2 font-mono text-xs" onClick={copyEmail}>
-                    <Copy size={14} />
-                    copiar email
-                  </Button>
-                  <Button asChild variant="outline" className="justify-center gap-2 font-mono text-xs">
-                    <a href={`tel:${phoneTel}`} aria-label={`Ligar para ${phoneDisplay}`}>
-                      <PhoneCall size={14} />
-                      {phoneDisplay}
-                    </a>
-                  </Button>
-                </div>
-                <Button type="button" variant="outline" className="justify-center gap-2 font-mono text-xs" onClick={copyPhone}>
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="card-surface p-6 sm:p-8">
+            <p className="eyebrow mb-5">Canais diretos</p>
+            <div className="flex flex-col gap-3">
+              <a href={`mailto:${email}`} className="btn-primary group justify-start">
+                <Mail size={16} />
+                Enviar email
+                <Send size={14} className="ml-auto transition-transform group-hover:translate-x-1" />
+              </a>
+              <div className="grid grid-cols-2 gap-3">
+                <Button type="button" variant="outline" className="justify-center gap-2 rounded-full text-xs" onClick={copyEmail}>
                   <Copy size={14} />
-                  copiar telefone
+                  Copiar email
+                </Button>
+                <Button asChild variant="outline" className="justify-center gap-2 rounded-full text-xs">
+                  <a href={`tel:${phoneTel}`} aria-label={`Ligar para ${phoneDisplay}`}>
+                    <PhoneCall size={14} />
+                    {phoneDisplay}
+                  </a>
                 </Button>
               </div>
+              <Button type="button" variant="outline" className="justify-center gap-2 rounded-full text-xs" onClick={copyPhone}>
+                <Copy size={14} />
+                Copiar telefone
+              </Button>
+            </div>
 
-              <div className="border-t border-[rgb(var(--rgb-green)/0.12)] pt-4">
-                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">// social</p>
-                <div className="flex gap-3">
-                  {[
-                    { name: "GitHub", href: contactInfo.github, icon: Github },
-                    { name: "LinkedIn", href: contactInfo.linkedin, icon: Linkedin },
-                  ].map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-11 w-11 items-center justify-center border border-[rgb(var(--rgb-green)/0.25)] text-muted-foreground transition-colors hover:border-[rgb(var(--rgb-green)/0.55)] hover:bg-[rgb(var(--rgb-green)/0.08)] hover:text-primary"
-                      aria-label={social.name}
-                      title={social.name}
-                    >
-                      <social.icon size={18} />
-                    </a>
-                  ))}
-                </div>
+            <div className="mt-6 border-t border-border pt-5">
+              <p className="eyebrow mb-3">Redes</p>
+              <div className="flex gap-3">
+                {[
+                  { name: "GitHub", href: contactInfo.github, icon: Github },
+                  { name: "LinkedIn", href: contactInfo.linkedin, icon: Linkedin },
+                ].map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/40 hover:bg-secondary hover:text-primary"
+                    aria-label={social.name}
+                    title={social.name}
+                  >
+                    <social.icon size={18} />
+                  </a>
+                ))}
               </div>
             </div>
-          </Panel>
+          </div>
 
-          <Panel label="transmit ~/message" status="aberto" statusColor="cyan" hover>
+          <div className="card-surface p-6 sm:p-8">
+            <p className="eyebrow mb-5">Envie uma mensagem</p>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <div className="absolute -left-[9999px] top-auto h-0 w-0 overflow-hidden" aria-hidden="true">
@@ -192,9 +191,9 @@ export function ContactSection() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">nome</FormLabel>
+                        <FormLabel className="text-sm font-medium text-foreground">Nome</FormLabel>
                         <FormControl>
-                          <Input placeholder="seu nome" autoComplete="name" className="font-mono" {...field} />
+                          <Input placeholder="Seu nome" autoComplete="name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -205,9 +204,9 @@ export function ContactSection() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">email</FormLabel>
+                        <FormLabel className="text-sm font-medium text-foreground">Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="voce@exemplo.com" autoComplete="email" className="font-mono" {...field} />
+                          <Input placeholder="voce@exemplo.com" autoComplete="email" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -220,22 +219,22 @@ export function ContactSection() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">mensagem</FormLabel>
+                      <FormLabel className="text-sm font-medium text-foreground">Mensagem</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="> escreva sua mensagem..." rows={6} className="font-mono" {...field} />
+                        <Textarea placeholder="Escreva sua mensagem..." rows={6} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
 
-                <button type="submit" className="term-btn w-full" disabled={form.formState.isSubmitting}>
+                <button type="submit" className="btn-primary w-full" disabled={form.formState.isSubmitting}>
                   {form.formState.isSubmitting ? <Spinner /> : <Send size={16} />}
-                  {form.formState.isSubmitting ? "transmitindo..." : "transmitir"}
+                  {form.formState.isSubmitting ? "Enviando..." : "Enviar mensagem"}
                 </button>
               </form>
             </Form>
-          </Panel>
+          </div>
         </div>
       </div>
     </section>

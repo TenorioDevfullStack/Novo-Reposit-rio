@@ -106,28 +106,28 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
       {/* Janela do Chat */}
       <div
         className={`
-          w-[300px] sm:w-[380px] bg-card border border-[rgb(var(--rgb-green)/0.35)] rounded-sm shadow-2xl overflow-hidden transition-all duration-300 origin-bottom-right flex flex-col pointer-events-auto font-mono
+          w-[300px] sm:w-[380px] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 origin-bottom-right flex flex-col pointer-events-auto
           ${isOpen ? "scale-100 opacity-100 translate-y-0 mb-2" : "scale-95 opacity-0 translate-y-10 pointer-events-none h-0 mb-0"}
         `}
         style={{ maxHeight: "500px", height: "60vh" }}
       >
         {/* Header */}
-        <div className="flex shrink-0 items-center justify-between border-b border-[rgb(var(--rgb-green)/0.25)] bg-[rgb(var(--rgb-green)/0.08)] p-3.5">
-          <div className="flex items-center gap-2 text-primary">
-            <div className="flex h-7 w-7 items-center justify-center border border-[rgb(var(--rgb-green)/0.4)] bg-[rgb(var(--rgb-green)/0.1)]">
+        <div className="flex shrink-0 items-center justify-between border-b border-border bg-secondary p-3.5">
+          <div className="flex items-center gap-2.5 text-primary">
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary text-primary-foreground">
               <Sparkles size={15} />
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] leading-none">KÓRTEX</p>
-              <p className="mt-1 flex items-center gap-1.5 text-[10px] leading-none text-muted-foreground">
-                <span className="led" /> gemini · online
+              <p className="font-display text-sm font-semibold leading-none text-foreground">Kórtex</p>
+              <p className="mt-1 flex items-center gap-1.5 text-[11px] leading-none text-muted-foreground">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" /> Assistente · online
               </p>
             </div>
           </div>
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 rounded-sm text-muted-foreground hover:bg-[rgb(var(--rgb-green)/0.12)] hover:text-primary"
+            className="h-8 w-8 rounded-full text-muted-foreground hover:bg-muted hover:text-primary"
             onClick={() => setIsOpen(false)}
           >
             <X size={16} />
@@ -136,7 +136,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
 
         {/* Área de Mensagens */}
         <div
-          className="flex-1 overflow-y-auto p-4 space-y-4 bg-background/95 backdrop-blur-sm"
+          className="flex-1 overflow-y-auto p-4 space-y-4 bg-background"
           ref={scrollRef}
         >
           {messages.length === 0 && (
@@ -145,7 +145,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
                 <Bot size={24} className="text-primary" />
               </div>
               <div>
-                <p className="font-medium text-primary">{"> kortex --init"}</p>
+                <p className="font-display font-semibold text-foreground">Olá! Sou o Kórtex</p>
                 <p className="text-xs mt-1">
                   Pergunte sobre projetos, stack ou experiência.
                 </p>
@@ -165,11 +165,11 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
               )}
               <div
                 className={`
-                  max-w-[85%] rounded-sm px-3 py-2 text-sm leading-relaxed
+                  max-w-[85%] rounded-2xl px-3.5 py-2 text-sm leading-relaxed
                   ${
                     msg.role === "user"
-                      ? "border border-[rgb(var(--rgb-green)/0.4)] bg-[rgb(var(--rgb-green)/0.12)] text-foreground"
-                      : "border border-[rgb(var(--rgb-green)/0.15)] bg-black/30 text-foreground"
+                      ? "rounded-br-sm bg-primary text-primary-foreground"
+                      : "rounded-bl-sm border border-border bg-muted text-foreground"
                   }
                 `}
               >
@@ -220,7 +220,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
         <div className="flex items-end gap-3">
           {/* hint bubble */}
           {showHint && !isOpen && (
-            <div className="pointer-events-auto relative mb-1 max-w-[13rem] animate-fade-in border border-[rgb(var(--rgb-green)/0.4)] bg-[oklch(0.18_0.014_180)] px-3.5 py-2.5 font-mono text-xs leading-relaxed text-muted-foreground shadow-[0_0_28px_rgba(64,245,161,0.16)] sm:max-w-[16rem]">
+            <div className="card-surface pointer-events-auto relative mb-1 max-w-[13rem] animate-fade-in px-3.5 py-2.5 text-xs leading-relaxed text-muted-foreground sm:max-w-[16rem]">
               <button
                 type="button"
                 onClick={dismissHint}
@@ -230,10 +230,10 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
                 <X size={12} />
               </button>
               <p className="pr-3">
-                <span className="text-primary">{"> "}</span>Olá, sou o <span className="font-bold text-primary">Kórtex</span>.
-                Pergunte sobre projetos, stack ou experiência.
+                Olá, sou o <span className="font-semibold text-primary">Kórtex</span>. Pergunte sobre projetos, stack ou
+                experiência.
               </p>
-              <span className="absolute -right-1.5 bottom-3 hidden h-3 w-3 rotate-45 border-r border-t border-[rgb(var(--rgb-green)/0.4)] bg-[oklch(0.18_0.014_180)] lg:block" />
+              <span className="absolute -right-1.5 bottom-3 hidden h-3 w-3 rotate-45 border-r border-t border-border bg-card lg:block" />
             </div>
           )}
 
@@ -241,12 +241,12 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
             type="button"
             onClick={toggleChat}
             aria-label={isOpen ? "Fechar assistente Kórtex" : "Abrir assistente Kórtex"}
-            className="pointer-events-auto relative z-[60] flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[rgb(var(--rgb-green)/0.55)] bg-[oklch(0.18_0.014_180)] text-primary shadow-[0_0_30px_rgba(64,245,161,0.28)] transition-all duration-200 hover:scale-105 hover:bg-[rgb(var(--rgb-green)/0.14)]"
+            className="pointer-events-auto relative z-[60] flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_12px_28px_-8px_rgb(79_70_229_/_0.6)] transition-all duration-200 hover:scale-105"
           >
             {!isOpen && (
               <>
-                <span className="absolute inset-0 animate-ping rounded-full border border-primary/50" />
-                <span className="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full border-2 border-[oklch(0.18_0.014_180)] bg-[rgb(var(--rgb-amber))]" />
+                <span className="absolute inset-0 animate-ping rounded-full bg-primary/30" />
+                <span className="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full border-2 border-background bg-accent" />
               </>
             )}
             {isOpen ? <X size={22} /> : <Bot size={24} className="relative" />}

@@ -1,27 +1,28 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { AiAssistant } from "@/components/ai-assistant";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-inter",
   display: "swap",
 });
-const jetbrainsMono = JetBrains_Mono({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
+  variable: "--font-fraunces",
   display: "swap",
+  axes: ["opsz", "SOFT"],
 });
 
 export const metadata: Metadata = {
-  title: "Leandro Tenório — Mission Control · Dados & IA",
+  title: "Leandro Tenório — Dados & IA",
   description:
-    "Estudante de IA em transição para a área de Dados. Painel de comando com perfil, experiência, projetos e currículo de Leandro Tenório.",
+    "Estudante de IA na FIAP em transição para a área de Dados. Perfil, trajetória, projetos e currículo de Leandro Tenório — transformo dados em decisões.",
   generator: "v0.app",
   manifest: "/logos/site.webmanifest",
   icons: {
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0e1311",
+  themeColor: "#F7F7FB",
 };
 
 export default function RootLayout({
@@ -44,12 +45,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-mono antialiased">
+    <html lang="pt-BR" suppressHydrationWarning className={`${inter.variable} ${fraunces.variable}`}>
+      <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
+          defaultTheme="light"
+          forcedTheme="light"
           disableTransitionOnChange
         >
           {children}

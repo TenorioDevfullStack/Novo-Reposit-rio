@@ -6,13 +6,13 @@ export type NavItem = {
 }
 
 export const navItems: NavItem[] = [
-  { id: "home", index: "00", label: "INIT", title: "Início" },
-  { id: "about", index: "01", label: "PROFILE", title: "Perfil" },
-  { id: "experience", index: "02", label: "LOG", title: "Trajetória" },
-  { id: "projects", index: "03", label: "PROC", title: "Projetos" },
-  { id: "tech", index: "04", label: "STACK", title: "Stack" },
-  { id: "cv", index: "05", label: "EXPORT", title: "Currículo" },
-  { id: "contact", index: "06", label: "UPLINK", title: "Contato" },
+  { id: "home", index: "00", label: "Início", title: "Início" },
+  { id: "about", index: "01", label: "Perfil", title: "Perfil" },
+  { id: "experience", index: "02", label: "Trajetória", title: "Trajetória" },
+  { id: "projects", index: "03", label: "Projetos", title: "Projetos" },
+  { id: "tech", index: "04", label: "Stack", title: "Stack" },
+  { id: "cv", index: "05", label: "Currículo", title: "Currículo" },
+  { id: "contact", index: "06", label: "Contato", title: "Contato" },
 ]
 
 export const navIds = navItems.map((item) => item.id)
