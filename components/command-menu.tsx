@@ -138,7 +138,7 @@ export function CommandMenu() {
     window.location.href = `tel:${phoneTel}`
   }
 
-  const openNix = () => {
+  const openKortex = () => {
     setOpen(false)
     window.dispatchEvent(new Event("ai-assistant:open"))
   }
@@ -165,9 +165,9 @@ export function CommandMenu() {
         <CommandSeparator />
 
         <CommandGroup heading="ações">
-          <CommandItem onSelect={openNix}>
+          <CommandItem onSelect={openKortex}>
             <Bot />
-            Abrir assistente (Nix)
+            Abrir assistente (Kórtex)
           </CommandItem>
           <CommandItem onSelect={() => downloadCv(cvPaths.pdf)}>
             <Download />

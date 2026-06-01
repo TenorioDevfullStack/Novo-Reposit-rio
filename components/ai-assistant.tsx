@@ -36,7 +36,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
     return () => window.removeEventListener("ai-assistant:open", handleOpen);
   }, []);
 
-  // Attention hint: surfaces a little while after load so users notice Nix.
+  // Attention hint: surfaces a little while after load so users notice Kórtex.
   useEffect(() => {
     if (isOpen) {
       hintDismissed.current = true;
@@ -118,7 +118,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
               <Sparkles size={15} />
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] leading-none">NIX</p>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] leading-none">KÓRTEX</p>
               <p className="mt-1 flex items-center gap-1.5 text-[10px] leading-none text-muted-foreground">
                 <span className="led" /> gemini · online
               </p>
@@ -145,7 +145,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
                 <Bot size={24} className="text-primary" />
               </div>
               <div>
-                <p className="font-medium text-primary">{"> nix --init"}</p>
+                <p className="font-medium text-primary">{"> kortex --init"}</p>
                 <p className="text-xs mt-1">
                   Pergunte sobre projetos, stack ou experiência.
                 </p>
@@ -230,7 +230,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
                 <X size={12} />
               </button>
               <p className="pr-3">
-                <span className="text-primary">{"> "}</span>Olá, sou o <span className="font-bold text-primary">Nix</span>.
+                <span className="text-primary">{"> "}</span>Olá, sou o <span className="font-bold text-primary">Kórtex</span>.
                 Pergunte sobre projetos, stack ou experiência.
               </p>
               <span className="absolute -right-1.5 bottom-3 hidden h-3 w-3 rotate-45 border-r border-t border-[rgb(var(--rgb-green)/0.4)] bg-[oklch(0.18_0.014_180)] lg:block" />
@@ -240,7 +240,7 @@ export function AiAssistant({ showLauncher = true }: AiAssistantProps) {
           <button
             type="button"
             onClick={toggleChat}
-            aria-label={isOpen ? "Fechar assistente Nix" : "Abrir assistente Nix"}
+            aria-label={isOpen ? "Fechar assistente Kórtex" : "Abrir assistente Kórtex"}
             className="pointer-events-auto relative z-[60] flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[rgb(var(--rgb-green)/0.55)] bg-[oklch(0.18_0.014_180)] text-primary shadow-[0_0_30px_rgba(64,245,161,0.28)] transition-all duration-200 hover:scale-105 hover:bg-[rgb(var(--rgb-green)/0.14)]"
           >
             {!isOpen && (
