@@ -23,9 +23,9 @@
   /* soft indigo secondary */
   --secondary: oklch(0.95 0.02 280);
   --secondary-foreground: oklch(0.4 0.16 277);
-  /* warm amber accent */
-  --accent: oklch(0.78 0.16 70);
-  --accent-foreground: oklch(0.28 0.06 70);
+  /* neutral slate accent — monochrome, no contrasting hue */
+  --accent: oklch(0.55 0.025 280);
+  --accent-foreground: oklch(0.3 0.03 280);
 
   --muted: oklch(0.96 0.005 280);
   --muted-foreground: oklch(0.52 0.025 280);
@@ -75,8 +75,8 @@
   --primary-foreground: oklch(0.99 0.005 280);
   --secondary: oklch(0.95 0.02 280);
   --secondary-foreground: oklch(0.4 0.16 277);
-  --accent: oklch(0.78 0.16 70);
-  --accent-foreground: oklch(0.28 0.06 70);
+  --accent: oklch(0.55 0.025 280);
+  --accent-foreground: oklch(0.3 0.03 280);
   --muted: oklch(0.96 0.005 280);
   --muted-foreground: oklch(0.52 0.025 280);
   --destructive: oklch(0.62 0.21 25);
@@ -229,12 +229,12 @@
     transform: translateY(-1px);
   }
   .btn-accent {
-    color: oklch(0.3 0.07 70);
-    background: var(--accent);
-    box-shadow: 0 8px 20px -10px rgb(var(--rgb-amber) / 0.6);
+    border: 1px solid oklch(0.88 0.01 280);
+    background: var(--secondary);
+    color: var(--secondary-foreground);
   }
   .btn-accent:hover {
-    filter: brightness(1.04);
+    border-color: rgb(var(--rgb-indigo) / 0.4);
     transform: translateY(-1px);
   }
   .btn-ghost {
@@ -262,16 +262,13 @@
   }
   .skill-fill {
     @apply absolute inset-y-0 left-0 block rounded-full;
-    background: linear-gradient(90deg, var(--primary), oklch(0.6 0.2 290));
+    background: var(--primary);
     transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* gradient text — indigo → amber */
+  /* highlighted text — solid indigo (no gradient) */
   .gradient-text {
-    background-image: linear-gradient(100deg, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--primary);
   }
 }
 

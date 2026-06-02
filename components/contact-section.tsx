@@ -91,9 +91,9 @@ export function ContactSection() {
   }
 
   return (
-    <section ref={ref} id="contact" className="relative scroll-mt-20 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section ref={ref} id="contact" className="relative scroll-mt-20 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <div
-        className={`mx-auto max-w-6xl space-y-10 transition-all duration-700 ${
+        className={`mx-auto max-w-6xl space-y-8 transition-all duration-700 ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
         }`}
       >

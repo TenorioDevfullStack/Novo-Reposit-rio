@@ -9,14 +9,14 @@ const capabilities = [
   {
     title: "Ciência de Dados & ML",
     icon: BarChart3,
-    desc: "Exploro, trato e analiso dados para gerar insights e modelos, aplicando estatística e fundamentos de Machine Learning.",
-    items: ["Análise exploratória e preditiva", "Python (Pandas, NumPy), R e SQL", "Modelagem com Scikit-learn"],
+    desc: "Exploro, trato e analiso dados para gerar insights e modelos com estatística e Machine Learning.",
+    items: ["Análise exploratória e preditiva", "Python, R e SQL"],
   },
   {
     title: "Desenvolvimento de Aplicações",
     icon: Boxes,
-    desc: "Construo aplicações web completas que dão suporte à coleta, integração e visualização de dados em soluções reais.",
-    items: ["Full Stack (React/Next.js, Node.js)", "Modelagem e integração de bancos", "Aprendizado contínuo em IA"],
+    desc: "Construo aplicações web completas para coleta, integração e visualização de dados.",
+    items: ["Full Stack (React/Next.js, Node.js)", "Modelagem e integração de bancos"],
   },
 ]
 
@@ -25,21 +25,21 @@ const education = [
     title: "Tecnólogo em Inteligência Artificial",
     institution: "FIAP",
     status: "2026 — 2028 · em andamento",
-    topics: ["Machine Learning & Modelling", "Ciência de Dados e estatística", "IA Generativa e NLP", "Python aplicado"],
+    topics: ["Machine Learning e Ciência de Dados", "IA Generativa e NLP"],
     icon: GraduationCap,
   },
   {
     title: "Dev Full Stack",
     institution: "OneBitCode",
     status: "concluído",
-    topics: ["Front-end com React/Next.js", "Back-end com Node.js", "APIs, dados e integrações", "Git, deploy e manutenção"],
+    topics: ["Front-end com React/Next.js", "Back-end com Node.js"],
     icon: GraduationCap,
   },
   {
     title: "Técnico em Eletrônica",
     institution: "Etec Zona Sul",
     status: "2017 — 2019",
-    topics: ["Raciocínio lógico e troubleshooting", "Resolução de problemas com método", "Atenção a detalhes e qualidade"],
+    topics: ["Raciocínio lógico e método", "Atenção a detalhes e qualidade"],
     icon: Cpu,
   },
 ]
@@ -48,9 +48,9 @@ export function AboutSection() {
   const { ref, isVisible } = useScrollAnimation()
 
   return (
-    <section ref={ref} id="about" className="relative scroll-mt-20 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section ref={ref} id="about" className="relative scroll-mt-20 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <div
-        className={`mx-auto max-w-6xl space-y-12 transition-all duration-700 ${
+        className={`mx-auto max-w-6xl space-y-8 transition-all duration-700 ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
         }`}
       >
@@ -59,15 +59,14 @@ export function AboutSection() {
         <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr]">
           <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
             <p>
-              Sou Leandro Tenório, estudante de Inteligência Artificial na FIAP e em transição de carreira da área de
-              elétrica e eletrônica para a área de <span className="font-medium text-foreground">Dados</span>. Combino
-              base sólida em Ciência de Dados, estatística, Python e Machine Learning com vivência prática na construção
-              de aplicações web — do front ao back, incluindo modelagem e integração de bancos de dados.
+              Estudante de Inteligência Artificial na FIAP, em transição da área de eletrônica para{" "}
+              <span className="font-medium text-foreground">Dados</span>. Combino base em Ciência de Dados,
+              estatística, Python e ML com prática na construção de aplicações web.
             </p>
             <p>
-              Tenho perfil orientado à resolução de problemas reais, com projetos hands-on para empresas parceiras
-              (Challenges e Global Solution da FIAP). Busco oportunidades em{" "}
-              <span className="font-medium text-primary">Dados — análise, engenharia ou ciência de dados</span>.
+              Perfil orientado a problemas reais, com projetos hands-on para empresas parceiras da FIAP. Busco
+              oportunidades em{" "}
+              <span className="font-medium text-primary">análise, engenharia ou ciência de dados</span>.
             </p>
           </div>
 

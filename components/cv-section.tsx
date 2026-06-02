@@ -17,9 +17,9 @@ export function CvSection() {
   const { ref, isVisible } = useScrollAnimation()
 
   return (
-    <section ref={ref} id="cv" className="relative scroll-mt-20 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section ref={ref} id="cv" className="relative scroll-mt-20 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <div
-        className={`mx-auto max-w-6xl space-y-10 transition-all duration-700 ${
+        className={`mx-auto max-w-6xl space-y-8 transition-all duration-700 ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
         }`}
       >
@@ -31,7 +31,7 @@ export function CvSection() {
         />
 
         <div className="card-surface overflow-hidden">
-          <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:p-10">
+          <div className="grid gap-6 p-6 sm:p-7 lg:grid-cols-[1fr_auto] lg:items-center">
             <div className="space-y-5">
               <div className="flex items-center gap-4">
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary text-primary">

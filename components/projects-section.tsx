@@ -46,15 +46,13 @@ const projects: Project[] = [
     category: "Global Solution 2026.1 — FIAP",
     description: "Plataforma de monitoramento ambiental satelital com dados, Machine Learning e visão computacional para previsão de risco de incêndios.",
     longDescription:
-      "Prova de conceito desenvolvida na Global Solution da FIAP: monitoramento ambiental que cruza leituras de satélite e de sensores (BMP280) para prever risco de queimadas por região. Inclui mapa de risco interativo, predições com modelo GradientBoosting, estimativa de impacto na saúde respiratória (PM2,5 / padrão CONAMA), briefing automático para a Defesa Civil com IA, análise de imagens por visão computacional (NDVI e mapa de calor) e validação com dados reais do INPE (backtest do Pantanal 2024). Banco de dados em PostgreSQL (Supabase).",
+      "Prova de conceito da Global Solution da FIAP: monitoramento ambiental que cruza dados de satélite e sensores para prever risco de queimadas por região, com mapa de risco interativo, predições por Machine Learning e validação com dados reais do INPE (backtest do Pantanal 2024).",
     tags: ["Python", "Machine Learning", "Scikit-learn", "Visão Computacional", "PostgreSQL", "Supabase", "IA"],
     icon: Globe,
     highlights: [
       "Predição de risco de incêndio com GradientBoosting",
       "Visão computacional: NDVI e mapa de calor por satélite",
-      "Impacto na saúde respiratória (PM2,5 / CONAMA)",
-      "Briefing automático para Defesa Civil com IA",
-      "Validação com dados reais do INPE (backtest Pantanal 2024)",
+      "Validação com dados reais do INPE (Pantanal 2024)",
     ],
     links: {
       demo: "https://astromonitor-dfjfv9n7qxdqca9v4ecrdo.streamlit.app/",
@@ -77,14 +75,13 @@ const projects: Project[] = [
     category: "Challenge Sompo Seguros — FIAP",
     description: "Sistema preditivo de risco operacional e ambiental para equipamentos agrícolas, desenvolvido para o Challenge Sompo Seguros.",
     longDescription:
-      "Solução de dados e IA para o Challenge Sompo Seguros (FIAP 2026) que prevê riscos como atolamento, tombamento e colisão em operações agrícolas. A partir de um dataset simulado com 5.000+ registros, treina um modelo Gradient Boosting (acurácia 97,9%, F1 0,98) que gera um score de risco (0–100) e classe (Baixo a Crítico) por equipamento. Inclui API REST em Flask com autenticação JWT por perfil e dashboards distintos para Operador, Gestor de frota e Analista da Sompo.",
+      "Solução de dados e IA para o Challenge Sompo Seguros (FIAP 2026) que prevê riscos como atolamento e tombamento em operações agrícolas. Um modelo Gradient Boosting (acurácia 97,9%) gera um score de risco por equipamento, servido por uma API REST em Flask com dashboards por perfil de usuário.",
     tags: ["Python", "Machine Learning", "Gradient Boosting", "Scikit-learn", "Flask", "JWT", "SQL"],
     icon: ShieldCheck,
     highlights: [
       "Modelo Gradient Boosting com acurácia de 97,9%",
-      "Score de risco (0–100) e classificação por equipamento",
-      "API REST em Flask com autenticação JWT por perfil",
-      "Dashboards por persona: Operador, Gestor e Analista Sompo",
+      "Score de risco (0–100) por equipamento",
+      "API Flask com dashboards por perfil de usuário",
     ],
     links: {},
     images: [
@@ -136,13 +133,12 @@ const projects: Project[] = [
     category: "Aplicação de dados",
     description: "Sistema de controle e gerenciamento de estoque para equipes de manutenção, com foco em organização e rastreabilidade dos dados.",
     longDescription:
-      "Sistema de controle e gerenciamento de estoque voltado a equipes de manutenção. Centraliza materiais (SKU, categoria, quantidade mínima e localização), movimentações de entrada e retirada, equipe e documentos, com dashboard de métricas, alertas de estoque, relatórios e exportação em CSV.",
+      "Sistema de controle de estoque para equipes de manutenção. Centraliza materiais, movimentações de entrada e retirada e equipe, com dashboard de métricas, alertas de estoque e exportação de relatórios em CSV.",
     tags: ["JavaScript", "Estoque", "Dashboard", "Relatórios CSV", "Rastreabilidade"],
     icon: Boxes,
     highlights: [
       "Dashboard com métricas e alertas de estoque",
-      "Cadastro de materiais com SKU, categoria e localização",
-      "Movimentações de entrada/retirada e gestão de equipe",
+      "Cadastro de materiais com SKU e localização",
       "Relatórios e exportação de dados em CSV",
     ],
     links: {
@@ -279,9 +275,9 @@ export function ProjectsSection() {
       : null
 
   return (
-    <section ref={ref} id="projects" className="relative scroll-mt-20 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section ref={ref} id="projects" className="relative scroll-mt-20 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <div
-        className={`mx-auto max-w-6xl space-y-10 transition-all duration-700 ${
+        className={`mx-auto max-w-6xl space-y-8 transition-all duration-700 ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
         }`}
       >
@@ -296,79 +292,45 @@ export function ProjectsSection() {
           subtitle={`${projects.length} projetos — acadêmicos em Dados/IA e aplicações construídas na prática. Clique em um card para ver os detalhes.`}
         />
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, idx) => {
             const Icon = project.icon
-            const featured = idx === 0
             return (
               <button
                 key={project.title}
                 type="button"
                 onClick={() => openProject(idx)}
-                className={`card-surface card-hover group flex flex-col overflow-hidden text-left ${
-                  featured ? "md:col-span-2" : ""
-                } ${isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
-                style={{ transitionDelay: isVisible ? `${idx * 80}ms` : "0ms" }}
+                className={`card-surface card-hover group flex flex-col p-5 text-left ${
+                  isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+                }`}
+                style={{ transitionDelay: isVisible ? `${idx * 60}ms` : "0ms" }}
               >
-                <div className={`flex flex-1 gap-6 ${featured ? "flex-col lg:flex-row" : "flex-col"}`}>
-                  <div
-                    className={`relative shrink-0 overflow-hidden bg-muted ${
-                      featured ? "lg:w-1/2" : ""
-                    }`}
-                  >
-                    <AspectRatio ratio={16 / 9}>
-                      {project.images.length > 0 ? (
-                        <Image
-                          src={project.images[0]}
-                          alt={`Preview do projeto ${project.title}`}
-                          fill
-                          sizes={featured ? "(min-width:1024px) 40vw, 100vw" : "(min-width:768px) 45vw, 100vw"}
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                          priority={idx === 0}
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center">
-                          <Icon className="h-12 w-12 text-primary/50" />
-                        </div>
-                      )}
-                    </AspectRatio>
-                  </div>
-
-                  <div className="flex flex-1 flex-col p-6">
-                    <span className="chip mb-3 self-start">{project.category}</span>
-                    <div className="flex items-center gap-2">
-                      <Icon size={20} className="text-primary" />
-                      <h3 className="font-display text-lg font-semibold text-foreground transition-colors group-hover:text-primary sm:text-xl">
-                        {project.title}
-                      </h3>
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
-
-                    {featured && (
-                      <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground">
-                        {project.highlights.slice(0, 3).map((item) => (
-                          <li key={item} className="flex gap-2">
-                            <span className="text-accent">›</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-
-                    <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
-                      {project.tags.slice(0, featured ? 7 : 4).map((tag) => (
-                        <span key={tag} className="chip">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <p className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                      Ver detalhes
-                      <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </p>
-                  </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary">
+                    <Icon size={18} />
+                  </span>
+                  <h3 className="font-display text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
+                    {project.title}
+                  </h3>
                 </div>
+
+                <p className="mt-2 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+                  {project.category}
+                </p>
+                <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+
+                <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <span key={tag} className="chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <p className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                  Ver detalhes
+                  <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </p>
               </button>
             )
           })}
