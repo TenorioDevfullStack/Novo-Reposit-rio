@@ -13,6 +13,7 @@ import {
   Boxes,
   Globe,
   ShieldCheck,
+  ShoppingBag,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import Image from "next/image"
@@ -91,6 +92,32 @@ const projects: Project[] = [
       "/imagens/safe-harvest/tela-gestor02.webp",
       "/imagens/safe-harvest/tela-analista-sompo01.webp",
       "/imagens/safe-harvest/tela-analista-sompo02.webp",
+    ],
+  },
+  {
+    title: "Vitrine",
+    category: "Aplicação Full Stack",
+    description:
+      "E-commerce full-stack com foco em MongoDB avançado: schema flexível por categoria, aggregation pipelines e checkout com transação multi-documento.",
+    longDescription:
+      "Loja virtual completa (Express + Mongoose no back-end, React + Vite no front-end) construída para demonstrar modelagem avançada de MongoDB: produtos com atributos flexíveis por categoria, decisão consciente de embedding vs referencing (o pedido congela um snapshot dos preços; o carrinho referencia o preço vivo), relatórios com aggregation pipelines, índices justificados e transação multi-documento no checkout. Inclui autenticação JWT com papéis admin/cliente, documentação Swagger e testes com MongoDB em memória.",
+    tags: ["MongoDB", "TypeScript", "React", "Node.js", "Express", "Mongoose", "Tailwind CSS", "JWT", "Swagger"],
+    icon: ShoppingBag,
+    highlights: [
+      "Checkout atômico com transação multi-documento e rollback",
+      "Embedding vs referencing: pedido com snapshot imutável, carrinho com preço vivo",
+      "Relatórios com aggregation pipelines ($group, $lookup, $unwind)",
+    ],
+    links: {
+      github: "https://github.com/TenorioDevfullStack/vitrine-ecommerce",
+    },
+    images: [
+      "/imagens/vitrine/print-catalogo.png",
+      "/imagens/vitrine/print-produto.png",
+      "/imagens/vitrine/print-carrinho.png",
+      "/imagens/vitrine/print-pedido-confirmado.png",
+      "/imagens/vitrine/print-meus-pedidos.png",
+      "/imagens/vitrine/print-admin.png",
     ],
   },
   {
