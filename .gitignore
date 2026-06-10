@@ -33,3 +33,6 @@ Thumbs.db
 coverage/
 .nyc_output/
 
+# Clone de repositorio de terceiros (nao faz parte do portfolio)
+awesome-codex-skills/
+
