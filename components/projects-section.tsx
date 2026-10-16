@@ -43,6 +43,83 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "Energy Intelligence AI",
+    category: "Data Science · Machine Learning · Energia",
+    description:
+      "Plataforma de análise inteligente de dados elétricos para detectar anomalias, prever carga e transformar medições em eventos operacionais.",
+    longDescription:
+      "Projeto que conecta conhecimento de instalações elétricas com Data Science e Machine Learning. O pipeline analisa curvas de carga, cria features temporais, detecta comportamentos fora do padrão com Isolation Forest, compara modelos de forecasting com baselines e disponibiliza inferência por API e dashboard. A evolução atual inclui calibração de threshold e agrupamento de pontos anômalos em eventos operacionais.",
+    tags: ["Python", "Pandas", "Scikit-learn", "Isolation Forest", "Forecasting", "FastAPI", "Streamlit", "Plotly"],
+    icon: Sparkles,
+    highlights: [
+      "Detecção de anomalias com contexto temporal e validação por ground truth",
+      "Forecast de potência com validação temporal e comparação contra baselines",
+      "API FastAPI, dashboard Streamlit e pipeline reutilizável de inferência",
+    ],
+    links: {
+      github: "https://github.com/TenorioDevfullStack/energy-intelligence-ai",
+    },
+    images: [],
+  },
+  {
+    title: "SmartPrice AI",
+    category: "Data Science · Mercado Imobiliário",
+    description:
+      "Projeto de análise de dados imobiliários com Python para explorar preços, detectar outliers e construir uma base para modelos de precificação.",
+    longDescription:
+      "Projeto prático de Data Science aplicado ao mercado imobiliário de São Paulo, usando dados de ITBI como fonte para exploração, limpeza, análise de distribuições e investigação de valores atípicos. O objetivo é evoluir a análise exploratória para um pipeline de Machine Learning capaz de apoiar estimativas de preço e descoberta de padrões do mercado.",
+    tags: ["Python", "Pandas", "NumPy", "Data Science", "EDA", "Jupyter", "Machine Learning"],
+    icon: Building2,
+    highlights: [
+      "Exploração de dados reais de transações imobiliárias",
+      "Análise de outliers e qualidade dos dados com justificativa metodológica",
+      "Base preparada para evolução em modelos de precificação imobiliária",
+    ],
+    links: {
+      github: "https://github.com/TenorioDevfullStack/smartprice-ai",
+    },
+    images: [],
+  },
+  {
+    title: "SmartDev AI",
+    category: "Agentes de IA · Automação",
+    description:
+      "Agente de IA para atendimento via WhatsApp, com painel operacional, histórico, handoff humano e infraestrutura containerizada.",
+    longDescription:
+      "Solução de atendimento com IA integrada ao WhatsApp. O projeto inclui agente em Node.js/TypeScript, painel para acompanhamento das conversas, transferência entre IA e atendimento humano, persistência em MongoDB, autenticação individual, auditoria, fila persistente, observabilidade e infraestrutura com Docker, PostgreSQL, Redis, Caddy e Cloudflare Tunnel.",
+    tags: ["TypeScript", "Node.js", "LLM", "WhatsApp", "Docker", "MongoDB", "PostgreSQL", "Redis"],
+    icon: Sparkles,
+    highlights: [
+      "Atendimento com IA e handoff humano pelo painel",
+      "Fila persistente, deduplicação e trilha de auditoria",
+      "Infraestrutura Docker com MongoDB, PostgreSQL, Redis e proxy",
+    ],
+    links: {
+      demo: "https://agente.smartdevai.com.br/",
+      github: "https://github.com/TenorioDevfullStack/Agente-SmartDev-AI",
+    },
+    images: [],
+  },
+  {
+    title: "Visão Computacional — YOLO + CNN",
+    category: "FIAP · Visão Computacional",
+    description:
+      "Estudo comparativo entre YOLO customizado, YOLO pré-treinado e CNN treinada do zero para reconhecimento de objetos.",
+    longDescription:
+      "Projeto acadêmico da FIAP que compara três abordagens de visão computacional usando as classes alicate e garrafa: YOLO customizado, YOLO tradicional pré-treinado e uma CNN treinada do zero. O trabalho avalia precisão, recall, mAP, tempo de inferência, limitações do dataset e sinais de overfitting, destacando a importância da adaptação do modelo ao domínio.",
+    tags: ["YOLO", "CNN", "Python", "Deep Learning", "Computer Vision", "FIAP"],
+    icon: Globe,
+    highlights: [
+      "YOLO customizado com mAP@0.5 de 0,995 e mAP@0.5:0.95 de 0,920",
+      "Comparação prática entre detecção customizada, modelo genérico e classificação CNN",
+      "Análise crítica de overfitting e das limitações de um dataset reduzido",
+    ],
+    links: {
+      github: "https://github.com/TenorioDevfullStack/fiap-fase6-visao-computacional",
+    },
+    images: [],
+  },
+  {
     title: "AstroMonitor",
     category: "Global Solution 2026.1 — FIAP",
     description: "Plataforma de monitoramento ambiental satelital com dados, Machine Learning e visão computacional para previsão de risco de incêndios.",
