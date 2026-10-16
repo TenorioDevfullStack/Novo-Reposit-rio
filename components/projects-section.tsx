@@ -57,6 +57,7 @@ const projects: Project[] = [
       "API FastAPI, dashboard Streamlit e pipeline reutilizável de inferência",
     ],
     links: {
+      demo: "https://energy-intelligence-leandro.streamlit.app",
       github: "https://github.com/TenorioDevfullStack/energy-intelligence-ai",
     },
     images: [],
@@ -417,7 +418,6 @@ export function ProjectsSection() {
                     {project.title}
                   </h3>
                 </div>
-
                 <p className="mt-2 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
                   {project.category}
                 </p>
