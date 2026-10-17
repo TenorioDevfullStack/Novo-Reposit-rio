@@ -34,10 +34,7 @@ type Project = {
   tags: string[]
   icon: LucideIcon
   highlights: string[]
-  links: {
-    demo?: string
-    github?: string
-  }
+  links: { demo?: string; github?: string }
   images: string[]
 }
 
@@ -66,17 +63,18 @@ const projects: Project[] = [
     title: "SmartPrice AI",
     category: "Data Science · Mercado Imobiliário",
     description:
-      "Projeto de análise de dados imobiliários com Python para explorar preços, detectar outliers e construir uma base para modelos de precificação.",
+      "Análise de transações imobiliárias de São Paulo e estimativa experimental de preços com validação temporal e Machine Learning.",
     longDescription:
-      "Projeto prático de Data Science aplicado ao mercado imobiliário de São Paulo, usando dados de ITBI como fonte para exploração, limpeza, análise de distribuições e investigação de valores atípicos. O objetivo é evoluir a análise exploratória para um pipeline de Machine Learning capaz de apoiar estimativas de preço e descoberta de padrões do mercado.",
-    tags: ["Python", "Pandas", "NumPy", "Data Science", "EDA", "Jupyter", "Machine Learning"],
+      "Projeto de Data Science aplicado ao mercado imobiliário de São Paulo com dados públicos de ITBI. O pipeline preserva a exploração anterior, valida os dados, compara baselines e modelos de regressão com split temporal, diagnostica erros por faixa de preço e disponibiliza um estimador experimental em Streamlit. O modelo final usa HistGradientBoosting com transformação logarítmica do alvo e mantém explícitas as limitações na cauda de imóveis de alto valor.",
+    tags: ["Python", "Pandas", "Scikit-learn", "HistGradientBoosting", "Data Science", "Streamlit", "Plotly"],
     icon: Building2,
     highlights: [
-      "Exploração de dados reais de transações imobiliárias",
-      "Análise de outliers e qualidade dos dados com justificativa metodológica",
-      "Base preparada para evolução em modelos de precificação imobiliária",
+      "63.164 transações de apartamentos analisadas com dados públicos de ITBI",
+      "MAE de R$ 212,5 mil e R² de 0,7157 no holdout temporal",
+      "Dashboard público com análise de mercado, estimador e diagnóstico do modelo",
     ],
     links: {
+      demo: "https://smartprice-ai-leandro.streamlit.app",
       github: "https://github.com/TenorioDevfullStack/smartprice-ai",
     },
     images: [],
@@ -115,15 +113,14 @@ const projects: Project[] = [
       "Comparação prática entre detecção customizada, modelo genérico e classificação CNN",
       "Análise crítica de overfitting e das limitações de um dataset reduzido",
     ],
-    links: {
-      github: "https://github.com/TenorioDevfullStack/fiap-fase6-visao-computacional",
-    },
+    links: { github: "https://github.com/TenorioDevfullStack/fiap-fase6-visao-computacional" },
     images: [],
   },
   {
     title: "AstroMonitor",
     category: "Global Solution 2026.1 — FIAP",
-    description: "Plataforma de monitoramento ambiental satelital com dados, Machine Learning e visão computacional para previsão de risco de incêndios.",
+    description:
+      "Plataforma de monitoramento ambiental satelital com dados, Machine Learning e visão computacional para previsão de risco de incêndios.",
     longDescription:
       "Prova de conceito da Global Solution da FIAP: monitoramento ambiental que cruza dados de satélite e sensores para prever risco de queimadas por região, com mapa de risco interativo, predições por Machine Learning e validação com dados reais do INPE (backtest do Pantanal 2024).",
     tags: ["Python", "Machine Learning", "Scikit-learn", "Visão Computacional", "PostgreSQL", "Supabase", "IA"],
@@ -133,9 +130,7 @@ const projects: Project[] = [
       "Visão computacional: NDVI e mapa de calor por satélite",
       "Validação com dados reais do INPE (Pantanal 2024)",
     ],
-    links: {
-      demo: "https://astromonitor-dfjfv9n7qxdqca9v4ecrdo.streamlit.app/",
-    },
+    links: { demo: "https://astromonitor-dfjfv9n7qxdqca9v4ecrdo.streamlit.app/" },
     images: [
       "/imagens/astro-monitor/print-astro-monitor01.webp",
       "/imagens/astro-monitor/print-astro-monitor02.webp",
@@ -152,7 +147,8 @@ const projects: Project[] = [
   {
     title: "SafeHarvest AI",
     category: "Challenge Sompo Seguros — FIAP",
-    description: "Sistema preditivo de risco operacional e ambiental para equipamentos agrícolas, desenvolvido para o Challenge Sompo Seguros.",
+    description:
+      "Sistema preditivo de risco operacional e ambiental para equipamentos agrícolas, desenvolvido para o Challenge Sompo Seguros.",
     longDescription:
       "Solução de dados e IA para o Challenge Sompo Seguros (FIAP 2026) que prevê riscos como atolamento e tombamento em operações agrícolas. Um modelo Gradient Boosting (acurácia 97,9%) gera um score de risco por equipamento, servido por uma API REST em Flask com dashboards por perfil de usuário.",
     tags: ["Python", "Machine Learning", "Gradient Boosting", "Scikit-learn", "Flask", "JWT", "SQL"],
@@ -186,9 +182,7 @@ const projects: Project[] = [
       "Embedding vs referencing: pedido com snapshot imutável, carrinho com preço vivo",
       "Relatórios com aggregation pipelines ($group, $lookup, $unwind)",
     ],
-    links: {
-      github: "https://github.com/TenorioDevfullStack/vitrine-ecommerce",
-    },
+    links: { github: "https://github.com/TenorioDevfullStack/vitrine-ecommerce" },
     images: [
       "/imagens/vitrine/print-catalogo.png",
       "/imagens/vitrine/print-produto.png",
@@ -207,9 +201,7 @@ const projects: Project[] = [
     tags: ["Next.js", "Gemini AI", "TypeScript", "Tailwind CSS"],
     icon: Sparkles,
     highlights: ["Geração de legendas por IA", "Análise de imagem (visão computacional)", "Vários tons de voz selecionáveis"],
-    links: {
-      demo: "/imobai",
-    },
+    links: { demo: "/imobai" },
     images: ["/imagens/imobai/Sem título.png"],
   },
   {
@@ -221,9 +213,7 @@ const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Docker", "Vercel"],
     icon: Building2,
     highlights: ["Dashboard e visão geral", "Modelagem e integração de dados (PostgreSQL/Prisma)", "Configurações e áreas administrativas"],
-    links: {
-      demo: "https://obragest.online",
-    },
+    links: { demo: "https://obragest.online" },
     images: [
       "/imagens/obragest/dashboard.png",
       "/imagens/obragest/projetos.png",
@@ -236,7 +226,8 @@ const projects: Project[] = [
   {
     title: "StockManager",
     category: "Aplicação de dados",
-    description: "Sistema de controle e gerenciamento de estoque para equipes de manutenção, com foco em organização e rastreabilidade dos dados.",
+    description:
+      "Sistema de controle e gerenciamento de estoque para equipes de manutenção, com foco em organização e rastreabilidade dos dados.",
     longDescription:
       "Sistema de controle de estoque para equipes de manutenção. Centraliza materiais, movimentações de entrada e retirada e equipe, com dashboard de métricas, alertas de estoque e exportação de relatórios em CSV.",
     tags: ["JavaScript", "Estoque", "Dashboard", "Relatórios CSV", "Rastreabilidade"],
@@ -246,9 +237,7 @@ const projects: Project[] = [
       "Cadastro de materiais com SKU e localização",
       "Relatórios e exportação de dados em CSV",
     ],
-    links: {
-      demo: "https://stock-manager-two-iota.vercel.app/",
-    },
+    links: { demo: "https://stock-manager-two-iota.vercel.app/" },
     images: [
       "/imagens/stock-manager/print-dashboard.webp",
       "/imagens/stock-manager/print-materiais.webp",
@@ -418,9 +407,7 @@ export function ProjectsSection() {
                     {project.title}
                   </h3>
                 </div>
-                <p className="mt-2 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
-                  {project.category}
-                </p>
+                <p className="mt-2 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">{project.category}</p>
                 <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
 
                 <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
@@ -467,10 +454,7 @@ export function ProjectsSection() {
                               onClick={() => openLightbox(i)}
                               aria-label={`Ampliar imagem ${i + 1} do projeto ${selected.title}`}
                             >
-                              <AspectRatio
-                                ratio={16 / 9}
-                                className="cursor-zoom-in overflow-hidden rounded-xl border border-border"
-                              >
+                              <AspectRatio ratio={16 / 9} className="cursor-zoom-in overflow-hidden rounded-xl border border-border">
                                 <Image
                                   src={src}
                                   alt={selected.title}
