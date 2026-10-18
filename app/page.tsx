@@ -22,9 +22,9 @@ export default function Home() {
 
         <main className="relative z-10">
           <Hero />
+          <ProjectsSection />
           <AboutSection />
           <ExperienceSection />
-          <ProjectsSection />
           <TechSection />
           <CvSection />
           <ContactSection />

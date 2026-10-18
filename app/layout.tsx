@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
@@ -12,17 +12,11 @@ const inter = Inter({
   variable: "--font-inter",
   display: "swap",
 });
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-  axes: ["opsz", "SOFT"],
-});
 
 export const metadata: Metadata = {
   title: "Leandro Tenório — Dados & IA",
   description:
-    "Estudante de IA na FIAP em transição para a área de Dados. Perfil, trajetória, projetos e currículo de Leandro Tenório — transformo dados em decisões.",
+    "Análise de dados, Machine Learning e aplicações web. Conheça os projetos de Leandro Tenório e converse sobre seu próximo desafio.",
   generator: "v0.app",
   manifest: "/logos/site.webmanifest",
   icons: {
@@ -45,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="pt-BR" suppressHydrationWarning className={inter.variable}>
       <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"

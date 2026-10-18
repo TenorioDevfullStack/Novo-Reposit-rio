@@ -43,7 +43,7 @@ export function ExperienceSection() {
         }`}
       >
         <SectionHead
-          index="02"
+          index="03"
           label="Trajetória"
           title={
             <>

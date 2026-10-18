@@ -6,7 +6,7 @@
 /*
  * EDITORIAL — light, airy, data-aware
  * Ice-white paper · deep indigo primary · warm amber accent.
- * Display: Fraunces (serif) · Body: Inter (sans).
+ * Typography: Inter, with a clear hierarchy and restrained accents.
  */
 :root {
   /* paper surfaces */
@@ -96,7 +96,7 @@
 
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -180,7 +180,7 @@
     @apply inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary;
   }
 
-  /* display headings use Fraunces */
+  /* Consistent sans-serif headings */
   .font-display {
     font-family: var(--font-display);
   }
@@ -311,4 +311,20 @@
       transition: none !important;
     }
   }
+}
+
+
+/* Portfolio refresh: quiet surfaces, real project imagery, clear focus. */
+.portfolio-ambient {
+  background: radial-gradient(ellipse 65% 500px at 85% 220px, rgb(79 70 229 / 0.055), transparent 75%);
+}
+.hero-project { transform: rotate(1deg); }
+.hero-dashboard { object-position: right center; }
+.featured-project-image { transition: transform 350ms ease; }
+.group:hover .featured-project-image { transform: scale(1.025); }
+:where(button, a):focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; }
+@media (max-width: 639px) { .hero-project { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

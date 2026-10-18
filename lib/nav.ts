@@ -7,9 +7,9 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   { id: "home", index: "00", label: "Início", title: "Início" },
-  { id: "about", index: "01", label: "Perfil", title: "Perfil" },
-  { id: "experience", index: "02", label: "Trajetória", title: "Trajetória" },
-  { id: "projects", index: "03", label: "Projetos", title: "Projetos" },
+  { id: "projects", index: "01", label: "Projetos", title: "Projetos" },
+  { id: "about", index: "02", label: "Perfil", title: "Perfil" },
+  { id: "experience", index: "03", label: "Trajetória", title: "Trajetória" },
   { id: "tech", index: "04", label: "Stack", title: "Stack" },
   { id: "cv", index: "05", label: "Currículo", title: "Currículo" },
   { id: "contact", index: "06", label: "Contato", title: "Contato" },

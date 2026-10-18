@@ -54,7 +54,7 @@ export function AboutSection() {
           isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
         }`}
       >
-        <SectionHead index="01" label="Perfil" title={<>Resumo profissional</>} />
+        <SectionHead index="02" label="Perfil" title={<>Resumo profissional</>} />
 
         <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr]">
           <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">

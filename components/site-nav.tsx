@@ -104,7 +104,7 @@ export function SiteNav() {
               <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] font-medium">⌘K</kbd>
             </button>
 
-            <a href={cvPaths.pdf} download className="btn-primary hidden h-9 px-4 text-sm sm:inline-flex">
+            <a href={cvPaths.pdf} download className="btn-ghost hidden h-9 px-4 text-sm sm:inline-flex">
               <Download size={15} />
               Baixar CV
             </a>

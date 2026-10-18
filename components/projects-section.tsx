@@ -45,7 +45,7 @@ const projects: Project[] = [
     description:
       "Plataforma de análise inteligente de dados elétricos para detectar anomalias, prever carga e transformar medições em eventos operacionais.",
     longDescription:
-      "Projeto que conecta conhecimento de instalações elétricas com Data Science e Machine Learning. O pipeline analisa curvas de carga, cria features temporais, detecta comportamentos fora do padrão com Isolation Forest, compara modelos de forecasting com baselines e disponibiliza inferência por API e dashboard. A evolução atual inclui calibração de threshold e agrupamento de pontos anômalos em eventos operacionais.",
+      "Projeto de portfólio com dados sintéticos, sem validação em instalações reais, que conecta conhecimento de instalações elétricas com Data Science e Machine Learning. O pipeline analisa curvas de carga, cria features temporais, detecta comportamentos fora do padrão com Isolation Forest, compara modelos de forecasting com baselines e disponibiliza inferência por API e dashboard. A evolução atual inclui calibração de threshold e agrupamento de pontos anômalos em eventos operacionais.",
     tags: ["Python", "Pandas", "Scikit-learn", "Isolation Forest", "Forecasting", "FastAPI", "Streamlit", "Plotly"],
     icon: Sparkles,
     highlights: [
@@ -57,7 +57,7 @@ const projects: Project[] = [
       demo: "https://energy-intelligence-leandro.streamlit.app",
       github: "https://github.com/TenorioDevfullStack/energy-intelligence-ai",
     },
-    images: [],
+    images: ["/images/projects/energy.webp"],
   },
   {
     title: "SmartPrice AI",
@@ -77,7 +77,7 @@ const projects: Project[] = [
       demo: "https://smartprice-ai-leandro.streamlit.app",
       github: "https://github.com/TenorioDevfullStack/smartprice-ai",
     },
-    images: [],
+    images: ["/images/projects/price.webp"],
   },
   {
     title: "SmartDev AI",
@@ -97,7 +97,7 @@ const projects: Project[] = [
       demo: "https://agente.smartdevai.com.br/",
       github: "https://github.com/TenorioDevfullStack/Agente-SmartDev-AI",
     },
-    images: [],
+    images: ["/images/projects/smartdev.webp"],
   },
   {
     title: "Visão Computacional — YOLO + CNN",
@@ -376,56 +376,48 @@ export function ProjectsSection() {
         }`}
       >
         <SectionHead
-          index="03"
+          index="01"
           label="Projetos"
           title={
             <>
               Projetos em <span className="gradient-text">destaque</span>
             </>
           }
-          subtitle={`${projects.length} projetos — acadêmicos em Dados/IA e aplicações construídas na prática. Clique em um card para ver os detalhes.`}
+          subtitle="Uma seleção de análises, modelos e aplicações. Explore o problema, a abordagem e os limites de cada projeto."
         />
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, idx) => {
-            const Icon = project.icon
-            return (
-              <button
-                key={project.title}
-                type="button"
-                onClick={() => openProject(idx)}
-                className={`card-surface card-hover group flex flex-col p-5 text-left ${
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-                }`}
-                style={{ transitionDelay: isVisible ? `${idx * 60}ms` : "0ms" }}
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary">
-                    <Icon size={18} />
-                  </span>
-                  <h3 className="font-display text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
-                    {project.title}
-                  </h3>
-                </div>
-                <p className="mt-2 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">{project.category}</p>
-                <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
-
-                <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <span key={tag} className="chip">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <p className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                  Ver detalhes
-                  <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </p>
-              </button>
-            )
-          })}
-        </div>
+        {[{ start: 0, items: projects.slice(0, 3) }, { start: 3, items: projects.slice(3) }].map((group) => (
+          <div key={group.start} className="space-y-5">
+            {group.start === 3 ? <h3 className="pt-6 text-lg font-semibold tracking-tight">Outros projetos e estudos</h3> : null}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {group.items.map((project, localIndex) => {
+                const idx = group.start + localIndex
+                const Icon = project.icon
+                const featured = idx < 3
+                return (
+                  <button key={project.title} type="button" onClick={() => openProject(idx)} className="card-surface card-hover group flex min-w-0 flex-col overflow-hidden text-left">
+                    {featured ? (
+                      <div className={`relative aspect-[1.5] w-full overflow-hidden border-b border-border ${idx === 0 ? "bg-[#0d1915]" : "bg-muted"}`}>
+                        <Image src={project.images[0]} alt={`Prévia do projeto ${project.title}`} fill sizes="(min-width: 1024px) 370px, (min-width: 640px) 45vw, 95vw" className="featured-project-image object-cover object-top" />
+                      </div>
+                    ) : null}
+                    <div className="flex flex-1 flex-col p-5 sm:p-6">
+                      <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-primary">{project.category}</p>
+                      <div className="flex items-center gap-2.5">
+                        {featured ? null : <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary"><Icon size={16} /></span>}
+                        <h3 className={`font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary ${featured ? "text-xl" : "text-base"}`}>{project.title}</h3>
+                      </div>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+                      {idx === 0 ? <p className="mt-3 text-xs font-medium text-muted-foreground">Demonstração com dados sintéticos</p> : null}
+                      <div className="mt-auto flex flex-wrap gap-1.5 pt-5">{project.tags.slice(0, 3).map((tag) => <span key={tag} className="chip">{tag}</span>)}</div>
+                      <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">Explorar projeto <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        ))}
       </div>
 
       <Dialog
