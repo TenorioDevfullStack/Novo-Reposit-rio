@@ -14,6 +14,9 @@ import {
   Globe,
   ShieldCheck,
   ShoppingBag,
+  Music2,
+  AudioLines,
+  Sprout,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import Image from "next/image"
@@ -28,6 +31,7 @@ import { SectionHead } from "@/components/section-head"
 
 type Project = {
   title: string
+  evidence?: string
   category: string
   description: string
   longDescription: string
@@ -40,7 +44,45 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "Empório da Música AI",
+    category: "IA generativa · Atendimento",
+    description: "Agente que consulta ofertas em SQLite e recupera trechos do manual da loja para responder com preço, disponibilidade e fontes.",
+    longDescription: "Protótipo de atendimento em Python. O modelo escolhe uma ferramenta pela API da Groq. O aplicativo valida os argumentos, calcula os preços em centavos e busca as políticas do PDF por seção com BM25. A resposta registra as ferramentas utilizadas, as fontes e o consumo de tokens.",
+    tags: ["Python", "Groq", "RAG com BM25", "SQLite"],
+    icon: Music2,
+    evidence: "5 execuções documentadas com a API da Groq",
+    highlights: [
+      "Regras de desconto verificadas em código sobre um catálogo estático.",
+      "Recuperação textual de políticas com seção e página do manual.",
+      "Testes de argumentos inválidos, chamadas de ferramentas e encaminhamento de exceções.",
+    ],
+    links: { github: "https://github.com/TenorioDevfullStack/emporio-musica-ai" },
+    images: [],
+  },
+  {
+    title: "SmartDev AI",
+    evidence: "Do atendimento automático à transferência para uma pessoa",
+    category: "Agentes de IA · Automação",
+    description:
+      "Agente de IA para atendimento via WhatsApp, com painel operacional, histórico, handoff humano e infraestrutura containerizada.",
+    longDescription:
+      "Solução de atendimento com IA integrada ao WhatsApp. O projeto inclui agente em Node.js/TypeScript, painel para acompanhamento das conversas, transferência entre IA e atendimento humano, persistência em MongoDB, autenticação individual, auditoria, fila persistente, observabilidade e infraestrutura com Docker, PostgreSQL, Redis, Caddy e Cloudflare Tunnel.",
+    tags: ["TypeScript", "Node.js", "LLM", "WhatsApp", "Docker", "MongoDB", "PostgreSQL", "Redis"],
+    icon: Sparkles,
+    highlights: [
+      "Atendimento com IA e handoff humano pelo painel",
+      "Fila persistente, deduplicação e trilha de auditoria",
+      "Infraestrutura Docker com MongoDB, PostgreSQL, Redis e proxy",
+    ],
+    links: {
+      demo: "https://agente.smartdevai.com.br/",
+      github: "https://github.com/TenorioDevfullStack/Agente-SmartDev-AI",
+    },
+    images: ["/images/projects/smartdev.webp"],
+  },
+  {
     title: "Energy Intelligence AI",
+    evidence: "Carga observada × prevista · dados sintéticos",
     category: "Data Science · Machine Learning · Energia",
     description:
       "Plataforma de análise inteligente de dados elétricos para detectar anomalias, prever carga e transformar medições em eventos operacionais.",
@@ -61,6 +103,7 @@ const projects: Project[] = [
   },
   {
     title: "SmartPrice AI",
+    evidence: "63.164 transações de apartamentos em São Paulo",
     category: "Data Science · Mercado Imobiliário",
     description:
       "Análise de transações imobiliárias de São Paulo e estimativa experimental de preços com validação temporal e Machine Learning.",
@@ -75,29 +118,30 @@ const projects: Project[] = [
     ],
     links: {
       demo: "https://smartprice-ai-leandro.streamlit.app",
-      github: "https://github.com/TenorioDevfullStack/smartprice-ai",
     },
     images: ["/images/projects/price.webp"],
   },
   {
-    title: "SmartDev AI",
-    category: "Agentes de IA · Automação",
-    description:
-      "Agente de IA para atendimento via WhatsApp, com painel operacional, histórico, handoff humano e infraestrutura containerizada.",
-    longDescription:
-      "Solução de atendimento com IA integrada ao WhatsApp. O projeto inclui agente em Node.js/TypeScript, painel para acompanhamento das conversas, transferência entre IA e atendimento humano, persistência em MongoDB, autenticação individual, auditoria, fila persistente, observabilidade e infraestrutura com Docker, PostgreSQL, Redis, Caddy e Cloudflare Tunnel.",
-    tags: ["TypeScript", "Node.js", "LLM", "WhatsApp", "Docker", "MongoDB", "PostgreSQL", "Redis"],
-    icon: Sparkles,
-    highlights: [
-      "Atendimento com IA e handoff humano pelo painel",
-      "Fila persistente, deduplicação e trilha de auditoria",
-      "Infraestrutura Docker com MongoDB, PostgreSQL, Redis e proxy",
-    ],
-    links: {
-      demo: "https://agente.smartdevai.com.br/",
-      github: "https://github.com/TenorioDevfullStack/Agente-SmartDev-AI",
-    },
-    images: ["/images/projects/smartdev.webp"],
+    title: "Ouvido de Máquina",
+    category: "FIAP · Projeto em equipe",
+    description: "Protótipo de triagem acústica de bombas de água. A equipe compara dois métodos de detecção de desvios em gravações da base DCASE/MIMII.",
+    longDescription: "A aplicação permite ouvir uma amostra, inspecionar seu espectrograma e comparar os alertas dos dois métodos. O estudo usa gravações de referência para investigar desvios acústicos. A aplicação em instalações prediais requer validação em campo.",
+    tags: ["Análise de áudio", "Espectrogramas", "Detecção de anomalias"],
+    icon: AudioLines,
+    highlights: ["Visualização do sinal e comparação de alertas para a mesma gravação.", "Global Solution 2026.2 da FIAP, ligada ao ODS 9."],
+    links: {},
+    images: [],
+  },
+  {
+    title: "FarmTech Solutions — Fase 7",
+    category: "FIAP · IoT e cloud",
+    description: "Uma leitura de sensor simulada no Wokwi chega à AWS EC2 e pode disparar um alerta por e-mail via SNS.",
+    longDescription: "O protótipo integra a captura simulada de dados com um serviço na EC2 e uma dashboard. A demonstração documenta o recebimento das leituras e o envio de um alerta ao detectar uma condição crítica.",
+    tags: ["ESP32 / Wokwi", "AWS EC2", "Amazon SNS", "Python"],
+    icon: Sprout,
+    highlights: ["Ingestão de leituras normais e críticas na EC2.", "Confirmação do recebimento de alerta por e-mail.", "Conferência da leitura enviada pelo simulador na dashboard."],
+    links: {},
+    images: [],
   },
   {
     title: "Visão Computacional — YOLO + CNN",
@@ -249,6 +293,11 @@ const projects: Project[] = [
   },
 ]
 
+function projectHash(title: string) {
+  const slug = title.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-$/, "")
+  return "#projeto-" + slug
+}
+
 export function ProjectsSection() {
   const { ref, isVisible } = useScrollAnimation()
   const [open, setOpen] = useState(false)
@@ -262,12 +311,18 @@ export function ProjectsSection() {
 
   useEffect(() => setMounted(true), [])
 
-  const openProject = (idx: number) => {
-    setSelectedIndex(idx)
-    setLightboxOpen(false)
-    setLightboxIndex(0)
-    setOpen(true)
-  }
+  useEffect(() => {
+    function syncProject() {
+      const index = projects.findIndex(project => projectHash(project.title) === window.location.hash)
+      setSelectedIndex(index < 0 ? null : index)
+      setOpen(index >= 0)
+      setLightboxOpen(false)
+      setLightboxIndex(0)
+    }
+    syncProject()
+    window.addEventListener("hashchange", syncProject)
+    return () => window.removeEventListener("hashchange", syncProject)
+  }, [])
 
   const openLightbox = (idx: number) => {
     setLightboxIndex(idx)
@@ -395,10 +450,16 @@ export function ProjectsSection() {
                 const Icon = project.icon
                 const featured = idx < 3
                 return (
-                  <button key={project.title} type="button" onClick={() => openProject(idx)} className="card-surface card-hover group flex min-w-0 flex-col overflow-hidden text-left">
-                    {featured ? (
-                      <div className={`relative aspect-[1.5] w-full overflow-hidden border-b border-border ${idx === 0 ? "bg-[#0d1915]" : "bg-muted"}`}>
+                  <a key={project.title} href={projectHash(project.title)} aria-haspopup="dialog" className="card-surface card-hover group flex min-w-0 flex-col overflow-hidden text-left">
+                    {featured && project.images.length > 0 ? (
+                      <div className={`relative aspect-[1.5] w-full overflow-hidden border-b border-border bg-muted`}>
                         <Image src={project.images[0]} alt={`Prévia do projeto ${project.title}`} fill sizes="(min-width: 1024px) 370px, (min-width: 640px) 45vw, 95vw" className="featured-project-image object-cover object-top" />
+                      </div>
+                    ) : featured ? (
+                      <div className="flex aspect-[1.5] w-full flex-col justify-end gap-3 bg-indigo-950 p-6 text-indigo-50">
+                        <Music2 size={26} aria-hidden="true" />
+                        <p className="text-3xl font-semibold tracking-tight">32 testes locais</p>
+                        <p className="text-sm text-indigo-200">Catálogo, políticas e uso de ferramentas</p>
                       </div>
                     ) : null}
                     <div className="flex flex-1 flex-col p-5 sm:p-6">
@@ -408,11 +469,11 @@ export function ProjectsSection() {
                         <h3 className={`font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary ${featured ? "text-xl" : "text-base"}`}>{project.title}</h3>
                       </div>
                       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
-                      {idx === 0 ? <p className="mt-3 text-xs font-medium text-muted-foreground">Demonstração com dados sintéticos</p> : null}
+                      {project.evidence && <p className="mt-3 text-xs font-semibold text-foreground">{project.evidence}</p>}
                       <div className="mt-auto flex flex-wrap gap-1.5 pt-5">{project.tags.slice(0, 3).map((tag) => <span key={tag} className="chip">{tag}</span>)}</div>
                       <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">Explorar projeto <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
                     </div>
-                  </button>
+                  </a>
                 )
               })}
             </div>
@@ -425,6 +486,7 @@ export function ProjectsSection() {
         onOpenChange={(next) => {
           setOpen(next)
           if (!next) {
+            window.history.replaceState(window.history.state, "", "#projects")
             setLightboxOpen(false)
             setSelectedIndex(null)
           }
@@ -432,10 +494,9 @@ export function ProjectsSection() {
       >
         <DialogContent className="w-[95vw] max-h-[90svh] overflow-y-auto overflow-x-hidden rounded-2xl bg-card p-0 sm:max-w-3xl">
           {selected ? (
-            <div className="grid lg:grid-cols-2">
-              <div className="bg-muted/50 p-5 lg:p-6">
-                {selected.images.length > 0 ? (
-                  <>
+            <div className={selected.images.length ? "grid lg:grid-cols-2" : ""}>
+              {selected.images.length > 0 && (
+                <div className="bg-muted/50 p-5 lg:p-6">
                     <Carousel opts={{ loop: true }} className="w-full">
                       <CarouselContent>
                         {selected.images.map((src, i) => (
@@ -466,15 +527,8 @@ export function ProjectsSection() {
                     <p className="flex items-center gap-2 pt-3 text-xs text-muted-foreground">
                       <span className="text-accent">›</span> Clique na imagem para ampliar
                     </p>
-                  </>
-                ) : (
-                  <AspectRatio ratio={16 / 9} className="overflow-hidden rounded-xl border border-border">
-                    <div className="flex h-full w-full items-center justify-center bg-muted">
-                      <selected.icon className="h-16 w-16 text-primary/50" />
-                    </div>
-                  </AspectRatio>
-                )}
-              </div>
+                </div>
+              )}
 
               <div className="space-y-6 p-5 lg:p-6">
                 <DialogHeader>

@@ -14,9 +14,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Leandro Tenório — Dados & IA",
+  title: "Leandro Tenório — IA aplicada e Machine Learning",
   description:
-    "Análise de dados, Machine Learning e aplicações web. Conheça os projetos de Leandro Tenório e converse sobre seu próximo desafio.",
+    "Agentes de atendimento, busca documental e machine learning. Conheça os projetos de Leandro Tenório, seus testes e demonstrações.",
   generator: "v0.app",
   manifest: "/logos/site.webmanifest",
   icons: {
