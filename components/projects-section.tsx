@@ -3,6 +3,7 @@
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import {
   ArrowUpRight,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Github,
@@ -28,6 +29,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { EmporioDemo } from "@/components/emporio-demo"
+import { cvPaths } from "@/lib/nav"
 import { SectionHead } from "@/components/section-head"
 
 type Project = {
@@ -305,6 +307,7 @@ function projectHash(title: string) {
 
 export function ProjectsSection() {
   const { ref, isVisible } = useScrollAnimation()
+  const [showOtherProjects, setShowOtherProjects] = useState(false)
   const [open, setOpen] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -321,6 +324,7 @@ export function ProjectsSection() {
       const index = projects.findIndex(project => projectHash(project.title) === window.location.hash)
       setSelectedIndex(index < 0 ? null : index)
       setOpen(index >= 0)
+      if (index >= 3) setShowOtherProjects(true)
       setLightboxOpen(false)
       setLightboxIndex(0)
     }
@@ -460,8 +464,24 @@ export function ProjectsSection() {
 
         {[{ start: 1, items: projects.slice(1, 3) }, { start: 3, items: projects.slice(3) }].map((group) => (
           <div key={group.start} className="space-y-5">
-            {group.start === 3 ? <h3 className="pt-6 text-lg font-semibold tracking-tight">Outros projetos e estudos</h3> : null}
-            <div className={group.start === 1 ? "grid gap-5 sm:grid-cols-2" : "grid gap-5 sm:grid-cols-2 lg:grid-cols-3"}>
+            {group.start === 3 && (
+              <>
+                <div className="space-y-3 border-t border-border pt-5 md:hidden">
+                  <button type="button" aria-expanded={showOtherProjects} aria-controls="outros-projetos"
+                    onClick={() => setShowOtherProjects(value => !value)} className="btn-ghost w-full justify-between">
+                    {showOtherProjects ? "Recolher outros projetos" : `Ver outros ${group.items.length} projetos`}
+                    <ChevronDown aria-hidden="true" size={16} className={showOtherProjects ? "rotate-180" : ""} />
+                  </button>
+                  <div className="flex flex-wrap gap-x-5">
+                    <a href={cvPaths.pdf} download className="inline-flex min-h-11 items-center text-sm font-semibold text-primary">Baixar currículo</a>
+                    <a href="#contact" className="inline-flex min-h-11 items-center text-sm font-semibold text-primary">Entrar em contato</a>
+                  </div>
+                </div>
+                <h3 className="hidden pt-6 text-lg font-semibold tracking-tight md:block">Outros projetos e estudos</h3>
+              </>
+            )}
+            <div id={group.start === 3 ? "outros-projetos" : undefined}
+              className={group.start === 1 ? "grid gap-5 sm:grid-cols-2" : `${showOtherProjects ? "grid" : "hidden md:grid"} gap-5 sm:grid-cols-2 lg:grid-cols-3`}>
               {group.items.map((project, localIndex) => {
                 const idx = group.start + localIndex
                 const Icon = project.icon

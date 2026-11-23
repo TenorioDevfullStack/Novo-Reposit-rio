@@ -1,6 +1,7 @@
 "use client"
 
-import { ArrowRight, ArrowUpRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
+import { ComparacaoBuscas } from "@/components/comparacao-buscas"
 import { scrollToSection } from "@/lib/scroll-to-section"
 
 export function Hero() {
@@ -28,21 +29,7 @@ export function Hero() {
             <span>Machine Learning</span><span aria-hidden="true" className="text-primary/40">/</span><span>Integração de sistemas</span>
           </div>
         </div>
-        <figure className="min-w-0 rounded-3xl border border-border bg-card p-4 shadow-[0_24px_70px_-25px_rgb(79_70_229_/_0.22)] sm:p-6">
-          <figcaption className="text-sm font-semibold text-primary">Empório da Música AI · avaliação de busca</figcaption>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">O agente encontrou a seção certa do manual?</h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Comparei duas formas de recuperar a fonte de uma resposta. Cada busca recebeu as mesmas 20 perguntas em português.</p>
-          <dl className="my-6 space-y-4">
-            {[{ label: "BM25", hits: 6 }, { label: "MiniLM + pgvector", hits: 15 }].map(({ label, hits }) => (
-              <div key={label}>
-                <div className="mb-2 flex justify-between gap-3 text-sm"><dt>{label}</dt><dd className="font-semibold">{hits} de 20</dd></div>
-                <div aria-hidden="true" className="h-2 rounded-full bg-secondary"><div className="h-full rounded-full bg-primary" style={{ width: `${hits * 5}%` }} /></div>
-              </div>
-            ))}
-          </dl>
-          <p className="text-xs leading-relaxed text-muted-foreground">Acerto quando a seção de referência aparece entre os três primeiros resultados.</p>
-          <a href="#demo-emporio" className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">Ver demonstração do agente <ArrowUpRight size={15} /></a>
-        </figure>
+        <ComparacaoBuscas />
       </div>
     </section>
   )
