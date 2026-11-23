@@ -21,14 +21,14 @@ const experiences = [
     tags: ["Ciência de Dados", "Machine Learning", "Estatística", "Python"],
   },
   {
-    role: "Profissional de Elétrica e Eletrônica",
-    company: "Setor técnico",
-    period: "2021 — atual",
+    role: "Líder de manutenção",
+    company: "Quality Air · operação da Galeria Magalu",
+    period: "São Paulo",
     statusText: "experiência",
     summary:
-      "Atuação em diagnóstico, manutenção e resolução de problemas — fortalecendo raciocínio lógico, método e atenção a detalhes que levo para projetos de dados.",
-    skills: ["Diagnóstico e resolução de problemas", "Método, precisão e raciocínio lógico"],
-    tags: ["Resolução de problemas", "Raciocínio lógico", "Método"],
+      "Coordeno a equipe de manutenção predial e acompanho ordens de serviço, inspeções e materiais. Dessa rotina vieram problemas que explorei no StockManager e no Ouvido de Máquina.",
+    skills: ["Distribuição e acompanhamento de ordens de serviço", "Organização de materiais, inspeções e relatórios"],
+    tags: ["Liderança de equipe", "Manutenção predial"],
   },
 ]
 

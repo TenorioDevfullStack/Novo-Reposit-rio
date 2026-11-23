@@ -28,7 +28,7 @@ const KORTEX_SYSTEM_PROMPT = `Você é o Kórtex, o assistente de IA do portfól
 # Base de conhecimento do portfólio (conteúdo da página)
 
 ## Perfil
-Leandro Tenório — estudante de Inteligência Artificial na FIAP, em transição de carreira da área de elétrica/eletrônica para a área de Dados. Combina base em Ciência de Dados, estatística, Python e Machine Learning com vivência prática em aplicações web full stack (front, back, modelagem e integração de bancos). Perfil orientado à resolução de problemas reais, com projetos hands-on para empresas parceiras (Challenges e Global Solution da FIAP). Busca oportunidades de Engenharia de IA Júnior. Localização: São Paulo, BR.
+Leandro Tenório — estudante de Inteligência Artificial na FIAP, em transição de carreira da manutenção predial para Engenharia de IA. Combina base em Ciência de Dados, estatística, Python e Machine Learning com vivência prática em aplicações web full stack (front, back, modelagem e integração de bancos). Perfil orientado à resolução de problemas reais, com projetos hands-on para empresas parceiras (Challenges e Global Solution da FIAP). Busca oportunidades de Engenharia de IA Júnior. Localização: São Paulo, BR.
 
 ## Capacidades
 - Ciência de Dados & ML: análise exploratória e preditiva; Python (Pandas, NumPy), R e SQL; modelagem com Scikit-learn.
@@ -41,14 +41,14 @@ Leandro Tenório — estudante de Inteligência Artificial na FIAP, em transiç�
 
 ## Experiência / trajetória
 - Transição para Dados & IA — FIAP (2026–atual, em formação): análise exploratória e preditiva, coleta/integração/tratamento de dados, fundamentos de ML (regressão e árvores), projetos hands-on com empresas parceiras. Atua com Scrum, entregas versionadas no GitHub, discovery e PoC.
-- Profissional de Elétrica e Eletrônica — setor técnico (2021–atual): diagnóstico, manutenção e resolução de problemas; raciocínio lógico, método e atenção a detalhes levados para projetos de dados.
+- Líder de manutenção na Quality Air, na operação da Galeria Magalu. Coordena a equipe e acompanha ordens de serviço, materiais e inspeções.
 
 ## Projetos
-- Empório da Música AI: agente em Python com Groq, ferramentas para catálogo e preços em SQLite e recuperação textual do manual em PDF com BM25. Há 32 testes locais e cinco exemplos registrados. Código: https://github.com/TenorioDevfullStack/emporio-musica-ai
+- Empório da Música AI: agente em Python com Groq, ferramentas para catálogo e preços em SQLite e recuperação textual do manual em PDF com BM25. Há 32 testes locais e cinco exemplos registrados. Em um experimento separado de recuperação, BM25 encontrou a seção esperada no top 3 em 6 de 20 perguntas e MiniLM com pgvector em 15 de 20. O atendimento continua usando BM25. Código: https://github.com/TenorioDevfullStack/emporio-musica-ai
 - SmartDev AI: atendimento por WhatsApp com histórico, transferência humana e painel em Node.js/TypeScript.
 - Energy Intelligence AI: previsão de carga e detecção de anomalias com dados sintéticos, FastAPI e Streamlit.
 - SmartPrice AI: estimativa experimental de preços com validação temporal em 63.164 transações de apartamentos em São Paulo.
-- Ouvido de Máquina: projeto em equipe na FIAP para triagem acústica de bombas usando amostras DCASE/MIMII.
+- Ouvido de Máquina: projeto em equipe na FIAP para triagem acústica de bombas usando amostras DCASE/MIMII. Leandro acompanhou as etapas e decidiu o que seria implementado, sem atuação na programação desse projeto.
 - FarmTech Fase 7: integração de ESP32 simulado no Wokwi com AWS EC2, dashboard e alertas via SNS.
 1. AstroMonitor (Global Solution 2026.1 — FIAP): plataforma de monitoramento ambiental satelital. Cruza dados de satélite e sensores (BMP280) para prever risco de queimadas; mapa de risco interativo, predição com GradientBoosting, impacto na saúde respiratória (PM2,5/CONAMA), briefing automático para Defesa Civil com IA, visão computacional (NDVI e mapa de calor), validação com dados reais do INPE (backtest Pantanal 2024), PostgreSQL/Supabase. Stack: Python, Machine Learning, Scikit-learn, Visão Computacional, PostgreSQL, Supabase, IA. Demo: https://astromonitor-dfjfv9n7qxdqca9v4ecrdo.streamlit.app/
 2. SafeHarvest AI (Challenge Sompo Seguros — FIAP): sistema preditivo de risco operacional/ambiental para equipamentos agrícolas. Modelo Gradient Boosting (acurácia 97,9%, F1 0,98), score de risco 0–100 por equipamento, API REST em Flask com JWT por perfil, dashboards por persona (Operador, Gestor, Analista Sompo). Stack: Python, Machine Learning, Gradient Boosting, Scikit-learn, Flask, JWT, SQL.

@@ -7,10 +7,10 @@ import { SectionHead } from "@/components/section-head"
 import { cvPaths } from "@/lib/nav"
 
 const manifest = [
-  "Resumo profissional e objetivo em Dados",
-  "Formação em IA (FIAP) e experiências",
-  "Projetos acadêmicos e de desenvolvimento",
-  "Competências em Dados, ML e desenvolvimento",
+  "Agentes de atendimento com Python e TypeScript",
+  "Formação em Inteligência Artificial na FIAP",
+  "Empório da Música AI, SmartDev AI e Ouvido de Máquina",
+  "Liderança de equipe e manutenção predial",
 ]
 
 export function CvSection() {
@@ -27,7 +27,7 @@ export function CvSection() {
           index="05"
           label="Currículo"
           title={<>Baixe meu currículo</>}
-          subtitle="Disponível em PDF e Word. Escolha o formato para baixar o arquivo completo."
+          subtitle="Projetos, formação e experiência em uma página."
         />
 
         <div className="card-surface overflow-hidden">
@@ -39,7 +39,7 @@ export function CvSection() {
                 </span>
                 <div>
                   <p className="font-display text-lg font-semibold text-foreground">CV — Leandro Tenório</p>
-                  <p className="text-sm text-primary">Transição de carreira para Dados</p>
+                  <p className="text-sm text-primary">Engenharia de IA Júnior</p>
                 </div>
               </div>
 
@@ -72,6 +72,11 @@ export function CvSection() {
                 Visualizar
               </a>
             </div>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border px-6 py-4 text-sm">
+            <span>Currículo para vagas em Dados</span>
+            <a href={cvPaths.dataPdf} download className="text-primary underline">PDF de Dados</a>
+            <a href={cvPaths.dataDocx} download className="text-primary underline">Word de Dados</a>
           </div>
         </div>
       </div>

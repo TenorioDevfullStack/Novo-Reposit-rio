@@ -26,6 +26,8 @@ export const contactInfo = {
 }
 
 export const cvPaths = {
-  pdf: "/cv/CV_Leandro_Tenorio_Dados.pdf",
-  docx: "/cv/CV_Leandro_Tenorio_Dados.docx",
+  pdf: "/cv/CV_Leandro_Tenorio_IA.pdf",
+  dataPdf: "/cv/CV_Leandro_Tenorio_Dados.pdf",
+  docx: "/cv/CV_Leandro_Tenorio_IA.docx",
+  dataDocx: "/cv/CV_Leandro_Tenorio_Dados.docx",
 }

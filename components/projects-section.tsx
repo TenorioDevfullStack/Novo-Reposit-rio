@@ -27,11 +27,14 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { EmporioDemo } from "@/components/emporio-demo"
 import { SectionHead } from "@/components/section-head"
 
 type Project = {
   title: string
   evidence?: string
+  contribution?: string
+  caption?: string
   category: string
   description: string
   longDescription: string
@@ -81,6 +84,19 @@ const projects: Project[] = [
     images: ["/images/projects/smartdev.webp"],
   },
   {
+    title: "Ouvido de Máquina",
+    category: "FIAP · Projeto em equipe",
+    description: "Protótipo de triagem acústica de bombas de água. A equipe compara dois métodos de detecção de desvios em gravações da base DCASE/MIMII.",
+    longDescription: "A aplicação permite ouvir uma amostra, inspecionar seu espectrograma e comparar os alertas dos dois métodos. O estudo usa gravações de referência para investigar desvios acústicos. A aplicação em instalações prediais requer validação em campo.",
+    tags: ["Análise de áudio", "Espectrogramas", "Detecção de anomalias"],
+    icon: AudioLines,
+    highlights: ["Visualização do sinal e comparação de alertas para a mesma gravação.", "Global Solution 2026.2 da FIAP, ligada ao ODS 9."],
+    contribution: "Acompanhei todas as etapas do projeto e decidi com a equipe o que seria implementado. Propus comparar duas bombas para verificar se o resultado observado na primeira se repetia na segunda.",
+    caption: "A referência de amplitude detectou 96 de 143 anomalias na bomba 00 e 61 de 111 na bomba 02. O Isolation Forest detectou 63 e 29, respectivamente.",
+    links: {},
+    images: ["/images/projects/ouvido.webp"],
+  },
+  {
     title: "Energy Intelligence AI",
     evidence: "Carga observada × prevista · dados sintéticos",
     category: "Data Science · Machine Learning · Energia",
@@ -120,17 +136,6 @@ const projects: Project[] = [
       demo: "https://smartprice-ai-leandro.streamlit.app",
     },
     images: ["/images/projects/price.webp"],
-  },
-  {
-    title: "Ouvido de Máquina",
-    category: "FIAP · Projeto em equipe",
-    description: "Protótipo de triagem acústica de bombas de água. A equipe compara dois métodos de detecção de desvios em gravações da base DCASE/MIMII.",
-    longDescription: "A aplicação permite ouvir uma amostra, inspecionar seu espectrograma e comparar os alertas dos dois métodos. O estudo usa gravações de referência para investigar desvios acústicos. A aplicação em instalações prediais requer validação em campo.",
-    tags: ["Análise de áudio", "Espectrogramas", "Detecção de anomalias"],
-    icon: AudioLines,
-    highlights: ["Visualização do sinal e comparação de alertas para a mesma gravação.", "Global Solution 2026.2 da FIAP, ligada ao ODS 9."],
-    links: {},
-    images: [],
   },
   {
     title: "FarmTech Solutions — Fase 7",
@@ -441,10 +446,22 @@ export function ProjectsSection() {
           subtitle="Uma seleção de análises, modelos e aplicações. Explore o problema, a abordagem e os limites de cada projeto."
         />
 
-        {[{ start: 0, items: projects.slice(0, 3) }, { start: 3, items: projects.slice(3) }].map((group) => (
+        <article className="card-surface grid items-center gap-5 p-5 sm:p-7 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
+          <div>
+            <p className="eyebrow">{projects[0].category}</p>
+            <h3 className="mt-3 text-3xl font-semibold tracking-tight">{projects[0].title}</h3>
+            <p className="mt-4 leading-relaxed text-muted-foreground">{projects[0].description}</p>
+            <p className="mt-4 text-sm font-semibold">32 testes locais · 5 execuções documentadas</p>
+            <div className="my-5 flex flex-wrap gap-2">{projects[0].tags.map(tag => <span key={tag} className="chip">{tag}</span>)}</div>
+            <a href={projectHash(projects[0].title)} aria-haspopup="dialog" className="btn-ghost">Explorar projeto <ArrowUpRight size={15} /></a>
+          </div>
+          <EmporioDemo />
+        </article>
+
+        {[{ start: 1, items: projects.slice(1, 3) }, { start: 3, items: projects.slice(3) }].map((group) => (
           <div key={group.start} className="space-y-5">
             {group.start === 3 ? <h3 className="pt-6 text-lg font-semibold tracking-tight">Outros projetos e estudos</h3> : null}
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className={group.start === 1 ? "grid gap-5 sm:grid-cols-2" : "grid gap-5 sm:grid-cols-2 lg:grid-cols-3"}>
               {group.items.map((project, localIndex) => {
                 const idx = group.start + localIndex
                 const Icon = project.icon
@@ -452,14 +469,8 @@ export function ProjectsSection() {
                 return (
                   <a key={project.title} href={projectHash(project.title)} aria-haspopup="dialog" className="card-surface card-hover group flex min-w-0 flex-col overflow-hidden text-left">
                     {featured && project.images.length > 0 ? (
-                      <div className={`relative aspect-[1.5] w-full overflow-hidden border-b border-border bg-muted`}>
-                        <Image src={project.images[0]} alt={`Prévia do projeto ${project.title}`} fill sizes="(min-width: 1024px) 370px, (min-width: 640px) 45vw, 95vw" className="featured-project-image object-cover object-top" />
-                      </div>
-                    ) : featured ? (
-                      <div className="flex aspect-[1.5] w-full flex-col justify-end gap-3 bg-indigo-950 p-6 text-indigo-50">
-                        <Music2 size={26} aria-hidden="true" />
-                        <p className="text-3xl font-semibold tracking-tight">32 testes locais</p>
-                        <p className="text-sm text-indigo-200">Catálogo, políticas e uso de ferramentas</p>
+                      <div className={`relative aspect-[1.95] w-full overflow-hidden border-b border-border bg-muted`}>
+                        <Image src={project.images[0]} alt={project.caption ?? `Prévia do projeto ${project.title}`} fill sizes="(min-width: 1024px) 550px, (min-width: 640px) 45vw, 95vw" className="featured-project-image object-cover object-top" />
                       </div>
                     ) : null}
                     <div className="flex flex-1 flex-col p-5 sm:p-6">
@@ -510,7 +521,7 @@ export function ProjectsSection() {
                               <AspectRatio ratio={16 / 9} className="cursor-zoom-in overflow-hidden rounded-xl border border-border">
                                 <Image
                                   src={src}
-                                  alt={selected.title}
+                                  alt={selected.caption ?? selected.title}
                                   fill
                                   sizes="(min-width: 1024px) 50vw, 100vw"
                                   className="object-cover transition-transform duration-300 group-hover/image:scale-[1.02]"
@@ -524,6 +535,7 @@ export function ProjectsSection() {
                       <CarouselPrevious className="left-2 -translate-y-1/2" />
                       <CarouselNext className="right-2 -translate-y-1/2" />
                     </Carousel>
+                    {selected.caption && <p className="pt-3 text-sm text-muted-foreground">{selected.caption}</p>}
                     <p className="flex items-center gap-2 pt-3 text-xs text-muted-foreground">
                       <span className="text-accent">›</span> Clique na imagem para ampliar
                     </p>
@@ -547,6 +559,14 @@ export function ProjectsSection() {
                   ))}
                 </div>
 
+                {selected.contribution && <div className="space-y-2"><h4 className="eyebrow">Minha contribuição</h4><p className="text-sm leading-relaxed">{selected.contribution}</p></div>}
+                {selected === projects[0] && (
+                  <div className="space-y-2">
+                    <h4 className="eyebrow">Avaliação da busca no manual</h4>
+                    <p className="text-sm leading-relaxed">Em 20 perguntas rotuladas, a seção esperada apareceu entre as três primeiras em 6 buscas com BM25 e em 15 com MiniLM e pgvector. O experimento mede recuperação de fontes. A qualidade da resposta final exige outra avaliação.</p>
+                    <a className="text-sm font-semibold text-primary underline" href="https://github.com/TenorioDevfullStack/emporio-musica-ai/tree/main/evaluation">Conferir perguntas, resultados e decisão técnica</a>
+                  </div>
+                )}
                 <div className="space-y-2">
                   <h4 className="eyebrow">Destaques</h4>
                   <ul className="space-y-1.5 text-sm text-muted-foreground">
