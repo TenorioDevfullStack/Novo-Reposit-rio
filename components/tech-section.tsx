@@ -30,10 +30,12 @@ type Category = { category: string; icon: LucideIcon; items: Tool[] }
 
 const technologies: Category[] = [
   {
-    category: "Linguagens & Dados",
+    category: "IA generativa e dados",
     icon: Database,
     items: [
       { label: "Python", brand: siPython },
+      { label: "Chamadas de ferramentas via Groq", mono: "API" },
+      { label: "Recuperação textual com BM25", mono: "RAG" },
       { label: "Pandas", brand: siPandas },
       { label: "NumPy", brand: siNumpy },
       { label: "R", brand: siR },
@@ -94,7 +96,7 @@ export function TechSection() {
               Ferramentas e <span className="gradient-text">capacidades técnicas</span>
             </>
           }
-          subtitle="O que uso e continuo estudando, com foco em Dados e Machine Learning."
+          subtitle="Ferramentas que aplico em agentes de atendimento, análise de dados e machine learning."
         />
 
         <div className="grid gap-5 sm:grid-cols-2">

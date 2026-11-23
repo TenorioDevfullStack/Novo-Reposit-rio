@@ -59,14 +59,10 @@ export function AboutSection() {
         <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr]">
           <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
             <p>
-              Estudante de Inteligência Artificial na FIAP, em transição da área de eletrônica para{" "}
-              <span className="font-medium text-foreground">Dados</span>. Combino base em Ciência de Dados,
-              estatística, Python e ML com prática na construção de aplicações web.
+              Estudo Inteligência Artificial na FIAP e venho da liderança de manutenção predial. Essa experiência orienta meus projetos de análise de energia e de triagem de falhas em equipamentos.
             </p>
             <p>
-              Perfil orientado a problemas reais, com projetos hands-on para empresas parceiras da FIAP. Busco
-              oportunidades em{" "}
-              <span className="font-medium text-primary">análise, engenharia ou ciência de dados</span>.
+              Busco oportunidades de <span className="font-medium text-primary">Engenharia de IA Júnior</span>. Desenvolvo agentes de atendimento, integro APIs e testo como as aplicações respondem quando faltam dados.
             </p>
           </div>
 

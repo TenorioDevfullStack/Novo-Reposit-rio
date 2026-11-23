@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { scrollToSection } from "@/lib/scroll-to-section"
 
@@ -13,10 +12,10 @@ export function Hero() {
         <div className="min-w-0 space-y-7">
           <p className="eyebrow"><span className="h-1.5 w-1.5 rounded-full bg-primary" />Leandro Tenório · Dados &amp; IA</p>
           <h1 className="text-[2.65rem] font-semibold leading-[1.08] tracking-[-0.055em] text-foreground sm:text-6xl lg:text-[3.65rem]">
-            Análise de dados para entender problemas e <span className="text-primary">orientar decisões.</span>
+            Desenvolvo agentes de IA e aplicações de <span className="text-primary">machine learning.</span>
           </h1>
           <p className="max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Desenvolvo análises, modelos e aplicações que ajudam a explorar informações e apoiar decisões de negócio.
+            Estudo Inteligência Artificial na FIAP e aplico Python, APIs e bancos de dados em projetos de atendimento, energia e automação.
           </p>
           <div className="flex flex-wrap gap-3">
             <button type="button" onClick={() => go("projects")} className="btn-primary group">
@@ -25,22 +24,26 @@ export function Hero() {
             <button type="button" onClick={() => go("contact")} className="btn-ghost">Conversar sobre um projeto</button>
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border/70 pt-5 text-xs font-medium text-muted-foreground">
-            <span>Análise de dados</span><span aria-hidden="true" className="text-primary/40">/</span>
-            <span>Machine Learning</span><span aria-hidden="true" className="text-primary/40">/</span><span>Aplicações web</span>
+            <span>IA generativa</span><span aria-hidden="true" className="text-primary/40">/</span>
+            <span>Machine Learning</span><span aria-hidden="true" className="text-primary/40">/</span><span>Integração de sistemas</span>
           </div>
         </div>
-        <figure className="hero-project min-w-0 rounded-3xl border border-border bg-card p-2.5 shadow-[0_24px_70px_-25px_rgb(79_70_229_/_0.22)] sm:p-3">
-          <div className="flex items-center justify-between gap-3 px-3 pb-3 pt-1.5 text-[11px] text-muted-foreground">
-            <span className="inline-flex gap-1.5" aria-hidden="true"><span className="h-2 w-2 rounded-full bg-primary/30" /><span className="h-2 w-2 rounded-full bg-primary/15" /><span className="h-2 w-2 rounded-full bg-primary/10" /></span>
-            <span>DO DADO À VISUALIZAÇÃO</span>
-          </div>
-          <div className="relative aspect-[1.2] overflow-hidden rounded-2xl bg-[#0d1915]">
-            <Image src="/images/projects/energy.webp" alt="Dashboard Energy Intelligence AI com indicadores de potência e curva de carga observada versus prevista, usando dados sintéticos." fill sizes="(min-width: 1024px) 580px, (min-width: 640px) 90vw, 95vw" className="hero-dashboard object-cover" priority />
-          </div>
-          <figcaption className="flex flex-wrap items-center justify-between gap-3 px-3 pb-2 pt-4">
-            <div><p className="text-sm font-semibold">Energy Intelligence AI</p><p className="mt-1 text-xs text-muted-foreground">Projeto de portfólio · Dados sintéticos</p></div>
-            <a href="https://energy-intelligence-leandro.streamlit.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs font-semibold text-primary">Explorar demo <ArrowUpRight size={15} /><span className="sr-only"> (abre em nova aba)</span></a>
+        <figure className="min-w-0 rounded-3xl border border-border bg-card p-4 shadow-[0_24px_70px_-25px_rgb(79_70_229_/_0.22)] sm:p-6">
+          <figcaption className="mb-5 flex flex-wrap items-center justify-between gap-2">
+            <span className="text-sm font-semibold">Empório da Música AI</span>
+            <span className="text-xs text-muted-foreground">Execução registrada · 31 out. 2026</span>
           </figcaption>
+          <div className="rounded-2xl bg-slate-950 p-5 text-slate-100 sm:p-7">
+            <p className="text-xs font-medium text-slate-300">Pergunta do cliente</p>
+            <blockquote className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl">“Tem Ohana CK-20 por até 500 reais?”</blockquote>
+            <div className="my-5 border-y border-white/15 py-4">
+              <p className="text-xs text-slate-300">Ferramenta consultada</p>
+              <code className="text-sm text-indigo-200">search_offers</code>
+            </div>
+            <p className="text-sm">Ohana CK-20 Concert Natural</p>
+            <p className="mt-1 text-3xl font-semibold">R$ 439,20 <span className="text-xs font-normal text-slate-300">sem frete</span></p>
+          </div>
+          <a href="https://github.com/TenorioDevfullStack/emporio-musica-ai/blob/main/examples/01_catalogo.md" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">Ver registro da execução <ArrowUpRight size={15} /><span className="sr-only"> (abre em nova aba)</span></a>
         </figure>
       </div>
     </section>
